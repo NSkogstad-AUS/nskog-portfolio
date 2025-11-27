@@ -1,0 +1,7 @@
+{
+    "brand": "My Portfolio",
+    "links": [
+        { "label": "Home", "href": "/" },
+        { "label": "Projects", "href": "/projects" }
+    ]
+}

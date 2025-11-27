@@ -6,4 +6,8 @@
 
 <br>
 
-<p>Through CODEX I learnt we could have a static file server (dev-server.js) serve a folder (public). <br> We use commom MIME types (media types) like text/html, text/css, application/javascript, image/png... etc... <br> We basically have dev-server.js saying "These are the files we're using, Browser" so the Browser knows how to handle</p>
+<p>
+    Through CODEX I learnt we could have a static file server (dev-server.js) serve a folder (public). <br>
+    We use common MIME types (media types) like text/html, text/css, application/javascript, image/png... etc... <br>
+    We basically have dev-server.js saying "These are the files we're using, Browser" so the Browser knows how to handle
+</p>
