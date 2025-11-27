@@ -1,5 +1,5 @@
 {
-    "brand": "My Portfolio",
+    "brand": "My Portfolio Navigation",
     "links": [
         { "label": "Home", "href": "/" },
         { "label": "Projects", "href": "/projects" }
