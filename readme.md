@@ -6,3 +6,4 @@ For Commit Messages, we'll follow:
     - fix      (fixes)
     - docs     (documentation changes)
     - refactor (code that neither fixes nor adds changes)
+    - chore    (for tasks that don't change application logic)
