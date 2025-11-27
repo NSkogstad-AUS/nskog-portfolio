@@ -1,0 +1,12 @@
+@import "./footer.css";
+@import "./animations.css";
+@import "./typography.css";
+@import "./colors.css";
+@import "./layout.css";
+@import "./buttons.css";
+@import "./forms.css";
+@import "./responsive.css";
+@import "./utilities.css";
+
+/* Compartmentalised Imports */
+@import "./navbar.css";
