@@ -2,17 +2,6 @@
  * This is the behavior for the navigation, Fetching navigation data, wiring events
  * Also renders.attaches the navbar.html fragment
  * Think of the dynamic states, clicks and toggles (this is .js whereas HTML is the structure)
- * 
- * navbar.js
- * - Loads the static markup from navbar.html
- * - Loads nav items from navigation.json
- * - Injects both into the page and wires up basic behavior (mobile toggle)
- *
- * Communication between files:
- *   - navbar.html: supplies the structural skeleton.
- *   - navigation.json: supplies data for labels/links.
- *   - navbar.css: styles the elements once they are in the DOM.
- *   - app.js: calls renderNavbar to mount the component into the page.
  */
 
 const NAV_TEMPLATE_URL = "./components/navbar.html";
@@ -20,8 +9,8 @@ const NAV_TEMPLATE_URL = "./components/navbar.html";
 /**
  * Render the navbar into the given target element.
  * @param {Object} options
- * @param {HTMLElement|null} options.target - Where to place the navbar (e.g., document.querySelector("header"))
- * @param {string} options.configUrl - Path to the JSON file with nav data
+ * @param {HTMLElement|null} options.target
+ * @param {string} options.configUrl
  */
 export async function renderNavbar({ target, configUrl }) {
     if (!target) {
