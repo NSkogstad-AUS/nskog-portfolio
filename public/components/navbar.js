@@ -33,7 +33,6 @@ export async function renderNavbar({ target, configUrl }) {
     const toggleButton = navEl?.querySelector(".navbar__toggle");
 
     const locationSlot = navEl?.querySelector("[data-slot='location']");
-    const formatPath = (pathname) => pathname.replace(/\/+$/, "") || "/";
     const buildCrumbs = (pathname) => {
         const parts = pathname.split("/").filter(Boolean);
         return ["~", ...parts];

@@ -29,3 +29,11 @@
     You can refer to the above image to visualise that the concept of a navbar relies on multiple files. <br>
     I chose to split it up so we don't couple multiple things into one file
 </p>
+
+### 28/11/2025
+<p>
+    The 'location' element in the center navbar does the following: <br>
+    <li> Takes the pathname, breaks it into core components, and prepends the root '~' symbol </li>
+    <li> Then we just iterate through each crumb, define it's text, and index. </li>
+    <li> Then insert the text ONLY, check for next index, if true, then add '/' divider </li>
+</p>
