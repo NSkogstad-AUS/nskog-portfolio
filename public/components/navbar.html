@@ -1,6 +1,7 @@
 <!--navbar.html -> holds the static skeleton
     - navbar.css  -> styles it
-    - navbar.js   -> turns it into an interactive component-->
+    - navbar.js   -> turns it into an interactive component
+-->
 <!--
     navbar.html
     - Provides the bare structural markup for the navigation bar.
@@ -9,16 +10,8 @@
 -->
 
 <nav class="navbar">
-        <div class="navbar__brand" data-slot="brand">
-            <!-- Brand text or logo is injected by navbar.js -->
-        </div>
-
-        <button class="navbar__toggle" type="button" aria-expanded="false" aria-controls="navbar-links">
-            <!-- Simple hamburger icon made of three lines -->
-            <span>One</span>
-            <span>Two</span>
-            <span>Three</span>
-        </button>
+        <div class="navbar__brand" data-slot="brand"></div>
+        <div class="navbar__location" data-slot="location"></div>
 
         <div class="navbar__links" id="navbar-links" data-slot="links">
             <!-- Navigation items injected by navbar.js based on navigation.json -->

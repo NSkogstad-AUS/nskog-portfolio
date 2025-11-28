@@ -32,9 +32,34 @@ export async function renderNavbar({ target, configUrl }) {
     const linksSlot = navEl?.querySelector("[data-slot='links']");
     const toggleButton = navEl?.querySelector(".navbar__toggle");
 
-    // Populate brand text (falls back to a generic label).
+    const locationSlot = navEl?.querySelector("[data-slot='location']");
+    const formatPath = (pathname) => pathname.replace(/\/+$/, "") || "/";
+    const buildCrumbs = (pathname) => {
+        const parts = pathname.split("/").filter(Boolean);
+        return ["~", ...parts];
+    };
+
+    // Populate brand text
     if (brandSlot) {
         brandSlot.textContent = navData?.brand || "Brand";
+    }
+
+    // For determining the level we're at
+    if (locationSlot) {
+        const crumbs = buildCrumbs(window.location.pathname);
+        locationSlot.innerHTML = "";
+        crumbs.forEach((part, idx) => {
+            const span = document.createElement("span");
+            span.className = "navbar__crumb" + (idx === crumbs.length - 1 ? " is-active" : "");
+            span.textContent = part;
+            locationSlot.appendChild(span);
+            if (idx < crumbs.length - 1) {
+                const divider = document.createElement("span");
+                divider.className = "navbar__divider";
+                divider.textContent = "/";
+                locationSlot.appendChild(divider);
+            }
+        });
     }
 
     // Populate links from JSON data.
@@ -47,14 +72,6 @@ export async function renderNavbar({ target, configUrl }) {
             anchor.textContent = item.label;
             li.appendChild(anchor);
             linksSlot.appendChild(li);
-        });
-    }
-
-    // Basic mobile toggle behavior (adds a class the CSS can react to).
-    if (toggleButton && navEl) {
-        toggleButton.addEventListener("click", () => {
-            const isOpen = navEl.classList.toggle("is-open");
-            toggleButton.setAttribute("aria-expanded", String(isOpen));
         });
     }
 }
