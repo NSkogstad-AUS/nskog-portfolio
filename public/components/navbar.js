@@ -49,10 +49,12 @@ export async function renderNavbar({ target, configUrl }) {
         locationSlot.innerHTML = "";
         crumbs.forEach((part, idx) => {
             const span = document.createElement("span");
+            const isActive = idx === crumbs.length - 1;
             span.className = "navbar__crumb" + (idx === crumbs.length - 1 ? " is-active" : "");
+            if (part === "~") span.classList.add("navbar__crumb--root");
             span.textContent = part;
             locationSlot.appendChild(span);
-            if (idx < crumbs.length - 1) {
+            if (idx - 1 < crumbs.length - 1) {
                 const divider = document.createElement("span");
                 divider.className = "navbar__divider";
                 divider.textContent = "/";

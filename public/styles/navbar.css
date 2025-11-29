@@ -3,8 +3,10 @@
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 0.75rem 1.5rem;
+    width: 80%;
+    margin: 0 auto;
     background: #767676;
     color: #ffffff;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -12,14 +14,43 @@
 
 .navbar__brand {
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 300;
+}
+
+/* For the location element */
+.navbar__crumb--root {
+    color: gold;
+    text-decoration-line: underline;
+}
+
+.navbar__location {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.blink {
+    background: rgb(255, 179, 0);
+    width: 0.5rem;
+    height: 1.1rem;
+    animation: pulse 2s infinite alternate;
+    margin-left: 5px;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0;
+    }
+    
+    40%, 100% {
+        opacity: 1;
+    }
 }
 
 .navbar__links {
     display: flex;
-    gap: 1rem;
     list-style: none;
-    margin: 0;
+    gap: 1rem;
+    margin: 0 0 0 auto;
     padding: 0;
 }
 
