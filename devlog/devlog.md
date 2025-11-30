@@ -42,3 +42,8 @@
 <p>
     I learnt that you could implement css animations utilising mathematical functions
 </p>
+
+### 30/11/2025
+<p>
+    Now I've just merged the navbar into the main branch
+</p>
