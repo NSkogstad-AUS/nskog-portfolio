@@ -37,3 +37,8 @@
     <li> Then we just iterate through each crumb, define it's text, and index. </li>
     <li> Then insert the text ONLY, check for next index, if true, then add '/' divider </li>
 </p>
+
+### 29/11/2025
+<p>
+    I learnt that you could implement css animations utilising mathematical functions
+</p>

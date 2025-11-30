@@ -6,14 +6,15 @@ import navData from "@/data/navigation.json";
 
 type NavLink = { label: string; href: string };
 
-const buildCrumbs = (pathname: string) => [
-  "~",
-  ...pathname
+const buildCrumbs = (pathname: string) => {
+  const parts = pathname
     .split("/")
     .filter(Boolean)
-    // Drop the legacy "pages" segment so breadcrumbs read ~/about instead of ~/pages/about
-    .filter((part) => part.toLowerCase() !== "pages"),
-];
+    .filter((part) => part.toLowerCase() !== "pages");
+
+  const isHome = parts.length === 0 || (parts.length === 1 && parts[0].toLowerCase() === "home");
+  return isHome ? ["~"] : ["~", ...parts];
+};
 
 export function Navbar() {
   const pathname = usePathname();
