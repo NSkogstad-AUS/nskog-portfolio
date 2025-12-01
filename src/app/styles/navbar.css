@@ -3,11 +3,13 @@
   align-items: center;
   justify-content: flex-start;
   padding: 0.75rem 1.5rem;
-  width: 80%;
+  width: 80.5%;
+  min-height: 75px;
   margin: 0 auto;
-  background: #767676;
+  background: rgb(118, 188, 188, 0%);
   color: #ffffff;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
 }
 
 .navbar__brand {
@@ -20,7 +22,6 @@
   font-weight: 400;
   display: flex;
   align-items: center;
-  gap: 0.35rem;
 }
 
 .navbar__crumb {
@@ -30,21 +31,23 @@
 }
 
 .navbar__crumb--root {
-  color: gold;
+  color: rgba(254, 100, 12);
   text-decoration-line: underline;
 }
 
 .navbar__divider {
-  color: #ffffff;
+  color: rgb(73, 75, 91);
   opacity: 0.8;
+  text-decoration-line: none;
 }
 
-.navbar__crumb.is-active {
+.navbar__crumb.is-active:not(.navbar__crumb--root) {
+  color: rgb(73, 75, 91);
   font-weight: 400;
 }
 
 .blink {
-  background: rgb(255, 179, 0);
+  background: rgba(254, 100, 12);
   width: 0.5rem;
   height: 1.0rem;
   animation: pulse 2s infinite alternate;
@@ -71,7 +74,7 @@
 }
 
 .navbar__links a {
-  color: inherit;
+  color: rgb(73, 75, 91);
   text-decoration: none;
   padding: 0.35rem 0.5rem;
   border-radius: 0.35rem;
@@ -81,7 +84,7 @@
 .navbar__links a:hover,
 .navbar__links a:focus-visible {
   background: rgba(255, 255, 255, 0.08);
-  color: #e2e8f0;
+  color: rgb(86, 88, 107);
 }
 
 @media (max-width: 768px) {

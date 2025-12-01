@@ -3,6 +3,7 @@
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import navData from "@/data/navigation.json";
+import React from "react";
 
 type NavLink = { label: string; href: string };
 
@@ -27,13 +28,14 @@ export function Navbar() {
           const isActive = idx === crumbs.length - 1;
           const isRoot = part === "~";
           return (
-            <span
-              key={`${part}-${idx}`}
-              className={`navbar__crumb${isActive ? " is-active" : ""}${isRoot ? " navbar__crumb--root" : ""}`}
-            >
-              {part}
-              {idx < crumbs.length && <span className="navbar__divider">/</span>}
-            </span>
+            <React.Fragment key={'${part}-${idx}'}>
+              <span
+                className={`navbar__crumb${isActive ? " is-active" : ""}${isRoot ? " navbar__crumb--root" : ""}`}
+              >
+                {part}
+              </span>
+                {idx < crumbs.length && <span className="navbar__divider">/</span>}
+            </React.Fragment>
           );
         })}
         <span className="blink" />

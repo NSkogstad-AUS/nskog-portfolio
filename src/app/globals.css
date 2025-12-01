@@ -1,9 +1,18 @@
 @import "./styles/navbar.css";
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap");
 /* stylelint-disable at-rule-no-unknown */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 /* stylelint-enable at-rule-no-unknown */
+
+/*:root {
+  --dot-size: 2px;
+  --dot-gap: 32px;
+  --dot-speed: 4s;
+  --dot-color: rgba(0, 0, 0, 0.3);
+}*/
+
 
 *,
 *::before,
@@ -11,11 +20,31 @@
   box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* SCROLL bar */
+@supports (scrollbar-width: none) {
+  html, body {
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+  }
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+/* SCROLLBAR */
+
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: #fff;
+  background: rgba(229, 233, 239);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -28,34 +57,38 @@ html::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("/assets/bg-oceanside.jpg") center/cover no-repeat fixed;
+  /*background: url("/assets/bg-oceanside.jpg") center/cover no-repeat fixed;*/
   z-index: 0;
 }
 
+/* the in-between after background and before cards */
 body::before {
   content: "";
   position: fixed;
   pointer-events: none;
   inset: 0;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.0);
   z-index: 1;
 }
 
+/*
 body::after {
   content: "";
   position: fixed;
-  inset: 0;
+  inset: calc(-1 * var(--dot-gap));
   pointer-events: none;
-  background-image: radial-gradient(black 1px, transparent 0);
-  background-size: 40px 40px;
-  background-position: -19px -19px;
+  background-image: radial-gradient(circle var(--dot-size), var(--dot-color) 50%, transparent 60%);
+  background-size: var(--dot-gap) var(--dot-gap);
   z-index: 2;
-  
-  animation: move 2s ease-in-out infinite;
-} @keyframes move {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(15px); }
+  animation: move var(--dot-speed) linear infinite;
+  will-change: transform;
 }
+
+@keyframes move {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(var(--dot-gap), var(--dot-gap), 0); }
+}
+*/
 
 header {
   position: relative;
@@ -79,33 +112,65 @@ main {
 }
 
 .page--center {
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-left: 34rem;
+  row-gap: 0rem;
 }
 
+/* OUR INTRO CARD */
 .card {
   background: rgba(255, 255, 255, 0);
   border-radius: 12px;
   padding: 2rem 2.5rem;
-  box-shadow: 0 14px 38px rgba(0, 0, 0, 0);
-  max-width: 720px;
-  width: 100%;
-  text-align: center;
+  margin: 0;
+  width: 37vw;
+  height: 25vh;
+}
+
+.card__link {
+  color: rgba(254, 100, 12);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
 }
 
 .card h1 {
   margin: 0 0 0.75rem;
+  letter-spacing: 0.05em;
   font-size: 2rem;
   font-weight: 700;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  color: rgba(77, 79, 105);
 }
 
 .card p {
   margin: 0;
-  font-size: 1.05rem;
-  color: #1f2933;
+  font-size: 1.2rem;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  line-height: 1.8;
+  color: rgb(86, 88, 107);
+}
+/* OUR INTRO CARD */
+
+
+/* OUR LINKS CARD */
+.card2 {
+  background: #ffffff;
+  border-style: sold;
+  border-color: aqua;
+  border-radius: 12px;
+  width: 35vw;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
-@layer base {
+/* OUR LINKS CARD */
+
+/*@layer base {
     ::view-transition-old(root),
     ::view-transition-new(root) {
         animation-duration: 300ms;
@@ -127,4 +192,4 @@ main {
     @keyframes fade-in {
         from { opacity: 0; }
     }
-}
+}*/
