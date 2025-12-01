@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function HomePage() {
   return (
     <section className="page page--center">
@@ -16,14 +14,21 @@ export default function HomePage() {
           a startup based on making AI easy, reliable, and convenient for local businesses.</p>
       </div>
       <div className="card2">
-        <a href="https://github.com/NSkogstad-AUS" aria-label="GitHub">
-          <Image src="/svgs/github-logo_icon-icons.com_73546.svg" alt="GitHub" width={32} height={32}/>
+        <a className="card2__resumebox" href="/resume/main.pdf" download target="_blank" rel="noopener noreferrer">
+          <a className="card2__item">
+            <i className="bi bi-download" aria-hidden="true"/>
+            <span>Resume</span>
+          </a>
         </a>
-        <a href="https://www.linkedin.com/in/nicolai-skogstad-8333a221b/" aria-label="LinkedIn">
-          <Image src="/svgs/linkedin_logo_icon_143748.svg" alt="LinkedIn" width={32} height={32} />
+        
+        <a className="card2__item" href="https://www.linkedin.com/in/nicolai-skogstad-8333a221b/" target="_blank" rel="noopener noreferrer">
+          <i className="bi bi-linkedin" aria-hidden="true"/>
+          <span>LinkedIn</span>
         </a>
-        <a href="./resume/main.pdf" aria-label="Resume">
-          <Image src="/svgs/paper_download_icon_183774.svg" alt="Resume" width={32} height={32} />
+        
+        <a className="card2__item" href="https://github.com/NSkogstad-AUS" target="_blank" rel="noopener noreferrer">
+          <i className="bi bi-github" aria-hidden="true"/>
+          <span>GitHub</span>
         </a>
       </div>
     </section>

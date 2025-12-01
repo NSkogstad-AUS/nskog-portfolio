@@ -157,9 +157,12 @@ main {
 
 /* OUR LINKS CARD */
 .card2 {
-  background: #ffffff;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  background: #ffffff00;
   border-style: sold;
   border-color: aqua;
+  padding-left: 2.5rem;
+  gap: 2rem;
   border-radius: 12px;
   width: 35vw;
   height: 5vh;
@@ -168,6 +171,21 @@ main {
   justify-content: left;
 }
 
+.card2__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card2__resumebox {
+  border: 1px solid #000;
+  border-style: solid;
+  border-radius: 4px;
+  border-width: 1px;
+  padding: 0.35rem 1.5rem
+}
 /* OUR LINKS CARD */
 
 /*@layer base {
