@@ -1,6 +1,106 @@
+"use client";
 import "./home.css";
+import { useState } from "react";
+
+type WorkEntry = {
+  kind: "work";
+  company: string;
+  role: string;
+  period: string;
+  bullets: string[];
+  logo?: string;
+  tag?: string;
+};
+
+type EduEntry = {
+  kind: "edu";
+  school: string;
+  program: string;
+  period: string;
+  bullets: string[];
+  logo?: string;
+  tag?: string;
+};
+
+const workEntries: WorkEntry[] = [
+  {
+    kind: "work",
+    company: "DBS Bank",
+    role: "Graduate Associate (SEED Programme)",
+    period: "Jul 2023 – Present",
+    bullets: [
+      "Developed the Java backend for a bank account servicing process with multi-channel integrations using Activiti workflow",
+      "Built a custom database migration tool using Python and MariaDB to migrate 1000+ processes from a vendor platform",
+    ],
+    logo: "/logos/dbs.png",
+  },
+  {
+    kind: "work",
+    company: "Singapore Institute of Technology",
+    role: "Software Developer (Contract)",
+    period: "Apr 2023 – Jun 2023",
+    bullets: [
+      "Built NFTVue, an NFT gallery for students to verify school-issued NFTs",
+      "Delivered DemoConstruct (React + Python) using Meshroom to reconstruct 3D models from captured images",
+    ],
+    logo: "/logos/sit.png",
+  },
+  {
+    kind: "work",
+    company: "DBS Bank",
+    role: "Software Developer (Intern)",
+    period: "May 2022 – Dec 2022",
+    bullets: [
+      "Built backend features for a digital exchange and asset custody application using Spring Boot and Java",
+      "Shipped an admin dashboard for a DBS Metaverse event using Spring Security and Angular",
+    ],
+    logo: "/logos/dbs.png",
+  },
+  {
+    kind: "work",
+    company: "Activate Interactive Pte Ltd",
+    role: "Software Developer (Intern)",
+    period: "May 2019 – Aug 2019",
+    bullets: [
+      "Developed the React Native mobile app for Republic Polytechnic using React Native",
+    ],
+    logo: "/logos/activate.png",
+  },
+];
+
+const educationEntries: EduEntry[] = [
+  {
+    kind: "edu",
+    school: "University of Melbourne",
+    program: "Master of Software Engineering",
+    period: "2025-Present",
+    bullets: [
+      "Coursework in distributed systems, software architecture, and AI",
+    ],
+    logo: "/assets/lg-unimelb.png",
+  },
+  {
+    kind: "edu",
+    school: "University of Melbourne",
+    program: "Bachelor of Computing & Software Systems",
+    period: "2023 – 2025",
+    bullets: [
+      "Focused on full-stack development and mobile applications",
+    ],
+    logo: "/assets/lg-unimelb.png",
+  },
+];
+
+const tabs = [
+  { key: "work", label: "Work", list: workEntries },
+  { key: "edu", label: "Education", list: educationEntries },
+] as const;
+
 
 export default function HomePage() {
+  const [activeTab, setActiveTab] = useState<"work" | "edu">("work");
+const activeList = tabs.find(t => t.key === activeTab)!.list;
+  
   return (
     <section className="page page--center">
       <div className="card">
@@ -41,6 +141,62 @@ export default function HomePage() {
           <span>More about me</span>
           <i className="bi bi-arrow-right" aria-hidden="true"/>
         </a>
+      </div>
+
+      <div className="card3">
+        <div className="card3__tabs">
+          <button
+            className={`card3__tab${activeTab === "work" ? " is-active" : ""}`}
+            onClick={() => setActiveTab("work")}
+          >
+            Work
+          </button>
+          <button
+            className={`card3__tab${activeTab === "edu" ? " is-active" : ""}`}
+            onClick={() => setActiveTab("edu")}
+          >
+            Education
+          </button>
+        </div>
+      </div>
+
+      <div className="card3__panel">
+          {activeList.map((item) => {
+            const key =
+              item.kind === "edu"
+                ? `${item.kind}-${item.period}-${item.program ?? item.school}`
+                : `${item.kind}-${item.period}-${item.company}`;
+
+            return (
+              <article className="card3__entry" key={key}>
+                
+                <div className="card3__timeline">
+                  <div className="card3__dot">
+                    <img src={item.logo ?? "/logos/default.png"} alt="" />
+                  </div>
+                </div>
+                <div className="card3__body">
+                  <div className="card3__period">{item.period}</div>
+                  <div className="card3__meta">
+                    {item.kind === "work" ? (
+                      <>
+                        <div className="card3__company">{item.company}</div>
+                        <div className="card3__role">{item.role}</div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="card3__company">{item.school}</div>
+                        <div className="card3__role">{item.program}</div>
+                      </>
+                    )}
+                  </div>
+                  <ul className="card3__bullets">
+                    {item.bullets.map((b) => <li key={b}>{b}</li>)}
+                  </ul>
+                </div>
+              </article>
+            );
+          })}
       </div>
     </section>
   );
