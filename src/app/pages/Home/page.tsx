@@ -2,8 +2,8 @@
 import "./home.css";
 import { useState } from "react";
 
-type WorkEntry = {
-  kind: "work";
+type ExpEntry = {
+  kind: "experience";
   company: string;
   role: string;
   period: string;
@@ -22,9 +22,9 @@ type EduEntry = {
   tag?: string;
 };
 
-const workEntries: WorkEntry[] = [
+const expEntries: ExpEntry[] = [
   {
-    kind: "work",
+    kind: "experience",
     company: "DBS Bank",
     role: "Graduate Associate (SEED Programme)",
     period: "Jul 2023 – Present",
@@ -35,7 +35,7 @@ const workEntries: WorkEntry[] = [
     logo: "/logos/dbs.png",
   },
   {
-    kind: "work",
+    kind: "experience",
     company: "Singapore Institute of Technology",
     role: "Software Developer (Contract)",
     period: "Apr 2023 – Jun 2023",
@@ -44,27 +44,6 @@ const workEntries: WorkEntry[] = [
       "Delivered DemoConstruct (React + Python) using Meshroom to reconstruct 3D models from captured images",
     ],
     logo: "/logos/sit.png",
-  },
-  {
-    kind: "work",
-    company: "DBS Bank",
-    role: "Software Developer (Intern)",
-    period: "May 2022 – Dec 2022",
-    bullets: [
-      "Built backend features for a digital exchange and asset custody application using Spring Boot and Java",
-      "Shipped an admin dashboard for a DBS Metaverse event using Spring Security and Angular",
-    ],
-    logo: "/logos/dbs.png",
-  },
-  {
-    kind: "work",
-    company: "Activate Interactive Pte Ltd",
-    role: "Software Developer (Intern)",
-    period: "May 2019 – Aug 2019",
-    bullets: [
-      "Developed the React Native mobile app for Republic Polytechnic using React Native",
-    ],
-    logo: "/logos/activate.png",
   },
 ];
 
@@ -92,13 +71,13 @@ const educationEntries: EduEntry[] = [
 ];
 
 const tabs = [
-  { key: "work", label: "Work", list: workEntries },
+  { key: "experience", label: "Experience", list: expEntries },
   { key: "edu", label: "Education", list: educationEntries },
 ] as const;
 
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState<"work" | "edu">("work");
+  const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
 const activeList = tabs.find(t => t.key === activeTab)!.list;
   
   return (
@@ -146,10 +125,10 @@ const activeList = tabs.find(t => t.key === activeTab)!.list;
       <div className="card3">
         <div className="card3__tabs">
           <button
-            className={`card3__tab${activeTab === "work" ? " is-active" : ""}`}
-            onClick={() => setActiveTab("work")}
+            className={`card3__tab${activeTab === "experience" ? " is-active" : ""}`}
+            onClick={() => setActiveTab("experience")}
           >
-            Work
+            Experience
           </button>
           <button
             className={`card3__tab${activeTab === "edu" ? " is-active" : ""}`}
@@ -178,7 +157,7 @@ const activeList = tabs.find(t => t.key === activeTab)!.list;
                 <div className="card3__body">
                   <div className="card3__period">{item.period}</div>
                   <div className="card3__meta">
-                    {item.kind === "work" ? (
+                    {item.kind === "experience" ? (
                       <>
                         <div className="card3__company">{item.company}</div>
                         <div className="card3__role">{item.role}</div>
