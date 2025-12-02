@@ -1,4 +1,5 @@
-@import "./styles/navbar.css";
+@import "./components/navbar.css";
+@import "./pages/Home/home.css";
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap");
 /* stylelint-disable at-rule-no-unknown */
 @tailwind base;
@@ -103,90 +104,6 @@ main {
   display: flex;
   flex-direction: column;
 }
-
-.page {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 3rem 1.5rem;
-}
-
-.page--center {
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding-left: 34rem;
-  row-gap: 0rem;
-}
-
-/* OUR INTRO CARD */
-.card {
-  background: rgba(255, 255, 255, 0);
-  border-radius: 12px;
-  padding: 2rem 2.5rem;
-  margin: 0;
-  width: 37vw;
-  height: 25vh;
-}
-
-.card__link {
-  color: rgba(254, 100, 12);
-  font-weight: 500;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 2px;
-}
-
-.card h1 {
-  margin: 0 0 0.75rem;
-  letter-spacing: 0.05em;
-  font-size: 2rem;
-  font-weight: 700;
-  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
-  color: rgba(77, 79, 105);
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.2rem;
-  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
-  line-height: 1.8;
-  color: rgb(86, 88, 107);
-}
-/* OUR INTRO CARD */
-
-
-/* OUR LINKS CARD */
-.card2 {
-  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
-  background: #ffffff00;
-  border-style: sold;
-  border-color: aqua;
-  padding-left: 2.5rem;
-  gap: 2rem;
-  border-radius: 12px;
-  width: 35vw;
-  height: 5vh;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-}
-
-.card2__item {
-  display: inline-flex;
-  align-items: center;
-  gap: 1.2rem;
-  text-decoration: none;
-  color: inherit;
-}
-
-.card2__resumebox {
-  border: 1px solid #000;
-  border-style: solid;
-  border-radius: 4px;
-  border-width: 1px;
-  padding: 0.35rem 1.5rem
-}
-/* OUR LINKS CARD */
 
 /*@layer base {
     ::view-transition-old(root),

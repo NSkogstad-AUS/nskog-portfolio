@@ -51,6 +51,7 @@
   width: 0.5rem;
   height: 1.0rem;
   animation: pulse 2s infinite alternate;
+  transform: translateX(4px);
   margin-top: 3px;
   margin-left: 2px;
 }
@@ -83,8 +84,7 @@
 
 .navbar__links a:hover,
 .navbar__links a:focus-visible {
-  background: rgba(255, 255, 255, 0.08);
-  color: rgb(86, 88, 107);
+  color: rgba(254, 100, 12);
 }
 
 @media (max-width: 768px) {
