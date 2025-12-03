@@ -2,48 +2,89 @@
 import "./home.css";
 import { useState } from "react";
 
-type ExpEntry = {
-  kind: "experience";
-  company: string;
-  role: string;
+type BaseEntry = {
   period: string;
   bullets: string[];
   logo?: string;
   tag?: string;
+  acronym?: string;
+  fullName?: string;
 };
-
-type EduEntry = {
-  kind: "edu";
-  school: string;
-  program: string;
-  period: string;
-  bullets: string[];
-  logo?: string;
-  tag?: string;
-};
+type ExpEntry = BaseEntry & { kind: "experience"; company: string; role: string };
+type EduEntry  = BaseEntry & { kind: "edu"; school: string; program: string };
 
 const expEntries: ExpEntry[] = [
   {
     kind: "experience",
-    company: "DBS Bank",
-    role: "Graduate Associate (SEED Programme)",
-    period: "Jul 2023 – Present",
+    company: "CISSA",
+    role: "Industry Officer",
+    period: "Mar 2025 – Present",
     bullets: [
-      "Developed the Java backend for a bank account servicing process with multi-channel integrations using Activiti workflow",
-      "Built a custom database migration tool using Python and MariaDB to migrate 1000+ processes from a vendor platform",
+      "Led communications with key industry partners, including Atlassian, Xero, and EY, strengthening relationships and securing opportunities for members.",
+      "Planned and executed workshops and panels, driving student involvement in career development activities within a team of 90+ members.",
     ],
-    logo: "/logos/dbs.png",
+    logo: "/assets/lg-cissa.png",
+    acronym: "CISSA",
+    fullName: "Computing and Information Systems Students Association",
   },
   {
     kind: "experience",
-    company: "Singapore Institute of Technology",
-    role: "Software Developer (Contract)",
-    period: "Apr 2023 – Jun 2023",
+    company: "Google Developer Student Clubs",
+    role: "Event Officer / Front-End Software Engineer",
+    period: "Jan 2025 – Jun 2025",
     bullets: [
-      "Built NFTVue, an NFT gallery for students to verify school-issued NFTs",
-      "Delivered DemoConstruct (React + Python) using Meshroom to reconstruct 3D models from captured images",
+      "Built responsive event pages with tools like NodeJS, React, Javascript, Typescript, improving discoverability and sign-ups.",
+      "Organised and managed technical workshops, hackathons, and speaker events to foster learning within the student community.",
     ],
-    logo: "/logos/sit.png",
+    logo: "/assets/lg-gdsc.png",
+    acronym: "Google DSC",
+    fullName: "Google Developer Student Clubs - The University of Melbourne",
+  },
+  {
+    kind: "experience",
+    company: "Melbourne Space Program (MSP)",
+    role: "Back-End Software Engineer",
+    period: "Jan 2025 – Jun 2025",
+    bullets: [
+      "Documented software designs and contributed to tech reports for internal and external stakeholders.",
+      "Developed and tested software components for a humanoid robotics project, focusing on control algorithms and system integration.",
+    ],
+    logo: "/assets/lg-msp.png",
+  },
+  {
+    kind: "experience",
+    company: "EMU5 - VEX U Robotics at Unimelb",
+    role: "Back-End Software Engineer",
+    period: "Aug 2024 – Apr 2025",
+    bullets: [
+      "Designed and iterated on robust hardware architectures for competitive robotics systems.",
+      "Developed and optimised back-end software solutions to enhance team performance and efficiency.",
+    ],
+    logo: "/assets/lg-emu5.png",
+  },
+  {
+    kind: "experience",
+    company: "Unimelb Rover Team (URT)",
+    role: "Full Stack Software Engineer",
+    period: "Apr 2024 – Mar 2025",
+    bullets: [
+      "Helped in development of seamless operation and performance optimisation of the rover.",
+      "Contributed to full-stack development, integrating front-end interfaces with back-end architecture.",
+    ],
+    logo: "/assets/lg-urt.jpg",
+  },
+  {
+    kind: "experience",
+    company: "Melbourne University Racing Motorsports",
+    role: "Chassis Engineer / Front-End Software Engineer / Budget Officer",
+    period: "Jan 2024 – Nov 2024",
+    bullets: [
+      "Designed and optimised chassis components using advanced CAD tools for high-performance vehicles.",
+      "Developed Python-based tools to automate chassis design calculations and performance analysis, integrating CAD outputs and test data to support faster, data-driven design decisions.",
+    ],
+    logo: "/assets/lg-mur.jpg",
+    acronym: "MUR Motorsports",
+    fullName: "Melbourne University Racing Motorsports",
   },
 ];
 
@@ -78,7 +119,14 @@ const tabs = [
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
-const activeList = tabs.find(t => t.key === activeTab)!.list;
+  const [collapsed, setCollapsed] = useState(false);
+  const activeList = tabs.find(t => t.key === activeTab)!.list;
+  const showActive = !collapsed;
+
+  const handleTabClick = (key: "experience" | "edu") => {
+    setActiveTab(key);
+    setCollapsed(false); // ensure panel opens when a tab is chosen
+  };
   
   return (
     <section className="page page--center">
@@ -123,60 +171,93 @@ const activeList = tabs.find(t => t.key === activeTab)!.list;
       </div>
 
       <div className="card3">
-        <div className="card3__tabs">
+        <div className="card3__header">
+          <div className="card3__tabs">
+            <button
+              className={`card3__tab${showActive && activeTab === "experience" ? " is-active" : ""}`}
+              onClick={() => handleTabClick("experience")}
+            >
+              Experience
+            </button>
+            <button
+              className={`card3__tab${showActive && activeTab === "edu" ? " is-active" : ""}`}
+              onClick={() => handleTabClick("edu")}
+            >
+              Education
+            </button>
+
           <button
-            className={`card3__tab${activeTab === "experience" ? " is-active" : ""}`}
-            onClick={() => setActiveTab("experience")}
+            className={`card3__toggle${collapsed ? " is-collapsed" : ""}`}
+            onClick={() => setCollapsed(v => !v)}
+            aria-expanded={!collapsed}
+            aria-label={collapsed ? "Expand panel" : "Collapse panel"}
+            type="button"
           >
-            Experience
+            {collapsed ? "+" : "–"}
           </button>
-          <button
-            className={`card3__tab${activeTab === "edu" ? " is-active" : ""}`}
-            onClick={() => setActiveTab("edu")}
-          >
-            Education
-          </button>
+          </div>
         </div>
       </div>
 
-      <div className="card3__panel">
-          {activeList.map((item) => {
-            const key =
-              item.kind === "edu"
-                ? `${item.kind}-${item.period}-${item.program ?? item.school}`
-                : `${item.kind}-${item.period}-${item.company}`;
+      {!collapsed && (
+        <div className="card3__panel">
+            {activeList.map((item) => {
+              const key =
+                item.kind === "edu"
+                  ? `${item.kind}-${item.period}-${item.program ?? item.school}`
+                  : `${item.kind}-${item.period}-${item.company}`;
 
-            return (
-              <article className="card3__entry" key={key}>
-                
-                <div className="card3__timeline">
-                  <div className="card3__dot">
-                    <img src={item.logo ?? "/logos/default.png"} alt="" />
+              const hasAcronym = item.kind === "experience" && item.acronym && item.fullName;
+              const displayName =
+                item.kind === "experience"
+                  ? item.acronym ?? item.company
+                  : item.school;
+
+              return (
+                <article className="card3__entry" key={key}>
+                  
+                  <div className="card3__timeline">
+                    <div className="card3__dot">
+                      <img src={item.logo ?? "/logos/default.png"} alt="" />
+                    </div>
                   </div>
-                </div>
-                <div className="card3__body">
-                  <div className="card3__period">{item.period}</div>
-                  <div className="card3__meta">
-                    {item.kind === "experience" ? (
-                      <>
-                        <div className="card3__company">{item.company}</div>
-                        <div className="card3__role">{item.role}</div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="card3__company">{item.school}</div>
-                        <div className="card3__role">{item.program}</div>
-                      </>
-                    )}
+                  <div className="card3__body">
+                    <div className="card3__period">{item.period}</div>
+                    <div className="card3__meta">
+                      {item.kind === "experience" ? (
+                        <>
+                          <div className={`card3__name${hasAcronym ? " has-acronym" : ""}`}>
+                            <span className="card3__company">{displayName}</span>
+                            {hasAcronym && (
+                              <>
+                                <span aria-hidden className="card3__dots">···</span>
+                                <span className="card3__full">{item.fullName}</span>
+                              </>
+                            )}
+                          </div>
+                          <div className="card3__role">{item.role}</div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="card3__company">{item.school}</div>
+                          <div className="card3__role">{item.program}</div>
+                        </>
+                      )}
+                    </div>
+                    <ul className="card3__bullets">
+                      {item.bullets
+                      .map((b) => b.trim())
+                      .filter(Boolean)
+                      .map((b, i) => (
+                        <li key={`${key}-b-${i}`}>{b}</li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="card3__bullets">
-                    {item.bullets.map((b) => <li key={b}>{b}</li>)}
-                  </ul>
-                </div>
-              </article>
-            );
-          })}
-      </div>
+                </article>
+              );
+            })}
+        </div>
+      )}
     </section>
   );
 }
