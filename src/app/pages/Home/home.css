@@ -153,8 +153,7 @@
 
 /* WORK AND EDUCATION SWAPPER */
 .card3 {
-  background: #F9FAFB;
-  border-color: rgba(229, 231, 235, 0.5);
+  background: #f9fafb00;
   border-radius: 12px;
   width: 49vw;
   margin-top: 3rem;
@@ -225,12 +224,12 @@
 }
 
 .card3__panel {
-  background: #ffffff;
+  background: #f8fafc;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  width: 49vw;
+  border: 1px solid rgb(86, 88, 107, 0.5);
+  width: 48.65vw;
   position: relative;
-  margin-left: 2rem;
+  margin-left: 2.2rem;
   margin-top: 0.25rem;
   padding: 1.25rem 1.25rem 1.25rem 2rem;
   display: flex;
@@ -244,9 +243,9 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: calc(2rem + 20px);
+  left: calc(2rem + 19px);
   width: 2px;
-  background: #e5e7eb;
+  background: #ffffff;
 }
 
 .card3__entry {
@@ -352,5 +351,62 @@
   height: 100%;
   object-fit: contain;
 }
-
 /* WORK AND EDUCATION SWAPPER */
+
+/* PROJECTS VIEWER */
+.card4 {
+  background: #f9fafb00;
+  border-color: rgba(229, 231, 235, 0.5);
+  border-radius: 12px;
+  width: 49vw;
+  height: 4vh;
+  margin-top: 3rem;
+  margin-left: 2rem;
+  padding: 0.4rem 0em;
+  display: flex;
+  gap: 1rem;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+}
+
+.card4 .bi-star {
+  font-size: 150%;
+  justify-content: center;
+  align-items: center;
+  color: rgba(254, 100, 12);
+  padding-left: 1%;
+}
+
+.card4 p {
+  font-size: 160%;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.card4__viewall {
+  display: inline-flex;
+  margin-left: auto;
+  align-items: end;
+  padding-right: 2%;
+  gap: 0.35rem;
+  white-space: nowrap;
+  transition: background 200ms ease, color 200ms ease;
+}.card4__viewall:hover,
+.card4__viewall:focus-visible {
+  color: rgba(254, 100, 12);
+  text-decoration-color: rgba(229, 233, 239);
+  text-underline-offset: 2px;
+}
+
+.bi-arrow-right {
+  margin-left: 0;
+  color: inherit;
+  vertical-align: top; 
+  transition: transform 150ms ease;
+}
+
+.card4__viewall:hover .bi-arrow-right {
+  transform: translateX(4px);
+}
+
+/* PROJECTS VIEWER */

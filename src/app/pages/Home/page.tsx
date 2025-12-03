@@ -280,6 +280,17 @@ export default function HomePage() {
             })}
         </div>
       )}
+
+      <div className="card4">
+        <i className="bi bi-star"/>
+
+        <p>Featured Projects</p>
+
+        <a className="card4__viewall" href="/pages/projects">
+          <span>View all</span>
+          <i className="bi bi-arrow-right" aria-hidden="true"/>
+        </a>
+      </div>
     </section>
   );
 }
