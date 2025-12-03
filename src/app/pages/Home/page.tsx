@@ -291,6 +291,16 @@ export default function HomePage() {
           <i className="bi bi-arrow-right" aria-hidden="true"/>
         </a>
       </div>
+
+      <div className="card4__showcase">
+        <div className="card4__project1">
+          
+        </div>
+
+        <div className="card4__project2">
+          
+        </div>
+      </div>
     </section>
   );
 }

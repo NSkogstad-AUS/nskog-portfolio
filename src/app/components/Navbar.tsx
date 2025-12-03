@@ -23,31 +23,33 @@ export function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar__location">
-        {crumbs.map((part, idx) => {
-          const isActive = idx === crumbs.length - 1;
-          const isRoot = part === "~";
-          return (
-            <React.Fragment key={'${part}-${idx}'}>
-              <span
-                className={`navbar__crumb${isActive ? " is-active" : ""}${isRoot ? " navbar__crumb--root" : ""}`}
-              >
-                {part}
-              </span>
-                {idx < crumbs.length && <span className="navbar__divider">/</span>}
-            </React.Fragment>
-          );
-        })}
-        <span className="blink" />
-      </div>
+      <div className="navbar__inner">
+        <div className="navbar__location">
+          {crumbs.map((part, idx) => {
+            const isActive = idx === crumbs.length - 1;
+            const isRoot = part === "~";
+            return (
+              <React.Fragment key={'${part}-${idx}'}>
+                <span
+                  className={`navbar__crumb${isActive ? " is-active" : ""}${isRoot ? " navbar__crumb--root" : ""}`}
+                >
+                  {part}
+                </span>
+                  {idx < crumbs.length && <span className="navbar__divider">/</span>}
+              </React.Fragment>
+            );
+          })}
+          <span className="blink" />
+        </div>
 
-      <ul className="navbar__links">
-        {(navData.links as NavLink[]).map((item) => (
-          <li key={item.href}>
-            <Link href={item.href}>{item.label}</Link>
-          </li>
-        ))}
-      </ul>
+        <ul className="navbar__links">
+          {(navData.links as NavLink[]).map((item) => (
+            <li key={item.href}>
+              <Link href={item.href}>{item.label}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 }
