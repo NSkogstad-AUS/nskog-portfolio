@@ -55,6 +55,27 @@
 }
 /* OUR INTRO CARD */
 
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  z-index: 4;
+}
+
+.hero .card {
+  flex: 1;
+}
+
+.hero__bounce {
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 
 /* OUR LINKS CARD */
 .card2 {
