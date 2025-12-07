@@ -293,12 +293,90 @@ export default function HomePage() {
       </div>
 
       <div className="card4__showcase">
-        <div className="card4__project1">
-          
+        <div className="card4__project">
+          <div className="card4__project__showcase">
+            <div className="project-card">
+              <div className="project-card__header">
+                <div className="project-card__top">
+                  <div className="project-card__controls">
+                    <span className="project-card__dot project-card__dot--red" />
+                    <span className="project-card__dot project-card__dot--yellow" />
+                    <span className="project-card__dot project-card__dot--green" />
+                  </div>
+                  <div className="project-card__stats">
+                    <span>1</span>
+                    <i className="bi bi-star-fill" aria-hidden="true" />
+                  </div>
+                </div>
+                <div className="project-card__title">
+                  <span className="project-card__org">NSkogstad-AUS</span>
+                  <span className="project-card__slash">/</span>
+                  <span className="project-card__repo">Blackline AI Forensic Tool</span>
+                </div>
+              </div>
+
+              <p className="project-card__desc">
+                Weighs the soul of incoming HTTP requests to stop AI crawlers
+              </p>
+
+              <div className="project-card__footer">
+                <div className="project-card__avatars" aria-hidden="true">
+                  <span className="project-card__avatar project-card__avatar--1" />
+                  <span className="project-card__avatar project-card__avatar--2" />
+                  <span className="project-card__avatar project-card__avatar--3" />
+                  <span className="project-card__avatar project-card__avatar--4" />
+                  <span className="project-card__avatar project-card__avatar--5" />
+                </div>
+                <span className="project-card__contributors">NSkogstad-AUS</span>
+              </div>
+            </div>
+          </div>
+          <div className="card4__project_explain">
+            <h1>Blackline Forensics</h1>
+            <p>Hello</p>
+            <div className="card4__tags"></div>
+          </div>
         </div>
 
-        <div className="card4__project2">
-          
+        <div className="card4__project">
+          <div className="card4__project__showcase">
+            <div className="project-card">
+              <div className="project-card__header">
+                <div className="project-card__top">
+                  <div className="project-card__controls">
+                    <span className="project-card__dot project-card__dot--red" />
+                    <span className="project-card__dot project-card__dot--yellow" />
+                    <span className="project-card__dot project-card__dot--green" />
+                  </div>
+                  <div className="project-card__stats">
+                    <span>1</span>
+                    <i className="bi bi-star-fill" aria-hidden="true" />
+                  </div>
+                </div>
+                <div className="project-card__title">
+                  <span className="project-card__org">Voxel</span>
+                  <span className="project-card__slash">/</span>
+                  <span className="project-card__repo">renderer</span>
+                </div>
+              </div>
+
+              <p className="project-card__desc">
+                GPU-accelerated voxel renderer with playful lighting experiments and shader tricks
+              </p>
+
+              <div className="project-card__footer">
+                <div className="project-card__avatars" aria-hidden="true">
+                  <span className="project-card__avatar project-card__avatar--1" />
+                </div>
+                <span className="project-card__contributors">NSkogstad-AUS</span>
+              </div>
+            </div>
+          </div>
+          <div className="card4__project_explain">
+            <h1>Voxel Renderer</h1>
+            <p>Hello</p>
+            <div className="card4__tags"></div>
+          </div>
         </div>
       </div>
     </section>
