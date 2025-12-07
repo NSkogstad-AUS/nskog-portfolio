@@ -92,14 +92,15 @@ body::after {
 */
 
 header {
-  position: relative;
-  z-index: 3;
+  position: sticky;
+  top: 0;
+  z-index: 50;
   flex: 0 0 auto;
 }
 
 main {
   position: relative;
-  z-index: 3;
+  z-index: 1;
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;

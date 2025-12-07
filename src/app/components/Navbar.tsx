@@ -29,13 +29,13 @@ export function Navbar() {
             const isActive = idx === crumbs.length - 1;
             const isRoot = part === "~";
             return (
-              <React.Fragment key={'${part}-${idx}'}>
+              <React.Fragment key={`${part}-${idx}`}>
                 <span
                   className={`navbar__crumb${isActive ? " is-active" : ""}${isRoot ? " navbar__crumb--root" : ""}`}
                 >
                   {part}
                 </span>
-                  {idx < crumbs.length && <span className="navbar__divider">/</span>}
+                {idx < crumbs.length && <span className="navbar__divider">/</span>}
               </React.Fragment>
             );
           })}
