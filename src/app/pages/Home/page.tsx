@@ -16,7 +16,7 @@ type EduEntry  = BaseEntry & { kind: "edu"; school: string; program: string };
 
 const bounceImages = [
   "/assets/pf-1.JPG",
-  "/assets/pf-3.JPG", // consider converting to JPG/PNG for broader browser support
+  "/assets/pf-3.JPG",
   "/assets/pf-2.JPG",
 ];
 
@@ -123,12 +123,18 @@ const tabs = [
   { key: "edu", label: "Education", list: educationEntries },
 ] as const;
 
+type RepoCardContributor = {
+  login: string;
+  avatar: string;
+  profileUrl: string;
+};
+
 type RepoCardData = {
   name: string;
   fullName: string;
   stars: number;
   description: string | null;
-  contributors: string[];
+  contributors: RepoCardContributor[];
 };
 
 function ProjectCardShowcase({
@@ -162,9 +168,15 @@ function ProjectCardShowcase({
     };
   }, [owner, repo]);
 
-  const contributors = data.contributors?.length
+  const contributors: RepoCardContributor[] = data.contributors?.length
     ? data.contributors
-    : [null, null, null, null];
+    : [
+        {
+          login: owner,
+          avatar: `https://github.com/${owner}.png?size=96`,
+          profileUrl: `https://github.com/${owner}`,
+        },
+      ];
 
   return (
     <div className="project-card">
@@ -192,13 +204,21 @@ function ProjectCardShowcase({
       </p>
 
       <div className="project-card__footer">
-        <div className="project-card__avatars" aria-hidden="true">
-          {contributors.map((avatar, i) => (
-            <span
-              key={`${avatar ?? "fallback"}-${i}`}
+        <div className="project-card__avatars">
+          {contributors.map((contributor, i) => (
+            <a
+              key={`${contributor.login}-${i}`}
               className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
-              style={avatar ? { backgroundImage: `url(${avatar})` } : undefined}
-            />
+              href={contributor.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`@${contributor.login}`}
+              title={`@${contributor.login}`}
+            >
+              {contributor.avatar ? (
+                <img src={contributor.avatar} alt={`@${contributor.login} avatar`} />
+              ) : null}
+            </a>
           ))}
         </div>
         <span className="project-card__contributors">
@@ -210,7 +230,6 @@ function ProjectCardShowcase({
     </div>
   );
 }
-
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
@@ -386,7 +405,7 @@ export default function HomePage() {
             <ProjectCardShowcase
               owner="NSkogstad-AUS"
               repo="Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media"
-              customDescription="A machine learning deep-fake tool developed in a team of 5 for a client in the legal industry"
+              customDescription="A machine learning deep-fake website developed in a team of 5 for a client"
               fallback={{
                 name: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
                 fullName: "NSkogstad-AUS/Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
@@ -408,7 +427,7 @@ export default function HomePage() {
             <ProjectCardShowcase
               owner="NSkogstad-AUS"
               repo="cpp-voxel-renderer"
-              customDescription="A custom voxel-based engine developed using "
+              customDescription="Small OpenGL playground that renders voxel chunks and a simple heightmap terrain."
               fallback={{
                 name: "cpp-voxel-renderer",
                 fullName: "NSkogstad-AUS/cpp-voxel-renderer",
