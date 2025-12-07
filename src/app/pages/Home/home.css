@@ -487,6 +487,9 @@
 .card4__project:hover .project-card {
   transform: scale(1.05);
 }
+.card4__project:hover .card4__project_explain h1 {
+  color: rgba(254, 100, 12, 1);
+}
 .card4__project:hover {
   border-color: rgba(254, 100, 12, 0.9);
   box-shadow: 0 18px 30px rgba(0, 0, 0, 0.2);
@@ -605,8 +608,16 @@
 }
 
 .card4__project_explain {
+  padding: 16px;
   color: rgba(77, 79, 105);
-  padding: 3px 3px;
+  text-decoration: underline;
+}
+.card4__project_explain h1{
+  color: rgba(77, 79, 105);
+  font-weight: 800;
+  margin-bottom: auto;
+  font-size: 20px;
+  transition: color 200ms ease;
 }
 
 /* PROJECTS VIEWER */

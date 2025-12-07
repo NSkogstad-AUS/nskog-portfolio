@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
 import './BounceCards.css';
 
@@ -19,6 +20,21 @@ export default function BounceCards({
   ],
   enableHover = true
 }) {
+  const cardRefs = useRef([]);
+  const [focused, setFocused] = useState(null);
+  const [isAnimatingIn, setIsAnimatingIn] = useState(false);
+  const closeTimer = useRef(null);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+    return () => {
+      if (closeTimer.current) {
+        clearTimeout(closeTimer.current);
+      }
+    };
+  }, []);
+
   useEffect(() => {
     gsap.fromTo(
       '.bounce-card',
@@ -105,6 +121,101 @@ export default function BounceCards({
     });
   };
 
+  const focusCard = idx => {
+    const el = cardRefs.current[idx];
+    if (!el || typeof window === 'undefined') return;
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+
+    const rect = el.getBoundingClientRect();
+    setFocused({ idx, rect });
+    setIsAnimatingIn(false);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setIsAnimatingIn(true));
+    });
+  };
+
+  const closeFocus = () => {
+    setIsAnimatingIn(false);
+    closeTimer.current = window.setTimeout(() => {
+      setFocused(null);
+    }, 260);
+  };
+
+  useEffect(() => {
+    if (!focused) return undefined;
+    const onKey = e => {
+      if (e.key === 'Escape') closeFocus();
+    };
+    window.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [focused]);
+
+  const renderFocusOverlay = () => {
+    if (!focused || !hasMounted) return null;
+    const { rect, idx } = focused;
+    const viewportW = window.innerWidth;
+    const viewportH = window.innerHeight;
+    const aspect = rect.width / rect.height || 3 / 4;
+    const maxW = Math.min(viewportW * 0.88, 820);
+    const maxH = Math.min(viewportH * 0.88, 980);
+    let targetW = maxW;
+    let targetH = targetW / aspect;
+    if (targetH > maxH) {
+      targetH = maxH;
+      targetW = targetH * aspect;
+    }
+    const targetLeft = (viewportW - targetW) / 2;
+    const targetTop = (viewportH - targetH) / 2;
+
+    const currentStyles = isAnimatingIn
+      ? {
+          top: targetTop,
+          left: targetLeft,
+          width: targetW,
+          height: targetH
+        }
+      : {
+          top: rect.top,
+          left: rect.left,
+          width: rect.width,
+          height: rect.height
+        };
+
+    return createPortal(
+      <div
+        className={`bounce-focus-backdrop${isAnimatingIn ? ' is-visible' : ''}`}
+        onClick={closeFocus}
+      >
+        <div
+          className="bounce-focus-card"
+          style={{
+            top: `${currentStyles.top}px`,
+            left: `${currentStyles.left}px`,
+            width: `${currentStyles.width}px`,
+            height: `${currentStyles.height}px`
+          }}
+          onClick={e => e.stopPropagation()}
+        >
+          <button
+            className="bounce-focus-close"
+            type="button"
+            aria-label="Close focused image"
+            onClick={closeFocus}
+          >
+            ×
+          </button>
+          <img src={images[idx]} alt={`card-${idx}`} />
+        </div>
+      </div>,
+      document.body
+    );
+  };
+
   return (
     <div
       className={`bounceCardsContainer ${className}`}
@@ -123,10 +234,15 @@ export default function BounceCards({
           }}
           onMouseEnter={() => pushSiblings(idx)}
           onMouseLeave={resetSiblings}
+          onClick={() => focusCard(idx)}
+          ref={el => {
+            cardRefs.current[idx] = el;
+          }}
         >
           <img className="bounce-card__image" src={src} alt={`card-${idx}`} />
         </div>
       ))}
+      {renderFocusOverlay()}
     </div>
   );
 }
