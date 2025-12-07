@@ -1,6 +1,6 @@
 "use client";
 import "./home.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BounceCards from "@/Imported Components/BounceCards";
 
 type BaseEntry = {
@@ -123,6 +123,94 @@ const tabs = [
   { key: "edu", label: "Education", list: educationEntries },
 ] as const;
 
+type RepoCardData = {
+  name: string;
+  fullName: string;
+  stars: number;
+  description: string | null;
+  contributors: string[];
+};
+
+function ProjectCardShowcase({
+  owner,
+  repo,
+  fallback,
+  customDescription,
+}: {
+  owner: string;
+  repo: string;
+  fallback: RepoCardData;
+  customDescription?: string;
+}) {
+  const [data, setData] = useState<RepoCardData>(fallback);
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      try {
+        const res = await fetch(`/api/repo-card?owner=${owner}&repo=${repo}`);
+        if (!res.ok) return;
+        const json = await res.json();
+        if (!cancelled) setData((prev) => ({ ...prev, ...json }));
+      } catch (err) {
+        console.warn("repo card fetch failed", err);
+      }
+    };
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [owner, repo]);
+
+  const contributors = data.contributors?.length
+    ? data.contributors
+    : [null, null, null, null];
+
+  return (
+    <div className="project-card">
+      <div className="project-card__header">
+        <div className="project-card__top">
+          <div className="project-card__controls">
+            <span className="project-card__dot project-card__dot--red" />
+            <span className="project-card__dot project-card__dot--yellow" />
+            <span className="project-card__dot project-card__dot--green" />
+          </div>
+          <div className="project-card__stats">
+            <span>{data.stars != null ? data.stars.toLocaleString() : "—"}</span>
+            <i className="bi bi-star-fill" aria-hidden="true" />
+          </div>
+        </div>
+        <div className="project-card__title">
+          <span className="project-card__org">{owner}</span>
+          <span className="project-card__slash">/</span>
+          <span className="project-card__repo">{data.name ?? repo}</span>
+        </div>
+      </div>
+
+      <p className="project-card__desc">
+        {customDescription ?? data.description ?? "A neat little project fresh out of the oven."}
+      </p>
+
+      <div className="project-card__footer">
+        <div className="project-card__avatars" aria-hidden="true">
+          {contributors.map((avatar, i) => (
+            <span
+              key={`${avatar ?? "fallback"}-${i}`}
+              className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
+              style={avatar ? { backgroundImage: `url(${avatar})` } : undefined}
+            />
+          ))}
+        </div>
+        <span className="project-card__contributors">
+          {data.contributors?.length
+            ? `${data.contributors.length} Contributors`
+            : "Contributors"}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
@@ -132,7 +220,7 @@ export default function HomePage() {
 
   const handleTabClick = (key: "experience" | "edu") => {
     setActiveTab(key);
-    setCollapsed(false); // ensure panel opens when a tab is chosen
+    setCollapsed(false);
   };
   
   return (
@@ -295,41 +383,18 @@ export default function HomePage() {
       <div className="card4__showcase">
         <div className="card4__project">
           <div className="card4__project__showcase">
-            <div className="project-card">
-              <div className="project-card__header">
-                <div className="project-card__top">
-                  <div className="project-card__controls">
-                    <span className="project-card__dot project-card__dot--red" />
-                    <span className="project-card__dot project-card__dot--yellow" />
-                    <span className="project-card__dot project-card__dot--green" />
-                  </div>
-                  <div className="project-card__stats">
-                    <span>1</span>
-                    <i className="bi bi-star-fill" aria-hidden="true" />
-                  </div>
-                </div>
-                <div className="project-card__title">
-                  <span className="project-card__org">NSkogstad-AUS</span>
-                  <span className="project-card__slash">/</span>
-                  <span className="project-card__repo">Blackline AI Forensic Tool</span>
-                </div>
-              </div>
-
-              <p className="project-card__desc">
-                Weighs the soul of incoming HTTP requests to stop AI crawlers
-              </p>
-
-              <div className="project-card__footer">
-                <div className="project-card__avatars" aria-hidden="true">
-                  <span className="project-card__avatar project-card__avatar--1" />
-                  <span className="project-card__avatar project-card__avatar--2" />
-                  <span className="project-card__avatar project-card__avatar--3" />
-                  <span className="project-card__avatar project-card__avatar--4" />
-                  <span className="project-card__avatar project-card__avatar--5" />
-                </div>
-                <span className="project-card__contributors">NSkogstad-AUS</span>
-              </div>
-            </div>
+            <ProjectCardShowcase
+              owner="NSkogstad-AUS"
+              repo="Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media"
+              customDescription="A machine learning deep-fake tool developed in a team of 5 for a client in the legal industry"
+              fallback={{
+                name: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
+                fullName: "NSkogstad-AUS/Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
+                stars: 1,
+                description: "Weighs the soul of incoming HTTP requests to stop AI crawlers",
+                contributors: [],
+              }}
+            />
           </div>
           <div className="card4__project_explain">
             <h1>Blackline Forensics</h1>
@@ -340,37 +405,18 @@ export default function HomePage() {
 
         <div className="card4__project">
           <div className="card4__project__showcase">
-            <div className="project-card">
-              <div className="project-card__header">
-                <div className="project-card__top">
-                  <div className="project-card__controls">
-                    <span className="project-card__dot project-card__dot--red" />
-                    <span className="project-card__dot project-card__dot--yellow" />
-                    <span className="project-card__dot project-card__dot--green" />
-                  </div>
-                  <div className="project-card__stats">
-                    <span>1</span>
-                    <i className="bi bi-star-fill" aria-hidden="true" />
-                  </div>
-                </div>
-                <div className="project-card__title">
-                  <span className="project-card__org">Voxel</span>
-                  <span className="project-card__slash">/</span>
-                  <span className="project-card__repo">renderer</span>
-                </div>
-              </div>
-
-              <p className="project-card__desc">
-                GPU-accelerated voxel renderer with playful lighting experiments and shader tricks
-              </p>
-
-              <div className="project-card__footer">
-                <div className="project-card__avatars" aria-hidden="true">
-                  <span className="project-card__avatar project-card__avatar--1" />
-                </div>
-                <span className="project-card__contributors">NSkogstad-AUS</span>
-              </div>
-            </div>
+            <ProjectCardShowcase
+              owner="NSkogstad-AUS"
+              repo="cpp-voxel-renderer"
+              customDescription="A custom voxel-based engine developed using "
+              fallback={{
+                name: "cpp-voxel-renderer",
+                fullName: "NSkogstad-AUS/cpp-voxel-renderer",
+                stars: 1,
+                description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
+                contributors: [],
+              }}
+            />
           </div>
           <div className="card4__project_explain">
             <h1>Voxel Renderer</h1>
