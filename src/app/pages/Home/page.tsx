@@ -427,7 +427,7 @@ export default function HomePage() {
             <ProjectCardShowcase
               owner="NSkogstad-AUS"
               repo="cpp-voxel-renderer"
-              customDescription="Small OpenGL playground that renders voxel chunks and a simple heightmap terrain."
+              customDescription="Small OpenGL playground that renders voxel chunks and a simple height-map terrain."
               fallback={{
                 name: "cpp-voxel-renderer",
                 fullName: "NSkogstad-AUS/cpp-voxel-renderer",

@@ -1,0 +1,115 @@
+.about--page {
+  margin-top: 8rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 0;
+  width: 100%;
+  padding: 0 2rem 3rem;
+  padding-left: 34rem;
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.about-title {
+  margin: 0;
+  font-size: 0.9rem;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+}
+
+.about-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+  min-height: 320px;
+  flex-wrap: wrap;
+}
+
+.profilePhoto {
+  width: 360px;
+  height: 500px;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 400ms ease;
+  transform-origin: center;
+} .profilePhoto:hover {
+  transform: scale(1.025);
+}
+
+.profilePhoto span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.profilePhoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.about-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.about-card .about-copy p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.dog-info {
+  margin-top: 2rem;
+  margin-left: -0.2rem;
+  width: 100%;
+  max-width: 1200px;
+  padding: 1.4rem 1.25rem;
+  border-radius: 12px;
+  background: rgba(229, 233, 239);
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(86, 88, 107, 0.5);
+}
+
+.dog-info h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.dog-info p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .about--page {
+    padding-left: 2rem;
+  }
+
+  .about-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

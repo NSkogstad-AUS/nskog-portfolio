@@ -112,84 +112,76 @@ function ProjectCardShowcase({
 
 export default function ProjectsPage() {
   return (
-    <section className="page page--center">
-      <div className="projects-page">
-        <div className="card4">
-          <i className="bi bi-star"/>
+    <section className="projects-page">
+      <div className="card4">
+        <i className="bi bi-archive" />
+        <p>Projects</p>
+      </div>
 
-          <p>Featured Projects</p>
-
-          <a className="card4__viewall" href="/pages/projects">
-            <span>View all</span>
-            <i className="bi bi-arrow-right" aria-hidden="true"/>
-          </a>
+      <div className="card4__showcase">
+        <div className="card4__project">
+          <div className="card4__project__showcase">
+            <ProjectCardShowcase
+              owner="NSkogstad-AUS"
+              repo="Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media"
+              customDescription="A machine learning deep-fake website developed in a team of 5 for a client"
+              fallback={{
+                name: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
+                fullName: "NSkogstad-AUS/Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
+                stars: 1,
+                description: "Weighs the soul of incoming HTTP requests to stop AI crawlers",
+                contributors: [],
+              }}
+            />
+          </div>
+          <div className="card4__project_explain">
+            <h1>Deepfake Detector</h1>
+            <p>Hello</p>
+            <div className="card4__tags"></div>
+          </div>
         </div>
 
-        <div className="card4__showcase">
-          <div className="card4__project">
-            <div className="card4__project__showcase">
-              <ProjectCardShowcase
-                owner="NSkogstad-AUS"
-                repo="Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media"
-                customDescription="A machine learning deep-fake website developed in a team of 5 for a client"
-                fallback={{
-                  name: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-                  fullName: "NSkogstad-AUS/Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-                  stars: 1,
-                  description: "Weighs the soul of incoming HTTP requests to stop AI crawlers",
-                  contributors: [],
-                }}
-              />
-            </div>
-            <div className="card4__project_explain">
-              <h1>Blackline Forensics</h1>
-              <p>Hello</p>
-              <div className="card4__tags"></div>
-            </div>
+        <div className="card4__project">
+          <div className="card4__project__showcase">
+            <ProjectCardShowcase
+              owner="NSkogstad-AUS"
+              repo="cpp-voxel-renderer"
+              customDescription="Small OpenGL playground that renders voxel chunks and a simple height-map terrain"
+              fallback={{
+                name: "cpp-voxel-renderer",
+                fullName: "NSkogstad-AUS/cpp-voxel-renderer",
+                stars: 1,
+                description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
+                contributors: [],
+              }}
+            />
           </div>
+          <div className="card4__project_explain">
+            <h1>Voxel Renderer</h1>
+            <p>Hello</p>
+            <div className="card4__tags"></div>
+          </div>
+        </div>
 
-          <div className="card4__project">
-            <div className="card4__project__showcase">
-              <ProjectCardShowcase
-                owner="NSkogstad-AUS"
-                repo="cpp-voxel-renderer"
-                customDescription="Small OpenGL playground that renders voxel chunks and a simple heightmap terrain."
-                fallback={{
-                  name: "cpp-voxel-renderer",
-                  fullName: "NSkogstad-AUS/cpp-voxel-renderer",
-                  stars: 1,
-                  description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
-                  contributors: [],
-                }}
-              />
-            </div>
-            <div className="card4__project_explain">
-              <h1>Voxel Renderer</h1>
-              <p>Hello</p>
-              <div className="card4__tags"></div>
-            </div>
+        <div className="card4__project">
+          <div className="card4__project__showcase">
+            <ProjectCardShowcase
+              owner="NSkogstad-AUS"
+              repo="nskog-portfolio"
+              customDescription="A personal portfolio for personal/professional purposes, outlining experience, education, and a personal blog"
+              fallback={{
+                name: "nskog-portfolio",
+                fullName: "NSkogstad-AUS/nskog-portfolio",
+                stars: 1,
+                description: "A personal portfolio for personal/professional purposes, outlining experience, education, and a personal blog",
+                contributors: [],
+              }}
+            />
           </div>
-          
-          <div className="card4__project">
-            <div className="card4__project__showcase">
-              <ProjectCardShowcase
-                owner="NSkogstad-AUS"
-                repo="cpp-voxel-renderer"
-                customDescription="Small OpenGL playground that renders voxel chunks and a simple heightmap terrain."
-                fallback={{
-                  name: "cpp-voxel-renderer",
-                  fullName: "NSkogstad-AUS/cpp-voxel-renderer",
-                  stars: 1,
-                  description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
-                  contributors: [],
-                }}
-              />
-            </div>
-            <div className="card4__project_explain">
-              <h1>Voxel Renderer</h1>
-              <p>Hello</p>
-              <div className="card4__tags"></div>
-            </div>
+          <div className="card4__project_explain">
+            <h1>Personal Portfolio</h1>
+            <p>Hello</p>
+            <div className="card4__tags"></div>
           </div>
         </div>
       </div>
