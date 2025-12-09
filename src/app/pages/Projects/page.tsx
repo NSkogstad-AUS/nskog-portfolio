@@ -16,6 +16,15 @@ type RepoCardData = {
   contributors: RepoCardContributor[];
 };
 
+type ProjectEntry = {
+  owner: string;
+  repo: string;
+  title: string;
+  customDescription: string;
+  fallback: RepoCardData;
+  tags: string[];
+};
+
 function ProjectCardShowcase({
   owner,
   repo,
@@ -110,7 +119,96 @@ function ProjectCardShowcase({
   );
 }
 
-const tags = ["golang", "distributed-systems", "mapreduce", "hadoop", "p2p", "web-ui"];
+const projects: ProjectEntry[] = [
+  {
+    owner: "NSkogstad-AUS",
+    repo: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
+    title: "Deepfake Detector",
+    customDescription: "A machine learning deep-fake website developed in a team of 5 for a client",
+    fallback: {
+      name: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
+      fullName: "NSkogstad-AUS/Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
+      stars: 1,
+      description: "Weighs the soul of incoming HTTP requests to stop AI crawlers",
+      contributors: [],
+    },
+    tags: ["fastAP", "postgresSQL", "AWS integration", "pytorch", "docker", "ML"],
+  },
+  {
+    owner: "NSkogstad-AUS",
+    repo: "cpp-voxel-renderer",
+    title: "Voxel Renderer",
+    customDescription: "Small OpenGL playground that renders voxel chunks and a simple height-map terrain",
+    fallback: {
+      name: "cpp-voxel-renderer",
+      fullName: "NSkogstad-AUS/cpp-voxel-renderer",
+      stars: 1,
+      description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
+      contributors: [],
+    },
+    tags: ["c++", "openGL", "GLFW", "GLM", "GLSL", "voxels", "rendering", "engine"],
+  },
+  {
+    owner: "NSkogstad-AUS",
+    repo: "nskog-portfolio",
+    title: "Personal Portfolio",
+    customDescription: "A personal portfolio for personal/professional purposes, outlining experience, education, and a personal blog",
+    fallback: {
+      name: "nskog-portfolio",
+      fullName: "NSkogstad-AUS/nskog-portfolio",
+      stars: 1,
+      description: "A personal portfolio for personal/professional purposes, outlining experience, education, and a personal blog",
+      contributors: [],
+    },
+    tags: ["next.js", "react", "typescript", "javascript", "node.js", "tailwind"],
+  },
+  {
+    owner: "NSkogstad-AUS",
+    repo: "nskog-react-ps4website",
+    title: "Playstation 4 Dashboard Website",
+    customDescription: "A website that has the look and functionality of the Playstation 4 home screen. Made for fun.",
+    fallback: {
+      name: "nskog-portfolio",
+      fullName: "NSkogstad-AUS/nskog-react-ps4website",
+      stars: 1,
+      description: "A website that has the look and functionality of the Playstation 4 home screen. Made for fun.",
+      contributors: [],
+    },
+    tags: ["vite", "react", "typescript", "tailwind"],
+  },
+  {
+    owner: "NSkogstad-AUS",
+    repo: "urt_gui_app",
+    title: "Rust RTP Video GUI",
+    customDescription:
+      "Rust eframe/egui desktop app with label and buttons to view Mac camera, play RTP H.264 stream, and update label from UDP notifs.",
+    fallback: {
+      name: "nskog-portfolio",
+      fullName: "NSkogstad-AUS/urt_gui_app",
+      stars: 1,
+      description:
+        "Rust eframe/egui desktop app with label and buttons to view Mac camera, play RTP H.264 stream, and update label from UDP notifs.",
+      contributors: [],
+    },
+    tags: ["rust", "egui", "gstreamer", "rtp", "sockets", "communication"],
+  },
+  {
+    owner: "NSkogstad-AUS",
+    repo: "nskog-realtimeDocEditor",
+    title: "Collaborative Document Editor",
+    customDescription:
+      "Collaborative rich-text editor using Node.js, Socket.io, MongoDB, React and Quill, syncing document edits in real time for multiple users.",
+    fallback: {
+      name: "nskog-portfolio",
+      fullName: "NSkogstad-AUS/nskog-realtimeDocEditor",
+      stars: 1,
+      description:
+        "Collaborative rich-text editor using Node.js, Socket.io, MongoDB, React and Quill, syncing document edits in real time for multiple users..",
+      contributors: [],
+    },
+    tags: ["react", "socket.IO", "quill", "UUID", "node.js", "mongoDB"],
+  },
+];
 
 export default function ProjectsPage() {
   return (
@@ -121,144 +219,30 @@ export default function ProjectsPage() {
       </div>
 
       <div className="card4__showcase">
-        <div className="card4__project">
-          <div className="card4__project__showcase">
-            <ProjectCardShowcase
-              owner="NSkogstad-AUS"
-              repo="Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media"
-              customDescription="A machine learning deep-fake website developed in a team of 5 for a client"
-              fallback={{
-                name: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-                fullName: "NSkogstad-AUS/Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-                stars: 1,
-                description: "Weighs the soul of incoming HTTP requests to stop AI crawlers",
-                contributors: [],
-              }}
-            />
-          </div>
-          <div className="card4__project_explain">
-            <h1>Deepfake Detector</h1>
-            <p>Hello</p>
-            <div className="card4__tags"></div>
-          </div>
-        </div>
-
-        <div className="card4__project">
-          <div className="card4__project__showcase">
-            <ProjectCardShowcase
-              owner="NSkogstad-AUS"
-              repo="cpp-voxel-renderer"
-              customDescription="Small OpenGL playground that renders voxel chunks and a simple height-map terrain"
-              fallback={{
-                name: "cpp-voxel-renderer",
-                fullName: "NSkogstad-AUS/cpp-voxel-renderer",
-                stars: 1,
-                description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
-                contributors: [],
-              }}
-            />
-          </div>
-          <div className="card4__project_explain">
-            <h1>Voxel Renderer</h1>
-            <p>Hello</p>
-            <div className="card4__tags">
-              <i className="bi bi-tag" aria-hidden="true" />
-              {tags.map((tag) => (
-                <span key={tag} className="card4__tag">
-                  {tag}
-                </span>
-              ))}
+        {projects.map((project) => (
+          <div className="card4__project" key={project.repo}>
+            <div className="card4__project__showcase">
+              <ProjectCardShowcase
+                owner={project.owner}
+                repo={project.repo}
+                customDescription={project.customDescription}
+                fallback={project.fallback}
+              />
+            </div>
+            <div className="card4__project_explain">
+              <h1>{project.title}</h1>
+              <p>{project.customDescription}</p>
+              <div className="card4__tags">
+                <i className="bi bi-tag" aria-hidden="true" />
+                {project.tags.map((tag) => (
+                  <span key={`${project.repo}-${tag}`} className="card4__tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="card4__project">
-          <div className="card4__project__showcase">
-            <ProjectCardShowcase
-              owner="NSkogstad-AUS"
-              repo="nskog-portfolio"
-              customDescription="A personal portfolio for personal/professional purposes, outlining experience, education, and a personal blog"
-              fallback={{
-                name: "nskog-portfolio",
-                fullName: "NSkogstad-AUS/nskog-portfolio",
-                stars: 1,
-                description: "A personal portfolio for personal/professional purposes, outlining experience, education, and a personal blog",
-                contributors: [],
-              }}
-            />
-          </div>
-          <div className="card4__project_explain">
-            <h1>Personal Portfolio</h1>
-            <p>Hello</p>
-            <div className="card4__tags"></div>
-          </div>
-        </div>
-
-        <div className="card4__project">
-          <div className="card4__project__showcase">
-            <ProjectCardShowcase
-              owner="NSkogstad-AUS"
-              repo="nskog-react-ps4website"
-              customDescription="A website that has the look and functionality of the Playstation 4 home screen. Made for fun."
-              fallback={{
-                name: "nskog-portfolio",
-                fullName: "NSkogstad-AUS/nskog-react-ps4website",
-                stars: 1,
-                description: "A website that has the look and functionality of the Playstation 4 home screen. Made for fun.",
-                contributors: [],
-              }}
-            />
-          </div>
-          <div className="card4__project_explain">
-            <h1>Playstation 4 Dashboard Website</h1>
-            <p>Hello</p>
-            <div className="card4__tags"></div>
-          </div>
-        </div>
-
-        <div className="card4__project">
-          <div className="card4__project__showcase">
-            <ProjectCardShowcase
-              owner="NSkogstad-AUS"
-              repo="urt_gui_app"
-              customDescription="Rust eframe/egui desktop app with label and buttons to view Mac camera, play RTP H.264 stream, and update label from UDP notifs."
-              fallback={{
-                name: "nskog-portfolio",
-                fullName: "NSkogstad-AUS/urt_gui_app",
-                stars: 1,
-                description: "Rust eframe/egui desktop app with label and buttons to view Mac camera, play RTP H.264 stream, and update label from UDP notifs.",
-                contributors: [],
-              }}
-            />
-          </div>
-          <div className="card4__project_explain">
-            <h1>Rust RTP Video GUI</h1>
-            <p>Hello</p>
-            <div className="card4__tags"></div>
-          </div>
-        </div>
-
-        <div className="card4__project">
-          <div className="card4__project__showcase">
-            <ProjectCardShowcase
-              owner="NSkogstad-AUS"
-              repo="nskog-realtimeDocEditor"
-              customDescription="Collaborative rich-text editor using Node.js, Socket.io, MongoDB, React and Quill, syncing document edits in real time for multiple users."
-              fallback={{
-                name: "nskog-portfolio",
-                fullName: "NSkogstad-AUS/nskog-realtimeDocEditor",
-                stars: 1,
-                description: "Collaborative rich-text editor using Node.js, Socket.io, MongoDB, React and Quill, syncing document edits in real time for multiple users..",
-                contributors: [],
-              }}
-            />
-          </div>
-          <div className="card4__project_explain">
-            <h1>Collaborative Document Editor</h1>
-            <p>Hello</p>
-            <div className="card4__tags"></div>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );
