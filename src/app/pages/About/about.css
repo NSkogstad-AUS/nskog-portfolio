@@ -90,6 +90,45 @@
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
   border: 1px solid rgb(86, 88, 107, 0.5);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dog-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.dog-photo {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 400ms ease;
+  transform-origin: center;
+} .dog-photo:hover {
+  transform: scale(1.025);
+}
+
+.dog-photo span,
+.dog-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.dog-copy h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.dog-copy p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .dog-info h2 {

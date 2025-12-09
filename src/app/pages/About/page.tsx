@@ -36,20 +36,42 @@ export default function AboutPage() {
 
       <div className="dog-info">
         <div className="dog-images">
-          <Image
-              src="/assets/pf-4.JPG"
-              alt="Portrait"
-              width={320}
-              height={320}
+          <div className="dog-photo">
+            <Image
+              src="/assets/buddy-1.JPG"
+              alt="Buddy the Golden Retriever"
+              width={400}
+              height={260}
               priority
             />
+          </div>
+          <div className="dog-photo">
+            <Image
+              src="/assets/buddy-2.JPG"
+              alt="Buddy the Golden Retriever"
+              width={400}
+              height={260}
+              priority
+            />
+          </div>
+          <div className="dog-photo">
+            <Image
+              src="/assets/buddy-3.jpeg"
+              alt="Buddy the Golden Retriever"
+              width={400}
+              height={260}
+              priority
+            />
+          </div>
         </div>
-        <h2>Meet Buddy</h2>
-        <p>
-          This is Buddy, my Shih Tzu who loves belly rubs and long naps in the sun.
-          When I'm not coding, you'll probably find me taking him out for a walk
-          or teaching him new tricks.
-        </p>
+        <div className="dog-copy">
+          <h2>Meet Buddy</h2>
+          <p>
+            This is Buddy, my Golden Retriever who loves belly rubs and long naps in the sun.
+            We both love to go exploring with one another and spending time in the backyard sun bathing.
+            Whenever we go for a walk, I always know we'll have an adventure.
+          </p>
+        </div>
       </div>
     </section>
   );

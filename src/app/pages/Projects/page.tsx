@@ -184,6 +184,72 @@ export default function ProjectsPage() {
             <div className="card4__tags"></div>
           </div>
         </div>
+
+        <div className="card4__project">
+          <div className="card4__project__showcase">
+            <ProjectCardShowcase
+              owner="NSkogstad-AUS"
+              repo="nskog-react-ps4website"
+              customDescription="A website that has the look and functionality of the Playstation 4 home screen. Made for fun."
+              fallback={{
+                name: "nskog-portfolio",
+                fullName: "NSkogstad-AUS/nskog-react-ps4website",
+                stars: 1,
+                description: "A website that has the look and functionality of the Playstation 4 home screen. Made for fun.",
+                contributors: [],
+              }}
+            />
+          </div>
+          <div className="card4__project_explain">
+            <h1>Playstation 4 Dashboard Website</h1>
+            <p>Hello</p>
+            <div className="card4__tags"></div>
+          </div>
+        </div>
+
+        <div className="card4__project">
+          <div className="card4__project__showcase">
+            <ProjectCardShowcase
+              owner="NSkogstad-AUS"
+              repo="urt_gui_app"
+              customDescription="Rust eframe/egui desktop app with label and buttons to view Mac camera, play RTP H.264 stream, and update label from UDP notifs."
+              fallback={{
+                name: "nskog-portfolio",
+                fullName: "NSkogstad-AUS/urt_gui_app",
+                stars: 1,
+                description: "Rust eframe/egui desktop app with label and buttons to view Mac camera, play RTP H.264 stream, and update label from UDP notifs.",
+                contributors: [],
+              }}
+            />
+          </div>
+          <div className="card4__project_explain">
+            <h1>Rust RTP Video GUI</h1>
+            <p>Hello</p>
+            <div className="card4__tags"></div>
+          </div>
+        </div>
+
+        <div className="card4__project">
+          <div className="card4__project__showcase">
+            <ProjectCardShowcase
+              owner="NSkogstad-AUS"
+              repo="nskog-realtimeDocEditor"
+              customDescription="Collaborative rich-text editor using Node.js, Socket.io, MongoDB, React and Quill, syncing document edits in real time for multiple users."
+              fallback={{
+                name: "nskog-portfolio",
+                fullName: "NSkogstad-AUS/nskog-realtimeDocEditor",
+                stars: 1,
+                description: "Collaborative rich-text editor using Node.js, Socket.io, MongoDB, React and Quill, syncing document edits in real time for multiple users..",
+                contributors: [],
+              }}
+            />
+          </div>
+          <div className="card4__project_explain">
+            <h1>Collaborative Document Editor</h1>
+            <p>Hello</p>
+            <div className="card4__tags"></div>
+          </div>
+        </div>
       </div>
     </section>
   );
