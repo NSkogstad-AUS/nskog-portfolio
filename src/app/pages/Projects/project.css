@@ -28,7 +28,7 @@
   justify-content: flex-start;
 }
 
-.card4 .bi-archive {
+.projects-page .card4 .bi-archive {
   font-size: 150%;
   justify-content: center;
   align-items: center;
@@ -49,3 +49,89 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.projects-page .card4__project {
+  background: rgba(221, 225, 232, 0.7);
+  border: 1px solid rgba(186, 193, 206, 0.8);
+  border-radius: 18px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 200ms ease, box-shadow 200ms ease, background 200ms ease;
+}
+
+.projects-page .card4__project__showcase {
+  background: rgba(169, 180, 192);
+  width: 100%;
+  flex: 3;
+  border-radius: 16px 16px 0 0;
+  padding: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e5e7eb;
+}
+.projects-page .card4__project_explain {
+  background: rgba(229, 233, 239);
+  width: 100%;
+  flex: 1;
+  border-radius: 0 0 16px 16px;
+  padding: 16px;
+  color: rgba(77, 79, 105);
+  text-decoration: underline;
+}
+.projects-page .card4__project_explain h1 {
+  color: rgba(77, 79, 105);
+  font-weight: 800;
+  font-size: 20px;
+  transition: color 200ms ease;
+}
+
+.projects-page .project-card {
+  width: 90%;
+  height: 90%;
+  background: #1c2331;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  transition: transform 300ms ease;
+  transform-origin: center;
+}
+.projects-page .card4__project:hover .project-card { transform: scale(1.05); }
+.projects-page .card4__project:hover .card4__project_explain h1 { color: rgba(254, 100, 12, 1); }
+.projects-page .card4__project:hover {
+  border-color: rgba(254, 100, 12, 0.9);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.2);
+  background: rgba(254, 100, 12, 0.08);
+}
+
+.projects-page .project-card__header { display: flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+.projects-page .project-card__top { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+.projects-page .project-card__controls { display: inline-flex; align-items: center; gap: 0.35rem; }
+.projects-page .project-card__dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.projects-page .project-card__dot--red { background: #ff5f56; }
+.projects-page .project-card__dot--yellow { background: #ffbd2e; }
+.projects-page .project-card__dot--green { background: #27c93f; }
+.projects-page .project-card__title { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600; letter-spacing: 0.01em; }
+.projects-page .project-card__org { color: #d56fff; }
+.projects-page .project-card__slash { color: rgba(229, 231, 235, 0.65); }
+.projects-page .project-card__repo { color: #4ade80; }
+.projects-page .project-card__stats { margin-left: auto; display: inline-flex; align-items: center; gap: 0.3rem; color: rgba(229, 231, 235, 0.85); font-weight: 500; }
+.projects-page .project-card__desc { margin: 0; line-height: 1.6; color: rgb(255, 255, 255); font-size: 0.95rem; }
+.projects-page .project-card__footer { display: flex; align-items: center; gap: 0.5rem; margin-top: auto; }
+.projects-page .project-card__avatars { display: inline-flex; align-items: center; }
+.projects-page .project-card__avatar { width: 34px; height: 34px; border-radius: 999px; border: 2px solid #1c2331; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; text-decoration: none; background-size: cover; background-position: center; background-repeat: no-repeat; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35); }
+.projects-page .project-card__avatar + .project-card__avatar { margin-left: -10px; }
+.projects-page .project-card__avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
+.projects-page .project-card__avatar--1 { background: linear-gradient(135deg, #f472b6, #f97316); }
+.projects-page .project-card__avatar--2 { background: linear-gradient(135deg, #38bdf8, #0ea5e9); }
+.projects-page .project-card__avatar--3 { background: linear-gradient(135deg, #8b5cf6, #6366f1); }
+.projects-page .project-card__avatar--4 { background: linear-gradient(135deg, #eab308, #f59e0b); }
+.projects-page .project-card__avatar--5 { background: linear-gradient(135deg, #5cf69a, #5cf69a); }
+.projects-page .project-card__contributors { margin-left: auto; color: rgba(229, 231, 235, 0.65); font-size: 0.9rem; }

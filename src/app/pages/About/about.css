@@ -38,6 +38,34 @@
   flex-wrap: wrap;
 }
 
+.about--buddy {
+  color: rgba(254, 100, 12);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+  transition: background 200ms ease, color 200ms ease;
+} .about--buddy:hover,
+.about--buddy:focus-visible {
+  background: rgba(254, 100, 12);
+  color: rgba(229, 233, 239);
+  text-decoration-color: rgba(229, 233, 239);
+  text-underline-offset: 4px;
+}
+
+.about--links {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+}
+
+.bi-star-fill {
+  color: rgba(7, 7, 7, 0.1);
+  font-size: small;
+}
+
 .profilePhoto {
   width: 360px;
   height: 500px;
@@ -69,13 +97,13 @@
   gap: 1rem;
   max-width: 800px;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.6;
 }
 
 .about-card .about-copy p {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   line-height: 1.6;
 }
 
