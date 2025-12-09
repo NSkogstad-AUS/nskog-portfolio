@@ -137,6 +137,15 @@ type RepoCardData = {
   contributors: RepoCardContributor[];
 };
 
+type FeaturedProject = {
+  owner: string;
+  repo: string;
+  title: string;
+  customDescription: string;
+  fallback: RepoCardData;
+  tags: string[];
+};
+
 function ProjectCardShowcase({
   owner,
   repo,
@@ -230,6 +239,37 @@ function ProjectCardShowcase({
     </div>
   );
 }
+
+const featuredProjects: FeaturedProject[] = [
+  {
+    owner: "NSkogstad-AUS",
+    repo: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
+    title: "Blackline Forensics",
+    customDescription: "A machine learning deep-fake website developed in a team of 5 for a client",
+    fallback: {
+      name: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
+      fullName: "NSkogstad-AUS/Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
+      stars: 1,
+      description: "Weighs the soul of incoming HTTP requests to stop AI crawlers",
+      contributors: [],
+    },
+    tags: ["ml", "cv", "web", "team-project"],
+  },
+  {
+    owner: "NSkogstad-AUS",
+    repo: "cpp-voxel-renderer",
+    title: "Voxel Renderer",
+    customDescription: "Small OpenGL playground that renders voxel chunks and a simple height-map terrain.",
+    fallback: {
+      name: "cpp-voxel-renderer",
+      fullName: "NSkogstad-AUS/cpp-voxel-renderer",
+      stars: 1,
+      description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
+      contributors: [],
+    },
+    tags: ["opengl", "cpp", "graphics", "voxels"],
+  },
+];
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
@@ -400,49 +440,30 @@ export default function HomePage() {
       </div>
 
       <div className="card4__showcase">
-        <div className="card4__project">
-          <div className="card4__project__showcase">
-            <ProjectCardShowcase
-              owner="NSkogstad-AUS"
-              repo="Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media"
-              customDescription="A machine learning deep-fake website developed in a team of 5 for a client"
-              fallback={{
-                name: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-                fullName: "NSkogstad-AUS/Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-                stars: 1,
-                description: "Weighs the soul of incoming HTTP requests to stop AI crawlers",
-                contributors: [],
-              }}
-            />
+        {featuredProjects.map((project) => (
+          <div className="card4__project" key={project.repo}>
+            <div className="card4__project__showcase">
+              <ProjectCardShowcase
+                owner={project.owner}
+                repo={project.repo}
+                customDescription={project.customDescription}
+                fallback={project.fallback}
+              />
+            </div>
+            <div className="card4__project_explain">
+              <h1>{project.title}</h1>
+              <p>{project.customDescription}</p>
+              <div className="card4__tags">
+                <i className="bi bi-tag" aria-hidden="true" />
+                {project.tags.map((tag) => (
+                  <span key={`${project.repo}-${tag}`} className="card4__tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-          <div className="card4__project_explain">
-            <h1>Blackline Forensics</h1>
-            <p>Hello</p>
-            <div className="card4__tags"></div>
-          </div>
-        </div>
-
-        <div className="card4__project">
-          <div className="card4__project__showcase">
-            <ProjectCardShowcase
-              owner="NSkogstad-AUS"
-              repo="cpp-voxel-renderer"
-              customDescription="Small OpenGL playground that renders voxel chunks and a simple height-map terrain."
-              fallback={{
-                name: "cpp-voxel-renderer",
-                fullName: "NSkogstad-AUS/cpp-voxel-renderer",
-                stars: 1,
-                description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
-                contributors: [],
-              }}
-            />
-          </div>
-          <div className="card4__project_explain">
-            <h1>Voxel Renderer</h1>
-            <p>Hello</p>
-            <div className="card4__tags"></div>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );
