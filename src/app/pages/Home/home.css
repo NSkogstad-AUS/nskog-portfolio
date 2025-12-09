@@ -439,13 +439,11 @@
   gap: 0;
   overflow: hidden;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid rgb(86, 88, 107, 0.5);
   transition:
     background 180ms ease,
     color 180ms ease,
     border-color 300ms ease,
-    box-shadow 300ms ease;
 }
 
 .card4__project__showcase {
@@ -478,7 +476,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.06);
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
   transition: transform 300ms ease;
@@ -492,7 +489,6 @@
 }
 .card4__project:hover {
   border-color: rgba(254, 100, 12, 0.9);
-  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.2);
   background: rgba(254, 100, 12, 0.08);
 }
 

@@ -110,6 +110,8 @@ function ProjectCardShowcase({
   );
 }
 
+const tags = ["golang", "distributed-systems", "mapreduce", "hadoop", "p2p", "web-ui"];
+
 export default function ProjectsPage() {
   return (
     <section className="projects-page">
@@ -159,7 +161,14 @@ export default function ProjectsPage() {
           <div className="card4__project_explain">
             <h1>Voxel Renderer</h1>
             <p>Hello</p>
-            <div className="card4__tags"></div>
+            <div className="card4__tags">
+              <i className="bi bi-tag" aria-hidden="true" />
+              {tags.map((tag) => (
+                <span key={tag} className="card4__tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
 
