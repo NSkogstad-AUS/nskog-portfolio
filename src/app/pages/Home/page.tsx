@@ -1,6 +1,6 @@
 "use client";
 import "./home.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import BounceCards from "@/Imported Components/BounceCards";
 
 type BaseEntry = {
@@ -19,6 +19,24 @@ const bounceImages = [
   "/assets/pf-3.JPG",
   "/assets/pf-2.JPG",
 ];
+
+const themeOptions = ["Latte", "Frappe", "Mocha"] as const;
+type ThemeName = (typeof themeOptions)[number];
+
+const accentSwatches = [
+  { label: "Cider", color: "#e19065" },
+  { label: "Apricot", color: "#f4b27c" },
+  { label: "Rose", color: "#d57bb3" },
+  { label: "Lavender", color: "#c384f2" },
+  { label: "Blush", color: "#e25566" },
+  { label: "Amber", color: "#d6b762" },
+  { label: "Fern", color: "#5ba56e" },
+  { label: "Teal", color: "#46c0ad" },
+  { label: "Sky", color: "#4fa7de" },
+  { label: "Periwinkle", color: "#7f8df0" },
+  { label: "Slate", color: "#7397ad" },
+  { label: "Coral", color: "#e27a58" },
+] as const;
 
 const expEntries: ExpEntry[] = [
   {
@@ -274,8 +292,12 @@ const featuredProjects: FeaturedProject[] = [
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
   const [collapsed, setCollapsed] = useState(false);
+  const [activeTheme, setActiveTheme] = useState<ThemeName>("Latte");
+  const [accentIndex, setAccentIndex] = useState(0);
+  const [bgEffectEnabled, setBgEffectEnabled] = useState(false);
   const activeList = tabs.find(t => t.key === activeTab)!.list;
   const showActive = !collapsed;
+  const accentStyle = { "--accent": accentSwatches[accentIndex].color } as CSSProperties;
 
   const handleTabClick = (key: "experience" | "edu") => {
     setActiveTab(key);
@@ -467,8 +489,58 @@ export default function HomePage() {
       </div>
 
       <div className="card5">
-        <div className="card5__button1">
+        <div className="card5__button1 card5__button--theme">
+          <div className="theme-card" style={accentStyle}>
+            <div className="theme-card__header">
+              <i className="bi bi-brush" aria-hidden="true" />
+              <span>Theme</span>
+            </div>
 
+            <div className="theme-card__modes" role="group" aria-label="Theme presets">
+              {themeOptions.map((theme) => (
+                <button
+                  key={theme}
+                  type="button"
+                  className={`theme-card__mode${activeTheme === theme ? " is-active" : ""}`}
+                  aria-pressed={activeTheme === theme}
+                  onClick={() => setActiveTheme(theme)}
+                >
+                  {theme}
+                </button>
+              ))}
+            </div>
+
+            <div className="theme-card__swatches" role="group" aria-label="Accent colors">
+              {accentSwatches.map((swatch, idx) => (
+                <button
+                  key={swatch.color}
+                  type="button"
+                  className={`theme-card__swatch${accentIndex === idx ? " is-selected" : ""}`}
+                  aria-pressed={accentIndex === idx}
+                  aria-label={`${swatch.label} accent`}
+                  style={{ backgroundColor: swatch.color }}
+                  onClick={() => setAccentIndex(idx)}
+                >
+                  {accentIndex === idx ? <span className="theme-card__swatch-ring" /> : null}
+                </button>
+              ))}
+            </div>
+
+            <label className="theme-card__toggle">
+              <input
+                type="checkbox"
+                checked={bgEffectEnabled}
+                onChange={(e) => setBgEffectEnabled(e.target.checked)}
+              />
+              <span className="theme-card__checkbox" aria-hidden="true" />
+              <span className="theme-card__toggle-label">
+                Background effect:{" "}
+                <span className={`theme-card__state${bgEffectEnabled ? " is-on" : " is-off"}`}>
+                  {bgEffectEnabled ? "on" : "off"}
+                </span>
+              </span>
+            </label>
+          </div>
         </div>
 
         <div className="card5__button1">
