@@ -4,13 +4,18 @@
   display: flex;
   flex-direction: column;
   padding: 3rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .page--center {
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
-  padding-left: 34rem;
-  row-gap: 0rem;
+  padding-left: 0;
+  row-gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* OUR INTRO CARD */
@@ -57,8 +62,10 @@
 /* OUR INTRO CARD */
 
 .hero {
+  padding-top: 10%;
   display: flex;
   align-items: center;
+  width: 100%;
   gap: 2rem;
   z-index: 4;
 }
@@ -84,7 +91,6 @@
   background: #ffffff00;
   border-style: sold;
   border-color: aqua;
-  padding-left: 2.5rem;
   gap: 1.5rem;
   border-radius: 12px;
   width: 35vw;
@@ -363,14 +369,15 @@
   background: #f9fafb00;
   border-color: rgba(229, 231, 235, 0.5);
   border-radius: 12px;
-  width: 49vw;
+  width: 100%;
+  max-width: 1200px;
   height: 4vh;
-  margin-top: 3rem;
-  margin-left: 2rem;
-  padding: 0.4rem 0em;
+  margin: 3rem auto 0;
+  padding: 0.4rem 1rem;
   display: flex;
   gap: 1rem;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
 }
 
 .card4 .bi-star {
@@ -421,8 +428,11 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
-  width: 49vw;
-  margin: 1.5rem 2rem 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 1.5rem auto 0;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 /* -- the actual project cards -- */
@@ -646,12 +656,13 @@
   background-color: #0ea4e900;
   width: 100%;
   max-width: 1200px;
-  margin-top: 5rem;
-  padding: 1rem 1rem 1rem 1rem;
+  margin: 5rem auto 0;
+  padding: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.25rem;
   align-items: stretch;
+  box-sizing: border-box;
 }
 
 .card5__button1 {
@@ -684,7 +695,6 @@
   height: 100%;
   background-color: rgba(239, 241, 245);
   border-radius: 12px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
   padding: 1rem 1.1rem 1.1rem;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
@@ -867,7 +877,7 @@
   line-height: 1.4;
 }
 
-.book-card__button {
+.book-card__click {
   background-color: rgba(204, 208, 218);
   padding: 0.5rem;
   display: inline-flex;
@@ -877,6 +887,8 @@
   text-align: center;
   border-radius: 12px;
   width: 100%;
+  margin-top: 1rem;
+  color: #0f1724;
 }
 
 .pin-card {
@@ -886,9 +898,8 @@
   width: 100%;
   height: 100%;
   padding: 1rem;
-  background: linear-gradient(180deg, #f6f8fb 0%, #edf1f7 100%);
   border-radius: 12px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  background-color: rgba(239, 241, 245);
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
 }
 
@@ -945,11 +956,9 @@
   gap: 0.75rem;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #f6f8fb 0%, #edf1f7 100%);
-  border: 1px solid #d7deea;
+  background-color: rgba(239, 241, 245);
   border-radius: 12px;
   padding: 1rem;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
   color: #3f455c;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
 }
@@ -1020,19 +1029,26 @@
 
 .card5__button--commits {
   padding: 1.25rem 1.35rem;
-  background: linear-gradient(180deg, #f5f7fc 0%, #e7ecf7 100%);
+  background-color: rgba(239, 241, 245);
   border: 1px solid #d5dce9;
-  box-shadow: 0 14px 28px rgba(58, 73, 116, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: stretch;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
   border-radius: 14px;
 }
 
 .commits-card {
   display: grid;
   gap: 0.35rem;
-  margin-left: auto;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
   color: #4b5162;
   letter-spacing: 0.01em;
   font-size: 0.95rem;
@@ -1083,6 +1099,8 @@
   font-weight: 700;
   font-size: 0.82rem;
   letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
 }
 
 .commits-card__link {
@@ -1115,8 +1133,7 @@
   gap: 0.35rem;
   padding: 0.2rem 0.65rem;
   border-radius: 999px;
-  border: 1px dashed rgba(86, 88, 107, 0.45);
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 1);
   font-size: 0.7rem;
   color: #4b5563;
 }
@@ -1163,7 +1180,7 @@
   align-items: flex-start;
   gap: 0.4rem;
   justify-content: space-between;
-  width: 100%;
+  width: 62%;
 }
 
 .commits-card__info {
@@ -1175,7 +1192,7 @@
 }
 
 .commits-card__repo {
-  font-weight: 700;
+  font-weight: 600;
   white-space: nowrap;
   color: #464d61;
 }
@@ -1184,12 +1201,13 @@
   color: #5b6171;
   text-decoration: underline;
   text-decoration-color: #b6c0d4;
-  display: inline-block;
+  display: block;
+  flex: 1;
   min-width: 0;
-  max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.35;
 }
 
 .commits-card__message:hover,
@@ -1200,13 +1218,14 @@
 
 .commits-card__metrics {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.45rem;
   font-size: 0.9rem;
   color: #4e5667;
   white-space: nowrap;
   font-weight: 700;
   padding-left: 0.25rem;
+  flex-shrink: 0;
 }
 
 .commits-card__add {
@@ -1227,6 +1246,7 @@
   display: flex;
   align-items: center;
   gap: 0.9rem;
+  width: 63%;
   margin-top: 0.4rem;
 }
 
@@ -1253,4 +1273,14 @@
   align-items: center;
   gap: 0.55rem;
   font-size: 0.9rem;
+}
+
+/* BLOG POST PART */
+.card5__button--blog {
+  background-color: rgba(239, 241, 245);
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
 }

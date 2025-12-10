@@ -2,6 +2,7 @@
 import "./home.css";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import BounceCards from "@/Imported Components/BounceCards";
+import type { RecentCommit as RecentCommitData } from "@/lib/github";
 
 type BaseEntry = {
   period: string;
@@ -297,6 +298,196 @@ const featuredProjects: FeaturedProject[] = [
     tags: ["opengl", "cpp", "graphics", "voxels"],
   },
 ];
+
+const DEFAULT_GITHUB_USER = "NSkogstad-AUS";
+const COMMITS_LIMIT = 4;
+
+function RecentCommitsCard({ username = DEFAULT_GITHUB_USER }: { username?: string }) {
+  const [commits, setCommits] = useState<RecentCommitData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = async () => {
+      setLoading(true);
+      const params = new URLSearchParams({ user: username, limit: `${COMMITS_LIMIT}` });
+      try {
+        const res = await fetch(`/api/recent-commits?${params.toString()}`);
+        if (!res.ok) throw new Error(`status ${res.status}`);
+        const json = await res.json();
+        if (!cancelled) {
+          setCommits(Array.isArray(json?.commits) ? json.commits : []);
+          setError(null);
+        }
+      } catch (err) {
+        if (!cancelled) {
+          console.warn("commits fetch failed", err);
+          setError("Couldn't load commits right now.");
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    };
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, [username]);
+
+  const segmentsPalette = [
+    "#1fb8f3",
+    "#3ac7c2",
+    "#f07943",
+    "#2c8de9",
+    "#f1ba3f",
+    "#7a6bf2",
+    "#45b86f",
+    "#e85d7d",
+    "#2fa1e0",
+    "#d85f36",
+    "#22c6c5",
+    "#b55ef5",
+  ];
+
+  const languagePalette: Record<string, string> = {
+    typescript: "#3178c6",
+    javascript: "#f1e05a",
+    python: "#3572a5",
+    go: "#00add8",
+    rust: "#dea584",
+    java: "#b07219",
+    "c++": "#f34b7d",
+    c: "#555555",
+    "c#": "#178600",
+    ruby: "#701516",
+    php: "#4f5d95",
+    swift: "#f05138",
+    kotlin: "#a97bff",
+    dart: "#00b4ab",
+    shell: "#89e051",
+    bash: "#89e051",
+    sql: "#e38c00",
+    html: "#e34c26",
+    css: "#563d7c",
+    scss: "#c6538c",
+    sass: "#c6538c",
+    vue: "#41b883",
+    svelte: "#ff3e00",
+    scala: "#c22d40",
+    elixir: "#6e4a7e",
+    erlang: "#b83998",
+    clojure: "#5881d8",
+    lua: "#000080",
+    r: "#198ce7",
+    matlab: "#e16737",
+    nix: "#5277c3",
+  };
+
+  const hashColorIndex = (lang: string) => {
+    let hash = 0;
+    for (let i = 0; i < lang.length; i += 1) {
+      hash = (hash << 5) - hash + lang.charCodeAt(i);
+      hash |= 0;
+    }
+    return Math.abs(hash) % segmentsPalette.length;
+  };
+
+  const getLanguageColor = (lang: string) => {
+    const key = lang.toLowerCase();
+    return languagePalette[key] ?? segmentsPalette[hashColorIndex(key)];
+  };
+
+  const languageWeights = new Map<string, number>();
+  commits.forEach((commit) => {
+    const langKey = (commit.language || "other").toLowerCase();
+    const weight = Math.max(1, (commit.additions ?? 0) + (commit.deletions ?? 0));
+    languageWeights.set(langKey, (languageWeights.get(langKey) ?? 0) + weight);
+  });
+
+  const totalWeight = Array.from(languageWeights.values()).reduce((acc, val) => acc + val, 0);
+
+  let start = 0;
+  const gradientStops: string[] = [];
+
+  const languageEntries = Array.from(languageWeights.entries());
+  const defaultShare = languageEntries.length ? 100 / languageEntries.length : 0;
+  languageEntries.forEach(([lang, weight]) => {
+    const share = totalWeight ? (weight / totalWeight) * 100 : defaultShare;
+    const color = getLanguageColor(lang);
+    const end = start + share;
+    gradientStops.push(`${color} ${start.toFixed(2)}%, ${color} ${end.toFixed(2)}%`);
+    start = end;
+  });
+
+  const barStyle = {
+    backgroundImage:
+      gradientStops.length > 0
+        ? `linear-gradient(90deg, ${gradientStops.join(", ")})`
+        : "linear-gradient(90deg, #d3d9e8 0%, #c3d7f8 100%)",
+  } as CSSProperties;
+  const profileUrl = `https://github.com/${username}`;
+
+  return (
+    <div className="commits-card">
+      <div className="commits-card__head">
+        <div className="commits-card__title">
+          <span className="commits-card__info-tag" aria-label="Additions vs deletions">
+            <i className="bi bi-plus-slash-minus" aria-hidden="true" />
+          </span>
+          <span>Recent Commits</span>
+        </div>
+      </div>
+
+      <div className="commits-card__body">
+        {loading ? (
+          <p className="commits-card__status">Loading commits…</p>
+        ) : error ? (
+          <p className="commits-card__status commits-card__status--error">{error}</p>
+        ) : commits.length === 0 ? (
+          <p className="commits-card__status">No recent pushes yet.</p>
+        ) : (
+          <ul className="commits-card__list">
+            {commits.map((commit) => (
+              <li className="commits-card__item" key={commit.sha}>
+                <div className="commits-card__line">
+                  <div className="commits-card__info">
+                    <span className="commits-card__repo">{commit.repo}:</span>
+                    <a
+                      className="commits-card__message"
+                      href={commit.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={commit.message}
+                    >
+                      {commit.message}
+                    </a>
+                  </div>
+                  <div className="commits-card__metrics">
+                    <span className="commits-card__add">+{commit.additions}</span>
+                    <span className="commits-card__del">-{commit.deletions}</span>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div className="commits-card__footer">
+        <a
+          className="commits-card__link"
+          href={profileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View on GitHub <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
+        </a>
+        <div className="commits-card__bar" style={barStyle} aria-hidden="true" />
+      </div>
+    </div>
+  );
+}
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
@@ -608,10 +799,12 @@ export default function HomePage() {
           <div className="book-card__explanation">
             <p>Always open to interesting projects and conversations.</p>
           </div>
-
-          <div className="book-card__button">
-            <p>Let's Chat</p>
-          </div>
+          <a className="book-card__click" href="mailto:nicolai@skogstad.com">
+            <div className="book-card__button">
+              <p>Let's Chat</p>
+            </div>
+          </a>
+          
         </div>
 
         <div className="card5__button1">
@@ -659,12 +852,12 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="card5__button2">
-
+        <div className="card5__button2 card5__button--commits">
+          <RecentCommitsCard username={DEFAULT_GITHUB_USER} />
         </div>
 
-        <div className="card5__button2">
-
+        <div className="card5__button2 card5__button--blog">
+          <p>Still building!</p>
         </div>
       </div>
     </section>
