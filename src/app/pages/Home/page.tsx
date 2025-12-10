@@ -858,6 +858,11 @@ export default function HomePage() {
 
         <div className="card5__button2 card5__button--blog">
           <p>Still building!</p>
+          <img
+            src="/assets/om-snoopy.PNG"
+            alt="Snoopy meditating"
+            className="card5__snoopy"
+          />
         </div>
       </div>
     </section>
