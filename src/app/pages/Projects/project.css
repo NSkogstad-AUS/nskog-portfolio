@@ -7,16 +7,14 @@
   justify-content: flex-start;
   row-gap: 0;
   width: 100%;
-  padding: 0 2rem 3rem;
-  padding-left: 15rem;
+  padding: 2rem 2rem 3rem;
 }
 
 .projects-page .card4 {
   width: auto;
   max-width: none;
-  margin: 3rem 0 0;
-  margin-left: 1.5rem;
-  padding: 0.4rem 0;
+  padding-bottom: 3.5%;
+  margin-left: 9.6%;
 }
 
 .projects-page .card4 .bi-archive {
