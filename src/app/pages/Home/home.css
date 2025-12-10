@@ -672,7 +672,6 @@
 }
 
 .card5__button--theme {
-  padding: 0.85rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -683,8 +682,7 @@
   --accent: #f48b66;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, #f6f8fb 0%, #edf1f7 100%);
-  border: 1px solid #d7deea;
+  background-color: rgba(239, 241, 245);
   border-radius: 12px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
   padding: 1rem 1.1rem 1.1rem;
@@ -699,7 +697,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 800;
+  font-weight: 500;
   color: #3f455c;
 }
 
@@ -717,7 +715,6 @@
 
 .theme-card__mode {
   border: 1px solid #d3d8e4;
-  background: #f7f9fc;
   color: #667085;
   border-radius: 8px;
   padding: 0.3rem 0.3rem;
@@ -739,7 +736,6 @@
 .theme-card__mode.is-active {
   color: var(--accent);
   border-color: var(--accent);
-  background: #ffffff;
   box-shadow: 0 12px 24px rgba(244, 139, 102, 0.18);
 }
 
@@ -839,4 +835,186 @@
 
 .theme-card__state.is-on {
   color: var(--accent);
+}
+
+.card5__button--consultation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 18px 32px rgba(15, 23, 42, 0.08);
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+}
+
+.book-card__header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #3f455c;
+}
+
+.book-card__header .bi {
+  color: #f48b66;
+  font-size: 1rem;
+}
+
+.book-card__explanation {
+  color: #4b5563;
+  font-weight: 200;
+  line-height: 1.4;
+}
+
+.book-card__button {
+  background-color: rgba(204, 208, 218);
+  padding: 0.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.pin-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.65rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background: linear-gradient(180deg, #f6f8fb 0%, #edf1f7 100%);
+  border: 1px solid #d7deea;
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+}
+
+.pin-card__header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 300;
+  color: #3f455c;
+}
+
+.pin-card__header .bi {
+  color: #e87e63;
+}
+
+.pin-card__grid {
+  columns: 1;
+  column-gap: 0.75rem;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.pin-card__item {
+  display: flex;
+  break-inside: avoid;
+  margin: 0 0 0.75rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(215, 222, 234, 0.8);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.pin-card__item img {
+  width: 100%;
+  display: block;
+}
+
+.pin-card__item figcaption {
+  margin: 0;
+  padding: 0.5rem 0.75rem 0.65rem;
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+
+.location-card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.75rem;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #f6f8fb 0%, #edf1f7 100%);
+  border: 1px solid #d7deea;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: #3f455c;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+}
+
+.location-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 300;
+}
+
+.location-card__header .bi {
+  color: #e87e63;
+}
+
+.location-card__pin {
+  margin-left: auto;
+  font-size: 1.05rem;
+}
+
+.location-card__map {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0f1724;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  aspect-ratio: 16 / 10;
+}
+
+.location-card__map-canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.location-card__attribution {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 0.2rem 0.45rem;
+  border-radius: 8px;
+  background: rgba(15, 23, 36, 0.75);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.4rem;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.location-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 300;
+  font-size: 15;
+  color: #4b5563;
+}
+
+.location-card__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #e77948;
+}
+
+.location-card__time .bi {
+  color: #1d4ed8;
 }

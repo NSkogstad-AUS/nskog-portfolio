@@ -1,6 +1,6 @@
 "use client";
 import "./home.css";
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import BounceCards from "@/Imported Components/BounceCards";
 
 type BaseEntry = {
@@ -37,6 +37,15 @@ const accentSwatches = [
   { label: "Slate", color: "#7397ad" },
   { label: "Coral", color: "#e27a58" },
 ] as const;
+
+const MAP_LAT = -37.8142;
+const MAP_LON = 144.9632;
+const MAP_ZOOM = 12;
+const MAPTILER_FALLBACK_KEY = "ZpAYrePmq0WCnHV4xIgm";
+
+const pinImages = [
+  { src: "/assets/pi-image.JPG", alt: "Pinterest inspiration 1" },
+];
 
 const expEntries: ExpEntry[] = [
   {
@@ -295,14 +304,61 @@ export default function HomePage() {
   const [activeTheme, setActiveTheme] = useState<ThemeName>("Latte");
   const [accentIndex, setAccentIndex] = useState(0);
   const [bgEffectEnabled, setBgEffectEnabled] = useState(false);
+  const [melbourneTime, setMelbourneTime] = useState("");
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const activeList = tabs.find(t => t.key === activeTab)!.list;
   const showActive = !collapsed;
   const accentStyle = { "--accent": accentSwatches[accentIndex].color } as CSSProperties;
+  const maptilerKey = process.env.NEXT_PUBLIC_MAPTILER_KEY || MAPTILER_FALLBACK_KEY;
 
   const handleTabClick = (key: "experience" | "edu") => {
     setActiveTab(key);
     setCollapsed(false);
   };
+
+  useEffect(() => {
+    const updateTime = () => {
+      const formatter = new Intl.DateTimeFormat("en-AU", {
+        timeZone: "Australia/Melbourne",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      });
+      setMelbourneTime(formatter.format(new Date()));
+    };
+    updateTime();
+    const timer = setInterval(updateTime, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    let cleanup: (() => void) | undefined;
+    const loadMap = async () => {
+      if (!mapContainerRef.current) return;
+      const maplibregl = await import("maplibre-gl");
+      const map = new maplibregl.Map({
+        container: mapContainerRef.current,
+        style: `https://api.maptiler.com/maps/streets-v4-dark/style.json?key=${maptilerKey}`,
+        center: [MAP_LON, MAP_LAT],
+        zoom: MAP_ZOOM,
+        attributionControl: false,
+        cooperativeGestures: true,
+      });
+
+      map.dragRotate.disable();
+      map.touchZoomRotate.disableRotation();
+      map.doubleClickZoom.disable();
+      map.keyboard.disable();
+
+      // minimal attribution in footer; we avoid built-in controls
+      cleanup = () => map.remove();
+    };
+    loadMap();
+    return () => {
+      if (cleanup) cleanup();
+    };
+  }, [maptilerKey]);
   
   return (
     <section className="page page--center">
@@ -543,16 +599,64 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="card5__button1">
-          
+        <div className="card5__button1 card5__button--consultation">
+          <div className="book-card__header">
+            <i className="bi bi-calendar-event" aria-hidden="true" />
+            <p>Let's Connect</p>
+          </div>
+
+          <div className="book-card__explanation">
+            <p>Always open to interesting projects and conversations.</p>
+          </div>
+
+          <div className="book-card__button">
+            <p>Let's Chat</p>
+          </div>
         </div>
 
         <div className="card5__button1">
+          <div className="location-card">
+            <div className="location-card__header">
+              <i className="bi bi-geo-alt" aria-hidden="true" />
+              <span>Currently Based In</span>
+            </div>
 
+            <div className="location-card__map">
+              <div
+                ref={mapContainerRef}
+                className="location-card__map-canvas"
+                role="presentation"
+                aria-label="Map showing Melbourne"
+              />
+              <span className="location-card__attribution">© MapTiler © OpenStreetMap</span>
+            </div>
+
+            <div className="location-card__footer">
+              <span className="location-card__city">Melbourne, VIC</span>
+              <span className="location-card__time">
+                <i className="bi bi-moon-stars" aria-hidden="true" />
+                {melbourneTime || "—:—:—"}
+              </span>
+            </div>
+          </div>
         </div>
 
         <div className="card5__button1">
-
+          <div className="pin-card">
+            <div className="pin-card__header">
+              <i className="bi bi-images" aria-hidden="true" />
+              <span>My Pinterest</span>
+            </div>
+            <a href="https://pin.it/1F8pSbsu2" rel="noopener" target="_blank">
+              <div className="pin-card__grid" aria-label="Pinterest style gallery" >
+                {pinImages.map((pin, idx) => (
+                  <figure key={`${pin.src}-${idx}`} className="pin-card__item">
+                    <img src={pin.src} alt={pin.alt} loading="lazy" />
+                  </figure>
+                ))}
+              </div>
+            </a>
+          </div>
         </div>
 
         <div className="card5__button2">
