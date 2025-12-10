@@ -154,7 +154,6 @@
 
 /* WORK AND EDUCATION SWAPPER */
 .card3 {
-  background: #f9fafb00;
   border-radius: 12px;
   width: 49vw;
   margin-top: 3rem;
@@ -176,9 +175,9 @@
 .card3__toggle {
   width: 40px;
   height: 40px;
-  border: 1px solid #d0d5dd;
+  border: 1px solid rgb(86, 88, 107, 0.5);
   border-radius: 8px;
-  background: #f8fafc;
+  background: rgba(239, 241, 245);
   color: rgba(77, 79, 105);
   font-weight: 700;
   line-height: 1;
@@ -188,13 +187,13 @@
 }
 
 .card3__toggle:hover {
-  border-color: rgba(254, 100, 12, 0.2);
+  border-color: rgba(254, 100, 12, 1);
   color: rgba(254, 100, 12, 0.9);
 }
 
 .card3__toggle.is-collapsed {
-  border-color: rgba(254, 100, 12, 0.2);
-  background: rgba(254, 100, 12, 0.05);
+  border-color: rgba(254, 100, 12, 1);
+  background: rgba(239, 241, 245);
   color: rgba(254, 100, 12, 1);
 }
 
@@ -205,7 +204,7 @@
   border: 1px solid rgb(86, 88, 107, 0.5);
   
   flex: 1;
-  background: rgba(229, 233, 239);
+  background: rgba(239, 241, 245);
   color: rgba(77, 79, 105);
   font-weight: 300;
   cursor: pointer;
@@ -213,13 +212,13 @@
 }
 
 .card3__tab:hover {
-  border-color: rgba(254, 100, 12, 0.2);
+  border-color: rgba(254, 100, 12, 1);
   color: rgba(254, 100, 12, 0.9);
 }
 
 .card3__tab.is-active {
-  border-color: rgba(254, 100, 12, 0.2);
-  background: rgba(254, 100, 12, 0.05);
+  border-color: rgba(254, 100, 12, 1);
+  background: rgba(239, 241, 245);
   color: rgba(254, 100, 12, 1);
 }
 
@@ -228,7 +227,7 @@
 }
 
 .card3__panel {
-  background: rgba(229, 233, 239);
+  background: rgba(239, 241, 245);
   border-radius: 12px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid rgb(86, 88, 107, 0.5);
@@ -641,3 +640,33 @@
 }
 
 /* PROJECTS VIEWER */
+
+/* LOWER BUTTONS */
+.card5 {
+  background-color: #0ea4e900;
+  width: 69%;
+  height: 36rem;
+  margin-top: 5rem;
+  padding: 1rem 1rem 1rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.card5__button1 {
+  background: rgba(239, 241, 245);
+  border: 1px solid rgba(204, 208, 218);
+  width: 16.48rem;
+  height: 16rem;
+  border-radius: 12px;
+}
+
+.card5__button2 {
+  background: rgba(239, 241, 245);
+  border: 1px solid rgba(204, 208, 218);
+  width: 34.5rem;
+  height: 16rem;
+  border-radius: 12px;
+}

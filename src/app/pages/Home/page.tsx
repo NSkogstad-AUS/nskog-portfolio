@@ -465,6 +465,32 @@ export default function HomePage() {
           </div>
         ))}
       </div>
+
+      <div className="card5">
+        <div className="card5__button1">
+
+        </div>
+
+        <div className="card5__button1">
+          
+        </div>
+
+        <div className="card5__button1">
+
+        </div>
+
+        <div className="card5__button1">
+
+        </div>
+
+        <div className="card5__button2">
+
+        </div>
+
+        <div className="card5__button2">
+
+        </div>
+      </div>
     </section>
   );
 }
