@@ -644,30 +644,30 @@
 /* LOWER BUTTONS */
 .card5 {
   background-color: #0ea4e900;
-  width: 69%;
-  height: 36rem;
+  width: 100%;
+  max-width: 1200px;
   margin-top: 5rem;
   padding: 1rem 1rem 1rem 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
 }
 
 .card5__button1 {
   background: rgba(239, 241, 245);
   border: 1px solid rgba(204, 208, 218);
-  width: 16.48rem;
-  height: 16rem;
+  width: 100%;
+  min-height: 16rem;
   border-radius: 12px;
 }
 
 .card5__button2 {
   background: rgba(239, 241, 245);
   border: 1px solid rgba(204, 208, 218);
-  width: 34.5rem;
-  height: 16rem;
+  width: 100%;
+  min-height: 16rem;
+  grid-column: span 2;
   border-radius: 12px;
 }
 
@@ -887,7 +887,6 @@
   height: 100%;
   padding: 1rem;
   background: linear-gradient(180deg, #f6f8fb 0%, #edf1f7 100%);
-  border: 1px solid #d7deea;
   border-radius: 12px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
@@ -1017,4 +1016,241 @@
 
 .location-card__time .bi {
   color: #1d4ed8;
+}
+
+.card5__button--commits {
+  padding: 1.25rem 1.35rem;
+  background: linear-gradient(180deg, #f5f7fc 0%, #e7ecf7 100%);
+  border: 1px solid #d5dce9;
+  box-shadow: 0 14px 28px rgba(58, 73, 116, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  border-radius: 14px;
+}
+
+.commits-card {
+  display: grid;
+  gap: 0.35rem;
+  margin-left: auto;
+  color: #4b5162;
+  letter-spacing: 0.01em;
+  font-size: 0.95rem;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+}
+
+.commits-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding-bottom: 0.2rem;
+}
+
+.commits-card__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #4a5164;
+}
+
+.commits-card__spark {
+  width: 18px;
+  height: 18px;
+  border-radius: 8px;
+  background: rgba(232, 97, 100, 0.15);
+  box-shadow: 0 8px 18px rgba(232, 97, 100, 0.2);
+  color: #e86164;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.commits-card__spark::after {
+  content: "\221A";
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1;
+  transform: translateY(-0.5px);
+}
+
+.commits-card__info-tag {
+  color: #d1674f;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+}
+
+.commits-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #d45f49;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.01em;
+}
+
+.commits-card__link:hover,
+.commits-card__link:focus-visible {
+  text-decoration: underline;
+}
+
+.commits-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.commits-card__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  border: 1px dashed rgba(86, 88, 107, 0.45);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 0.7rem;
+  color: #4b5563;
+}
+
+.commits-card__body {
+  min-height: 6.5rem;
+  padding-top: 0.15rem;
+}
+
+.commits-card__status {
+  margin: 0;
+  color: #6f7689;
+}
+
+.commits-card__status--error {
+  color: #b91c1c;
+}
+
+.commits-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.commits-card__item {
+  padding: 0.35rem 0.1rem 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: 0.92rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  line-height: 1.3;
+}
+
+.commits-card__item:last-child {
+  border-bottom: none;
+}
+
+.commits-card__line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.commits-card__info {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.commits-card__repo {
+  font-weight: 700;
+  white-space: nowrap;
+  color: #464d61;
+}
+
+.commits-card__message {
+  color: #5b6171;
+  text-decoration: underline;
+  text-decoration-color: #b6c0d4;
+  display: inline-block;
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.commits-card__message:hover,
+.commits-card__message:focus-visible {
+  color: #d45f49;
+  text-decoration: none;
+}
+
+.commits-card__metrics {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: #4e5667;
+  white-space: nowrap;
+  font-weight: 700;
+  padding-left: 0.25rem;
+}
+
+.commits-card__add {
+  color: #22c55e;
+}
+
+.commits-card__del {
+  color: #ef4444;
+}
+
+.commits-card__time {
+  color: #6b7280;
+  font-size: 0.8rem;
+  padding-left: 0.1rem;
+}
+
+.commits-card__footer {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.commits-card__bar {
+  position: relative;
+  flex: 1;
+  height: 7px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #d3d9e8 0%, #c3d7f8 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 1px 2px rgba(60, 72, 97, 0.14);
+  overflow: hidden;
+}
+
+.commits-card__bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+
+.commits-card__legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.9rem;
 }
