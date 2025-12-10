@@ -7,5 +7,6 @@ For Commit Messages, we'll follow:
     <li>docs     (documentation changes)</li>
     <li>refactor (code that neither fixes nor adds changes)</li>
     <li>chore    (for tasks that don't change application logic)</li>
+    <li>fun      (for tasks which are for just straight fun)</li>
 
 Refer to the devlog.md file for a further development understanding on my part

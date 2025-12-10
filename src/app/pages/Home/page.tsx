@@ -45,7 +45,7 @@ const MAP_ZOOM = 12;
 const MAPTILER_FALLBACK_KEY = "ZpAYrePmq0WCnHV4xIgm";
 
 const pinImages = [
-  { src: "/assets/pi-image.JPG", alt: "Pinterest inspiration 1" },
+  { src: "/assets/pi-image.PNG", alt: "Pinterest inspiration 1" },
 ];
 
 const expEntries: ExpEntry[] = [
