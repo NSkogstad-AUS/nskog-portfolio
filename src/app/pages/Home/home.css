@@ -22,7 +22,7 @@
 .card {
   background: rgba(255, 255, 255, 0);
   border-radius: 12px;
-  padding: 2rem 2.5rem;
+  padding: 2rem 2rem;
   margin: 0;
   width: 37vw;
   height: 25vh;
@@ -93,13 +93,15 @@
   border-color: aqua;
   gap: 1.5rem;
   border-radius: 12px;
-  width: 35vw;
-  height: 5vh;
+  width: auto;
   display: flex;
-  flex-wrap: nwrap;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: left;
   color: rgb(86, 88, 107, 1);
+  align-self: flex-start;
+  margin-top: -2rem;
+  margin-left: 3%;
 }
 
 .card2 p {
@@ -161,14 +163,15 @@
 /* WORK AND EDUCATION SWAPPER */
 .card3 {
   border-radius: 12px;
-  width: 49vw;
-  margin-top: 3rem;
-  margin-left: 2rem;
-  padding: 0.2rem 0.2em;
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+  padding: 0 1rem;
 }
 
 .card3__tabs {
@@ -228,19 +231,15 @@
   color: rgba(254, 100, 12, 1);
 }
 
-.card3__showcase {
-  margin-top: 0.5rem;
-}
-
 .card3__panel {
   background: rgba(239, 241, 245);
   border-radius: 12px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid rgb(86, 88, 107, 0.5);
-  width: 48.65vw;
+  width: 98%;
   position: relative;
   margin-left: 2.2rem;
-  margin-top: 0.25rem;
+  margin-top: -1rem;
   padding: 1.25rem 1.25rem 1.25rem 2rem;
   display: flex;
   flex-direction: column;
@@ -366,18 +365,17 @@
 
 /* PROJECTS VIEWER */
 .card4 {
-  background: #f9fafb00;
   border-color: rgba(229, 231, 235, 0.5);
   border-radius: 12px;
   width: 100%;
   max-width: 1200px;
   height: 4vh;
-  margin: 3rem auto 0;
-  padding: 0.4rem 1rem;
+  margin: 2rem auto 0;
   display: flex;
   gap: 1rem;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
+  transform: translateX(30px);
 }
 
 .card4 .bi-star {
@@ -385,7 +383,7 @@
   justify-content: center;
   align-items: center;
   color: rgba(254, 100, 12);
-  padding-left: 1%;
+  padding-left: 0%;
 }
 
 .card4 p {
@@ -401,7 +399,7 @@
   display: inline-flex;
   margin-left: auto;
   align-items: center;
-  padding-right: 2%;
+  padding-right: 3%;
   gap: 0.35rem;
   white-space: nowrap;
   color: rgba(254, 100, 12);
@@ -428,10 +426,10 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
-  width: 100%;
+  width: 100.5%;
   max-width: 1200px;
-  margin: 1.5rem auto 0;
-  padding: 0 1rem;
+  margin: -1.2rem auto 0;
+  padding-left: 2.0%;
   box-sizing: border-box;
 }
 
@@ -442,7 +440,6 @@
   border-radius: 16px;
   width: 100%;
   height: 28rem;
-  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
