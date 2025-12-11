@@ -6,6 +6,7 @@ import type { RecentCommit as RecentCommitData } from "@/lib/github";
 import {
   THEME_STORAGE_KEY,
   accentSwatches,
+  DEFAULT_ACCENT_INDEX,
   hexToRgb,
   isThemeName,
   themeOptions,
@@ -499,22 +500,9 @@ function RecentCommitsCard({ username = DEFAULT_GITHUB_USER }: { username?: stri
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
   const [collapsed, setCollapsed] = useState(false);
-  const [activeTheme, setActiveTheme] = useState<ThemeName>(() => {
-    const saved = readStoredThemePrefs();
-    return saved.activeTheme && isThemeName(saved.activeTheme) ? saved.activeTheme : "Latte";
-  });
-  const [accentIndex, setAccentIndex] = useState(() => {
-    const saved = readStoredThemePrefs();
-    return typeof saved.accentIndex === "number" &&
-      saved.accentIndex >= 0 &&
-      saved.accentIndex < accentSwatches.length
-      ? saved.accentIndex
-      : 0;
-  });
-  const [bgEffectEnabled, setBgEffectEnabled] = useState(() => {
-    const saved = readStoredThemePrefs();
-    return typeof saved.bgEffectEnabled === "boolean" ? saved.bgEffectEnabled : false;
-  });
+  const [activeTheme, setActiveTheme] = useState<ThemeName>("Latte");
+  const [accentIndex, setAccentIndex] = useState(DEFAULT_ACCENT_INDEX);
+  const [bgEffectEnabled, setBgEffectEnabled] = useState(false);
   const [melbourneTime, setMelbourneTime] = useState("");
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const activeList = tabs.find(t => t.key === activeTab)!.list;
@@ -534,6 +522,8 @@ export default function HomePage() {
       saved.accentIndex < accentSwatches.length
     ) {
       setAccentIndex(saved.accentIndex);
+    } else {
+      setAccentIndex(DEFAULT_ACCENT_INDEX);
     }
     if (typeof saved.bgEffectEnabled === "boolean") {
       setBgEffectEnabled(saved.bgEffectEnabled);

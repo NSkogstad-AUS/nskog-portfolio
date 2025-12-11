@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect } from "react";
-import { THEME_STORAGE_KEY, accentSwatches, hexToRgb } from "@/app/theme";
+import { DEFAULT_ACCENT_INDEX, THEME_STORAGE_KEY, accentSwatches, hexToRgb } from "@/app/theme";
 
 const clampAccentIndex = (value: unknown) => {
   return typeof value === "number" && value >= 0 && value < accentSwatches.length
     ? value
-    : 0;
+    : DEFAULT_ACCENT_INDEX;
 };
 
 const applyAccent = (accentIndex: number) => {
-  const primary = accentSwatches[accentIndex]?.color ?? accentSwatches[0].color;
+  const primary = accentSwatches[accentIndex]?.color ?? accentSwatches[DEFAULT_ACCENT_INDEX].color;
   const { r, g, b } = hexToRgb(primary);
   const root = document.documentElement;
   root.style.setProperty("--accent-primary", primary);
@@ -26,14 +26,14 @@ export function ThemeInitializer() {
       try {
         const raw = localStorage.getItem(THEME_STORAGE_KEY);
         if (!raw) {
-          applyAccent(0);
+          applyAccent(DEFAULT_ACCENT_INDEX);
           return;
         }
         const saved = JSON.parse(raw) as Partial<{ accentIndex: number }>;
         applyAccent(clampAccentIndex(saved.accentIndex));
       } catch (err) {
         console.warn("Failed to apply stored theme", err);
-        applyAccent(0);
+        applyAccent(DEFAULT_ACCENT_INDEX);
       }
     };
 

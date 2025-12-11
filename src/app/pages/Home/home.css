@@ -19,11 +19,11 @@
 }
 
 :root {
-  --accent-primary: #f48b66;
-  --accent-strong: #d45f49;
-  --accent-muted: #d1674f;
-  --accent-error: #ef4444;
-  --accent-primary-rgb: 244, 139, 102;
+  --accent-primary: #e27a58;
+  --accent-strong: #e27a58;
+  --accent-muted: #e27a58;
+  --accent-error: #e27a58;
+  --accent-primary-rgb: 226, 122, 88;
 }
 
 /* OUR INTRO CARD */
@@ -913,6 +913,18 @@ border: 1px solid rgba(204, 208, 218);
   width: 100%;
   margin-top: 1rem;
   color: #0f1724;
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+  cursor: pointer;
+}
+
+.book-card__click:hover,
+.book-card__click:focus-visible {
+  background: var(--accent-primary);
+  color: rgba(229, 233, 239);
+  text-decoration-color: rgba(229, 233, 239);
+  text-underline-offset: 4px;
+  box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 226, 122, 88), 0.1);
 }
 
 .pin-card {
@@ -959,6 +971,14 @@ border: 1px solid rgba(204, 208, 218);
   height: 100%;
   justify-content: center;
   align-items: center;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.pin-card__item:hover,
+.pin-card__item:focus-visible {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 226, 122, 88), 0.25),
+    0 8px 18px rgba(15, 23, 42, 0.12);
 }
 
 .pin-card__item img {
@@ -1203,7 +1223,7 @@ border: 1px solid rgba(204, 208, 218);
   align-items: flex-start;
   gap: 0.4rem;
   justify-content: space-between;
-  width: 68%;
+  width: 100%;
 }
 
 .commits-card__info {

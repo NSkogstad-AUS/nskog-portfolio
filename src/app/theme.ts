@@ -17,6 +17,7 @@ export const accentSwatches = [
 ] as const;
 
 export const THEME_STORAGE_KEY = "home-theme-preferences";
+export const DEFAULT_ACCENT_INDEX = accentSwatches.length - 1;
 
 export const isThemeName = (value: string): value is ThemeName =>
   themeOptions.includes(value as ThemeName);
