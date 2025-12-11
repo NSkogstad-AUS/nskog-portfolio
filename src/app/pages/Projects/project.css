@@ -21,7 +21,7 @@
   font-size: 150%;
   justify-content: center;
   align-items: center;
-  color: rgba(254, 100, 12);
+  color: var(--accent-primary);
   padding-left: 1%;
   padding-top: 0.5%;
 }
@@ -136,11 +136,11 @@
 }
 
 .projects-page .card4__project:hover .card4__project_explain h1 {
-  color: rgba(254, 100, 12, 1);
+  color: var(--accent-primary);
 }
 
 .projects-page .card4__project:hover {
-  border-color: rgba(254, 100, 12, 0.9);
+  border-color: rgba(var(--accent-primary-rgb, 244, 139, 102), 0.9);
 }
 
 /* repo card content */

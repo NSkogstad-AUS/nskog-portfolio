@@ -41,6 +41,16 @@ body::-webkit-scrollbar {
 }
 /* SCROLLBAR */
 
+::selection {
+  background: var(--accent-primary, #f48b66);
+  color: #fff;
+}
+
+::-moz-selection {
+  background: var(--accent-primary, #f48b66);
+  color: #fff;
+}
+
 body {
   margin: 0;
   padding: 0;

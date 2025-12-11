@@ -39,6 +39,22 @@ const accentSwatches = [
   { label: "Coral", color: "#e27a58" },
 ] as const;
 
+function hexToRgb(hex: string) {
+  const normalized = hex.replace("#", "");
+  const expanded = normalized.length === 3
+    ? normalized.split("").map((ch) => ch + ch).join("")
+    : normalized;
+  const value = parseInt(expanded, 16);
+  if (Number.isNaN(value)) {
+    return { r: 244, g: 139, b: 102 };
+  }
+  return {
+    r: (value >> 16) & 255,
+    g: (value >> 8) & 255,
+    b: value & 255,
+  };
+}
+
 const MAP_LAT = -37.8142;
 const MAP_LON = 144.9632;
 const MAP_ZOOM = 12;
@@ -501,6 +517,17 @@ export default function HomePage() {
   const showActive = !collapsed;
   const accentStyle = { "--accent": accentSwatches[accentIndex].color } as CSSProperties;
   const maptilerKey = process.env.NEXT_PUBLIC_MAPTILER_KEY || MAPTILER_FALLBACK_KEY;
+
+  useEffect(() => {
+    const primary = accentSwatches[accentIndex].color;
+    const { r, g, b } = hexToRgb(primary);
+    const root = document.documentElement;
+    root.style.setProperty("--accent-primary", primary);
+    root.style.setProperty("--accent-strong", primary);
+    root.style.setProperty("--accent-muted", primary);
+    root.style.setProperty("--accent-error", primary);
+    root.style.setProperty("--accent-primary-rgb", `${r}, ${g}, ${b}`);
+  }, [accentIndex]);
 
   const handleTabClick = (key: "experience" | "edu") => {
     setActiveTab(key);
