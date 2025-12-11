@@ -676,7 +676,7 @@ export default function HomePage() {
           <button
             className={`card3__toggle${collapsed ? " is-collapsed" : ""}`}
             onClick={() => setCollapsed(v => !v)}
-            aria-expanded={!collapsed}
+            aria-expanded={collapsed ? "false" : "true"}
             aria-label={collapsed ? "Expand panel" : "Collapse panel"}
             type="button"
           >
