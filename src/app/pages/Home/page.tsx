@@ -3,6 +3,14 @@ import "./home.css";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import BounceCards from "@/Imported Components/BounceCards";
 import type { RecentCommit as RecentCommitData } from "@/lib/github";
+import {
+  THEME_STORAGE_KEY,
+  accentSwatches,
+  hexToRgb,
+  isThemeName,
+  themeOptions,
+  type ThemeName,
+} from "@/app/theme";
 
 type BaseEntry = {
   period: string;
@@ -21,39 +29,22 @@ const bounceImages = [
   "/assets/pf-2.JPG",
 ];
 
-const themeOptions = ["Latte", "Frappe", "Mocha"] as const;
-type ThemeName = (typeof themeOptions)[number];
+type StoredThemePrefs = Partial<{
+  activeTheme: ThemeName;
+  accentIndex: number;
+  bgEffectEnabled: boolean;
+}>;
 
-const accentSwatches = [
-  { label: "Cider", color: "#e19065" },
-  { label: "Apricot", color: "#f4b27c" },
-  { label: "Rose", color: "#d57bb3" },
-  { label: "Lavender", color: "#c384f2" },
-  { label: "Blush", color: "#e25566" },
-  { label: "Amber", color: "#d6b762" },
-  { label: "Fern", color: "#5ba56e" },
-  { label: "Teal", color: "#46c0ad" },
-  { label: "Sky", color: "#4fa7de" },
-  { label: "Periwinkle", color: "#7f8df0" },
-  { label: "Slate", color: "#7397ad" },
-  { label: "Coral", color: "#e27a58" },
-] as const;
-
-function hexToRgb(hex: string) {
-  const normalized = hex.replace("#", "");
-  const expanded = normalized.length === 3
-    ? normalized.split("").map((ch) => ch + ch).join("")
-    : normalized;
-  const value = parseInt(expanded, 16);
-  if (Number.isNaN(value)) {
-    return { r: 244, g: 139, b: 102 };
+const readStoredThemePrefs = (): StoredThemePrefs => {
+  if (typeof window === "undefined") return {};
+  try {
+    const raw = localStorage.getItem(THEME_STORAGE_KEY);
+    return raw ? (JSON.parse(raw) as StoredThemePrefs) : {};
+  } catch (err) {
+    console.warn("Failed to read stored theme settings", err);
+    return {};
   }
-  return {
-    r: (value >> 16) & 255,
-    g: (value >> 8) & 255,
-    b: value & 255,
-  };
-}
+};
 
 const MAP_LAT = -37.8142;
 const MAP_LON = 144.9632;
@@ -508,15 +499,46 @@ function RecentCommitsCard({ username = DEFAULT_GITHUB_USER }: { username?: stri
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
   const [collapsed, setCollapsed] = useState(false);
-  const [activeTheme, setActiveTheme] = useState<ThemeName>("Latte");
-  const [accentIndex, setAccentIndex] = useState(0);
-  const [bgEffectEnabled, setBgEffectEnabled] = useState(false);
+  const [activeTheme, setActiveTheme] = useState<ThemeName>(() => {
+    const saved = readStoredThemePrefs();
+    return saved.activeTheme && isThemeName(saved.activeTheme) ? saved.activeTheme : "Latte";
+  });
+  const [accentIndex, setAccentIndex] = useState(() => {
+    const saved = readStoredThemePrefs();
+    return typeof saved.accentIndex === "number" &&
+      saved.accentIndex >= 0 &&
+      saved.accentIndex < accentSwatches.length
+      ? saved.accentIndex
+      : 0;
+  });
+  const [bgEffectEnabled, setBgEffectEnabled] = useState(() => {
+    const saved = readStoredThemePrefs();
+    return typeof saved.bgEffectEnabled === "boolean" ? saved.bgEffectEnabled : false;
+  });
   const [melbourneTime, setMelbourneTime] = useState("");
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const activeList = tabs.find(t => t.key === activeTab)!.list;
   const showActive = !collapsed;
   const accentStyle = { "--accent": accentSwatches[accentIndex].color } as CSSProperties;
   const maptilerKey = process.env.NEXT_PUBLIC_MAPTILER_KEY || MAPTILER_FALLBACK_KEY;
+
+  useEffect(() => {
+    const saved = readStoredThemePrefs();
+
+    if (saved.activeTheme && isThemeName(saved.activeTheme)) {
+      setActiveTheme(saved.activeTheme);
+    }
+    if (
+      typeof saved.accentIndex === "number" &&
+      saved.accentIndex >= 0 &&
+      saved.accentIndex < accentSwatches.length
+    ) {
+      setAccentIndex(saved.accentIndex);
+    }
+    if (typeof saved.bgEffectEnabled === "boolean") {
+      setBgEffectEnabled(saved.bgEffectEnabled);
+    }
+  }, []);
 
   useEffect(() => {
     const primary = accentSwatches[accentIndex].color;
@@ -528,6 +550,16 @@ export default function HomePage() {
     root.style.setProperty("--accent-error", primary);
     root.style.setProperty("--accent-primary-rgb", `${r}, ${g}, ${b}`);
   }, [accentIndex]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const payload = {
+      activeTheme,
+      accentIndex,
+      bgEffectEnabled,
+    };
+    localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(payload));
+  }, [activeTheme, accentIndex, bgEffectEnabled]);
 
   const handleTabClick = (key: "experience" | "edu") => {
     setActiveTab(key);

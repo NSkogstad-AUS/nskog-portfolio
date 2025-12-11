@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { ViewTransitions } from 'next-view-transitions'
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { ThemeInitializer } from "./components/ThemeInitialiser";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -14,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <ViewTransitions>
         <html lang="en">
       <body>
+        <ThemeInitializer />
         <header>
           <Navbar/>
         </header>
