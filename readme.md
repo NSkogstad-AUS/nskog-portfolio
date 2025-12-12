@@ -10,3 +10,5 @@ For Commit Messages, we'll follow:
     <li>fun      (for tasks which are for just straight fun)</li>
 
 Refer to the devlog.md file for a further development understanding on my part
+
+-Further updates found below

@@ -503,6 +503,7 @@ export default function HomePage() {
   const [activeTheme, setActiveTheme] = useState<ThemeName>("Latte");
   const [accentIndex, setAccentIndex] = useState(DEFAULT_ACCENT_INDEX);
   const [bgEffectEnabled, setBgEffectEnabled] = useState(false);
+  const [themePrefsLoaded, setThemePrefsLoaded] = useState(false);
   const [melbourneTime, setMelbourneTime] = useState("");
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const activeList = tabs.find(t => t.key === activeTab)!.list;
@@ -528,6 +529,8 @@ export default function HomePage() {
     if (typeof saved.bgEffectEnabled === "boolean") {
       setBgEffectEnabled(saved.bgEffectEnabled);
     }
+
+    setThemePrefsLoaded(true);
   }, []);
 
   useEffect(() => {
@@ -542,14 +545,14 @@ export default function HomePage() {
   }, [accentIndex]);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || !themePrefsLoaded) return;
     const payload = {
       activeTheme,
       accentIndex,
       bgEffectEnabled,
     };
     localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(payload));
-  }, [activeTheme, accentIndex, bgEffectEnabled]);
+  }, [activeTheme, accentIndex, bgEffectEnabled, themePrefsLoaded]);
 
   const handleTabClick = (key: "experience" | "edu") => {
     setActiveTab(key);
