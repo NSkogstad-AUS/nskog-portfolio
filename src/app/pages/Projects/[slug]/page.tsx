@@ -36,6 +36,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
             customDescription={project.customDescription}
             fallback={project.fallback}
             transitionKey={project.slug}
+            alwaysTransitionName
           />
         </div>
 

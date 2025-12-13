@@ -25,7 +25,21 @@ html, body {
   margin: 0;
   height: 100%;
   scroll-behavior: smooth;
-  view-transition-name: none;
+}
+
+/* Keep project card transitions morphing; hide old snapshot quickly so it doesn't linger */
+::view-transition-old(project-card),
+::view-transition-old(project-detail-card) {
+  animation: project-card-exit 1ms linear forwards;
+}
+
+::view-transition-new(project-card),
+::view-transition-new(project-detail-card) {
+  animation: none;
+}
+
+@keyframes project-card-exit {
+  to { opacity: 0; }
 }
 
 /* SCROLL bar */

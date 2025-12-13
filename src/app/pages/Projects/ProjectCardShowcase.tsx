@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { RepoCardContributor, RepoCardData } from "./project-data";
 
 type ProjectCardShowcaseProps = {
@@ -9,6 +9,7 @@ type ProjectCardShowcaseProps = {
   fallback: RepoCardData;
   customDescription?: string;
   transitionKey?: string;
+  alwaysTransitionName?: boolean;
 };
 
 export function ProjectCardShowcase({
@@ -16,9 +17,11 @@ export function ProjectCardShowcase({
   repo,
   fallback,
   customDescription,
+  alwaysTransitionName = false,
   transitionKey,
 }: ProjectCardShowcaseProps) {
   const [data, setData] = useState<RepoCardData>(fallback);
+  const cardRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -38,6 +41,14 @@ export function ProjectCardShowcase({
     };
   }, [owner, repo]);
 
+  const viewTransitionName = transitionKey ? "project-card" : undefined;
+
+  const handlePointerDown = () => {
+    if (cardRef.current && viewTransitionName) {
+      cardRef.current.style.viewTransitionName = viewTransitionName;
+    }
+  };
+
   const contributors: RepoCardContributor[] = data.contributors?.length
     ? data.contributors
     : [
@@ -50,8 +61,14 @@ export function ProjectCardShowcase({
 
   return (
     <div
+      ref={cardRef}
       className="project-card"
-      style={transitionKey ? { viewTransitionName: `project-card-${transitionKey}` } : undefined}
+      style={
+        alwaysTransitionName && viewTransitionName
+          ? { viewTransitionName }
+          : undefined
+      }
+      onPointerDown={handlePointerDown}
     >
       <div className="project-card__header">
         <div className="project-card__top">
