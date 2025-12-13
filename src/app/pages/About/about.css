@@ -83,6 +83,10 @@
   overflow: hidden;
   transition: transform 400ms ease;
   transform-origin: center;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: transparent;
 } .profilePhoto:hover {
   transform: scale(1.025);
 }
@@ -146,6 +150,10 @@
   overflow: hidden;
   transition: transform 400ms ease;
   transform-origin: center;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: transparent;
 } .dog-photo:hover {
   transform: scale(1.025);
 }
@@ -178,6 +186,75 @@
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.6;
+}
+
+.about-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: block;
+  z-index: 999;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.about-lightbox__card {
+  position: fixed;
+  background: transparent;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    top 240ms ease,
+    left 240ms ease,
+    width 240ms ease,
+    height 240ms ease,
+    opacity 200ms ease;
+}
+
+.about-lightbox__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.about-lightbox__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.about-lightbox__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+  z-index: 2;
+}
+
+.about-lightbox__close:hover,
+.about-lightbox__close:focus-visible {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.about-lightbox.is-visible {
+  opacity: 1;
 }
 
 @media (max-width: 900px) {

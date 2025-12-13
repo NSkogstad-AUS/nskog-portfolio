@@ -1,9 +1,42 @@
-"use client"
+/* eslint-disable @next/next/no-img-element */
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import "./about.css";
 import { StatusBar } from "@/app/components/StatusBar";
 
 export default function AboutPage() {
+  type FocusedImage = { src: string; rect: DOMRect };
+  const [focused, setFocused] = useState<FocusedImage | null>(null);
+  const [animateIn, setAnimateIn] = useState(false);
+
+  const openLightbox = (src: string, rect: DOMRect) => {
+    setFocused({ src, rect });
+    setAnimateIn(false);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setAnimateIn(true));
+    });
+  };
+
+  const closeLightbox = () => {
+    setAnimateIn(false);
+    setTimeout(() => setFocused(null), 240);
+  };
+
+  useEffect(() => {
+    if (!focused) return undefined;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [focused]);
+
   return (
     <section className="about--page">
       <div className="card about-card">
@@ -12,7 +45,12 @@ export default function AboutPage() {
           <h1>About Me</h1>
         </div>
         <div className="about-row">
-          <div className="profilePhoto">
+          <button
+            className="profilePhoto"
+            type="button"
+            onClick={(e) => openLightbox("/assets/pf-4.JPG", e.currentTarget.getBoundingClientRect())}
+            aria-label="View portrait"
+          >
             <Image
               src="/assets/pf-4.JPG"
               alt="Portrait"
@@ -20,7 +58,7 @@ export default function AboutPage() {
               height={320}
               priority
             />
-          </div>
+          </button>
           <div className="about-copy">
             <p>
               Hey! I'm Nicolai Skogstad, a Graduate studying the Masters of Software Engineering at the University of Melbourne
@@ -66,33 +104,27 @@ export default function AboutPage() {
 
       <div className="dog-info" id="buddy-info">
         <div className="dog-images">
-          <div className="dog-photo">
-            <Image
-              src="/assets/buddy-1.JPG"
-              alt="Buddy the Golden Retriever"
-              width={400}
-              height={260}
-              priority
-            />
-          </div>
-          <div className="dog-photo">
-            <Image
-              src="/assets/buddy-2.JPG"
-              alt="Buddy the Golden Retriever"
-              width={400}
-              height={260}
-              priority
-            />
-          </div>
-          <div className="dog-photo">
-            <Image
-              src="/assets/buddy-3.jpeg"
-              alt="Buddy the Golden Retriever"
-              width={400}
-              height={260}
-              priority
-            />
-          </div>
+          {[
+            { src: "/assets/buddy-1.JPG", alt: "Buddy the Golden Retriever" },
+            { src: "/assets/buddy-2.JPG", alt: "Buddy the Golden Retriever" },
+            { src: "/assets/buddy-3.jpeg", alt: "Buddy the Golden Retriever" },
+          ].map((img) => (
+            <button
+              key={img.src}
+              type="button"
+              className="dog-photo"
+              onClick={(e) => openLightbox(img.src, e.currentTarget.getBoundingClientRect())}
+              aria-label={`View ${img.alt}`}
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={400}
+                height={260}
+                priority
+              />
+            </button>
+          ))}
         </div>
         <div className="dog-copy">
           <h2>Meet Buddy</h2>
@@ -105,6 +137,82 @@ export default function AboutPage() {
       </div>
 
       <StatusBar />
+
+      {focused ? (
+        <Lightbox
+          src={focused.src}
+          originRect={focused.rect}
+          animateIn={animateIn}
+          onClose={closeLightbox}
+        />
+      ) : null}
     </section>
+  );
+}
+
+function Lightbox({
+  src,
+  originRect,
+  animateIn,
+  onClose,
+}: {
+  src: string;
+  originRect: DOMRect;
+  animateIn: boolean;
+  onClose: () => void;
+}) {
+  if (typeof window === "undefined") return null;
+
+  const viewportW = window.innerWidth;
+  const viewportH = window.innerHeight;
+  const aspect = originRect.width / originRect.height || 3 / 4;
+  const maxW = Math.min(viewportW * 0.9, 900);
+  const maxH = Math.min(viewportH * 0.9, 1100);
+  let targetW = maxW;
+  let targetH = targetW / aspect;
+  if (targetH > maxH) {
+    targetH = maxH;
+    targetW = targetH * aspect;
+  }
+  const targetLeft = (viewportW - targetW) / 2;
+  const targetTop = (viewportH - targetH) / 2;
+
+  const current = animateIn
+    ? {
+        top: targetTop,
+        left: targetLeft,
+        width: targetW,
+        height: targetH,
+        opacity: 1,
+      }
+    : {
+        top: originRect.top,
+        left: originRect.left,
+        width: originRect.width,
+        height: originRect.height,
+        opacity: 0.2,
+      };
+
+  return (
+    <div className={`about-lightbox${animateIn ? " is-visible" : ""}`} onClick={onClose} role="presentation">
+      <div
+        className="about-lightbox__card"
+        style={{
+          top: `${current.top}px`,
+          left: `${current.left}px`,
+          width: `${current.width}px`,
+          height: `${current.height}px`,
+          opacity: current.opacity,
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="about-lightbox__content">
+          <button className="about-lightbox__close" type="button" aria-label="Close image" onClick={onClose}>
+            ×
+          </button>
+          <img src={src} alt="Full view" />
+        </div>
+      </div>
+    </div>
   );
 }
