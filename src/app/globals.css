@@ -27,19 +27,12 @@ html, body {
   scroll-behavior: smooth;
 }
 
-/* Keep project card transitions morphing; hide old snapshot quickly so it doesn't linger */
+/* Keep project card transitions morphing; no fades */
 ::view-transition-old(project-card),
-::view-transition-old(project-detail-card) {
-  animation: project-card-exit 1ms linear forwards;
-}
-
 ::view-transition-new(project-card),
+::view-transition-old(project-detail-card),
 ::view-transition-new(project-detail-card) {
   animation: none;
-}
-
-@keyframes project-card-exit {
-  to { opacity: 0; }
 }
 
 /* SCROLL bar */
