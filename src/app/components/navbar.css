@@ -7,7 +7,7 @@
   width: 100%;
   overflow: hidden;
   background: rgba(255, 255, 255, 0);
-  border-bottom: 1px solid rgba(73, 75, 91, 0.12);
+  border-bottom: 1px solid var(--border-faint, rgba(73, 75, 91, 0.12));
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
@@ -47,13 +47,13 @@
 }
 
 .navbar__divider {
-  color: rgb(73, 75, 91);
+  color: var(--text-primary, rgb(73, 75, 91));
   opacity: 0.8;
   text-decoration-line: none;
 }
 
 .navbar__crumb.is-active:not(.navbar__crumb--root) {
-  color: rgb(73, 75, 91);
+  color: var(--text-strong, rgb(73, 75, 91));
   font-weight: 400;
 }
 
@@ -86,7 +86,7 @@
 }
 
 .navbar__links a {
-  color: rgb(73, 75, 91);
+  color: var(--text-primary, rgb(73, 75, 91));
   text-decoration: none;
   padding: 0.35rem 0.5rem;
   border-radius: 0.35rem;

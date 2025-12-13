@@ -46,8 +46,8 @@
 } .card__link:hover,
 .card__link:focus-visible {
   background: var(--accent-primary);
-  color: rgba(229, 233, 239);
-  text-decoration-color: rgba(229, 233, 239);
+  color: var(--text-contrast);
+  text-decoration-color: var(--text-contrast);
   text-underline-offset: 4px;
 }
 
@@ -57,7 +57,7 @@
   font-size: 2rem;
   font-weight: 700;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
-  color: rgba(77, 79, 105);
+  color: var(--text-strong);
 }
 
 .card p {
@@ -65,7 +65,7 @@
   font-size: 1.15rem;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
   line-height: 1.8;
-  color: rgb(86, 88, 107);
+  color: var(--text-primary);
 }
 /* OUR INTRO CARD */
 
@@ -106,14 +106,14 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: left;
-  color: rgb(86, 88, 107, 1);
+  color: var(--text-primary);
   align-self: flex-start;
   margin-top: -2rem;
   margin-left: 3%;
 }
 
 .card2 p {
-  color: rgb(86, 88, 107, 1);
+  color: var(--text-primary);
 }
 
 .card2__item {
@@ -126,12 +126,12 @@
 }.card2__item:hover,
 .card2__item:focus-visible {
   color: var(--accent-primary);
-  text-decoration-color: rgba(229, 233, 239);
+  text-decoration-color: var(--text-contrast);
   text-underline-offset: 2px;
 }
 
 .card2__resumebox {
-  border: 1px solid rgb(86, 88, 107, 1);
+  border: 1px solid var(--text-primary);
   border-style: solid;
   border-radius: 4px;
   border-width: 1px;
@@ -141,7 +141,7 @@
 .card2__resumebox:focus-visible {
   color: var(--accent-primary);
   border: 1px solid var(--accent-primary);
-  text-decoration-color: rgba(229, 233, 239);
+  text-decoration-color: var(--text-contrast);
   text-underline-offset: 2px;
 }
 
@@ -153,7 +153,7 @@
 }.card2__learn:hover,
 .card2__learn:focus-visible {
   color: var(--accent-primary);
-  text-decoration-color: rgba(229, 233, 239);
+  text-decoration-color: var(--text-contrast);
   text-underline-offset: 2px;
 }
 
@@ -192,10 +192,10 @@
 .card3__toggle {
   width: 40px;
   height: 40px;
-  border: 1px solid rgb(86, 88, 107, 0.5);
+  border: 1px solid var(--border-strong);
   border-radius: 8px;
-  background: rgba(239, 241, 245);
-  color: rgba(77, 79, 105);
+  background: var(--surface-raised);
+  color: var(--text-strong);
   font-weight: 700;
   line-height: 1;
   cursor: pointer;
@@ -216,7 +216,7 @@
 
 .card3__toggle.is-collapsed {
   border-color: var(--accent-primary);
-  background: rgba(239, 241, 245);
+  background: var(--surface-raised);
   color: var(--accent-primary);
 }
 
@@ -224,11 +224,11 @@
   padding: 0.45rem 0.9rem;
   border-radius: 8.2px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgb(86, 88, 107, 0.5);
+  border: 1px solid var(--border-strong);
   
   flex: 1;
-  background: rgba(239, 241, 245);
-  color: rgba(77, 79, 105);
+  background: var(--surface-raised);
+  color: var(--text-strong);
   font-weight: 300;
   cursor: pointer;
   transition: all 150ms ease;
@@ -247,15 +247,15 @@
 
 .card3__tab.is-active {
   border-color: var(--accent-primary);
-  background: rgba(239, 241, 245);
+  background: var(--surface-raised);
   color: var(--accent-primary);
 }
 
 .card3__panel {
-  background: rgba(239, 241, 245);
+  background: var(--surface-raised);
   border-radius: 12px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgb(86, 88, 107, 0.5);
+  border: 1px solid var(--border-strong);
   width: 97.2%;
   position: relative;
   margin-left: 0rem;
@@ -274,7 +274,7 @@
   bottom: 0;
   left: calc(2rem + 19px);
   width: 2px;
-  background: rgb(86, 88, 107, 0.5);
+  background: var(--border-strong);
 }
 
 .card3__entry {
@@ -295,19 +295,19 @@
 }
 .card3__period { 
   margin: 0;
-  color: #6b7280; 
+  color: var(--text-subtle); 
   font-size: 0.95rem;
 }
 .card3__company { 
   margin: -2px 0 0;
   font-weight: 700; 
   font-size: 20;
-  color: rgba(77, 79, 105);
+  color: var(--text-strong);
 }
 .card3__name {
   display: inline-flex;
   align-items: baseline;
-  color: rgba(77, 79, 105);
+  color: var(--text-strong);
   gap: 0.35rem;
 }
 .card3__dots {
@@ -319,7 +319,7 @@
   padding: 0 8px;
   line-height: 1;
   letter-spacing: -0.1rem;
-  border: 1px solid #4b5563;
+  border: 1px solid var(--text-primary);
   border-radius: 6px;
 }
 .card3__full {
@@ -344,13 +344,13 @@
 
 .card3__role { 
   margin: -2px 0 0;
-  color: #6b7280;
+  color: var(--text-subtle);
 }
 
 .card3__bullets { 
   margin: 0.3rem 0 1.35rem; 
   padding-left: 1rem; 
-  color: rgba(77, 79, 105); 
+  color: var(--text-strong); 
   list-style-type: circle; }
 
 .card3__timeline {
@@ -369,7 +369,7 @@
   height: 40px;
   border-radius: 50%;
   background: #ffffff;
-  border: 1px solid rgb(86, 88, 107, 1);
+  border: 1px solid var(--text-primary);
   display: grid;
   place-items: center;
   z-index: 1;
@@ -385,7 +385,7 @@
 
 /* PROJECTS VIEWER */
 .card4 {
-  border-color: rgba(229, 231, 235, 0.5);
+  border-color: var(--border-faint);
   border-radius: 12px;
   width: 100%;
   max-width: 1200px;
@@ -412,7 +412,7 @@
   justify-content: center;
   align-items: center;
   white-space: nowrap;
-  color: rgba(77, 79, 105);
+  color: var(--text-strong);
   font-weight: 700;
 }
 
@@ -428,7 +428,7 @@
 }.card4__viewall:hover,
 .card4__viewall:focus-visible {
   color: var(--accent-primary);
-  text-decoration-color: rgba(229, 233, 239);
+  text-decoration-color: var(--text-contrast);
   text-underline-offset: 2px;
 }
 
@@ -455,8 +455,8 @@
 
 /* -- the actual project cards -- */
 .card4__project {
-  background: #f9fafb;
-  border: 1px solid rgba(204, 208, 218);
+  background: var(--surface-card);
+  border: 1px solid var(--border-soft);
   border-radius: 16px;
   width: 100%;
   height: 28rem;
@@ -465,7 +465,6 @@
   gap: 0;
   overflow: hidden;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
-border: 1px solid rgba(204, 208, 218);  
   transition:
     background 180ms ease,
     color 180ms ease,
@@ -473,7 +472,7 @@ border: 1px solid rgba(204, 208, 218);
 }
 
 .card4__project__showcase {
-  background: rgba(169, 180, 192);
+  background: var(--surface-accent);
   width: 100%;
   flex: 3;
   border-radius: 16px 16px 0 0;
@@ -481,11 +480,11 @@ border: 1px solid rgba(204, 208, 218);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #e5e7eb;
+  color: var(--text-contrast);
 }
 
 .card4__project_explain {
-  background: rgba(229, 233, 239);
+  background: var(--surface-raised);
   width: 100%;
   flex: 1;
   border-radius: 0 0 16px 16px;
@@ -497,7 +496,7 @@ border: 1px solid rgba(204, 208, 218);
 .project-card {
   width: 90%;
   height: 90%;
-  background: #1c2331;
+  background: var(--surface-contrast);
   border-radius: 12px;
   padding: 1rem 1.1rem;
   display: flex;
@@ -594,7 +593,7 @@ border: 1px solid rgba(204, 208, 218);
   width: 34px;
   height: 34px;
   border-radius: 999px;
-  border: 2px solid #1c2331;
+  border: 2px solid var(--surface-contrast);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -631,11 +630,11 @@ border: 1px solid rgba(204, 208, 218);
 }
 
 .card4__project_explain {
-  color: rgba(77, 79, 105);
+  color: var(--text-strong);
   text-decoration: underline;
 }
 .card4__project_explain h1{
-  color: rgba(77, 79, 105);
+  color: var(--text-strong);
   font-weight: 800;
   margin-bottom: auto;
   font-size: 20px;
@@ -653,17 +652,17 @@ border: 1px solid rgba(204, 208, 218);
 .card4__tag {
   padding: 0.2rem 0.2rem;
   border-radius: 4px;
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  color: #4b5563;
+  color: var(--text-primary);
 }
 
 .card4__tags .bi-tag {
   font-size: 18px;
-  color: rgba(77, 79, 105, 0.8);
+  color: var(--text-strong);
 }
 
 /* PROJECTS VIEWER */
@@ -682,16 +681,16 @@ border: 1px solid rgba(204, 208, 218);
 }
 
 .card5__button1 {
-  background: rgba(239, 241, 245);
-  border: 1px solid rgba(204, 208, 218);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-soft);
   width: 100%;
   min-height: 16rem;
   border-radius: 12px;
 }
 
 .card5__button2 {
-  background: rgba(239, 241, 245);
-  border: 1px solid rgba(204, 208, 218);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-soft);
   width: 100%;
   min-height: 16rem;
   grid-column: span 2;
@@ -717,13 +716,13 @@ border: 1px solid rgba(204, 208, 218);
   --accent: var(--accent-primary, #f48b66);
   width: 100%;
   height: 100%;
-  background-color: rgba(239, 241, 245);
+  background-color: var(--surface-raised);
   border-radius: 12px;
   padding: 1rem 1.1rem 1.1rem;
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   gap: 0.85rem;
-  color: #3f455c;
+  color: var(--text-strong);
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
 }
 
@@ -732,7 +731,7 @@ border: 1px solid rgba(204, 208, 218);
   align-items: center;
   gap: 0.5rem;
   font-weight: 500;
-  color: #3f455c;
+  color: var(--text-strong);
 }
 
 .theme-card__header .bi {
@@ -748,8 +747,8 @@ border: 1px solid rgba(204, 208, 218);
 }
 
 .theme-card__mode {
-  border: 1px solid #d3d8e4;
-  color: #667085;
+  border: 1px solid var(--border-soft);
+  color: var(--text-muted);
   border-radius: 8px;
   padding: 0.3rem 0.3rem;
   cursor: pointer;
@@ -804,7 +803,7 @@ border: 1px solid rgba(204, 208, 218);
 }
 
 .theme-card__swatch.is-selected {
-  box-shadow: 0 0 0 3px #eef1f7, 0 0 0 6px var(--accent);
+  box-shadow: 0 0 0 3px var(--surface-raised), 0 0 0 6px var(--accent);
 }
 
 .theme-card__toggle {
@@ -813,7 +812,7 @@ border: 1px solid rgba(204, 208, 218);
   gap: 0.65rem;
   font-weight: 100;
   font-size: 14;
-  color: #4b5563;
+  color: var(--text-primary);
   margin-top: 0.15rem;
 }
 
@@ -828,8 +827,8 @@ border: 1px solid rgba(204, 208, 218);
   width: 1.15rem;
   height: 1.15rem;
   border-radius: 0.4rem;
-  border: 1.5px solid #c9d3e5;
-  background: linear-gradient(180deg, #f7f9fc 0%, #e2e8f0 100%);
+  border: 1.5px solid var(--border-soft);
+  background: linear-gradient(180deg, var(--surface-card) 0%, var(--surface-raised) 100%);
   box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8), 0 2px 5px rgba(0, 0, 0, 0.08);
   display: inline-flex;
   align-items: center;
@@ -887,7 +886,7 @@ border: 1px solid rgba(204, 208, 218);
   align-items: center;
   gap: 0.5rem;
   font-weight: 500;
-  color: #3f455c;
+  color: var(--text-strong);
 }
 
 .book-card__header .bi {
@@ -896,13 +895,13 @@ border: 1px solid rgba(204, 208, 218);
 }
 
 .book-card__explanation {
-  color: #4b5563;
+  color: var(--text-primary);
   font-weight: 200;
   line-height: 1.4;
 }
 
 .book-card__click {
-  background-color: rgba(204, 208, 218);
+  background-color: var(--border-soft);
   padding: 0.5rem;
   display: inline-flex;
   justify-content: center;
@@ -912,7 +911,7 @@ border: 1px solid rgba(204, 208, 218);
   border-radius: 12px;
   width: 100%;
   margin-top: 1rem;
-  color: #0f1724;
+  color: var(--text-strong);
   text-decoration: none;
   transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
   cursor: pointer;
@@ -921,8 +920,8 @@ border: 1px solid rgba(204, 208, 218);
 .book-card__click:hover,
 .book-card__click:focus-visible {
   background: var(--accent-primary);
-  color: rgba(229, 233, 239);
-  text-decoration-color: rgba(229, 233, 239);
+  color: var(--text-contrast);
+  text-decoration-color: var(--text-contrast);
   text-underline-offset: 4px;
   box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 226, 122, 88), 0.1);
 }
@@ -935,7 +934,7 @@ border: 1px solid rgba(204, 208, 218);
   height: 100%;
   padding: 1rem;
   border-radius: 12px;
-  background-color: rgba(239, 241, 245);
+  background-color: var(--surface-raised);
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
 }
 
@@ -944,7 +943,7 @@ border: 1px solid rgba(204, 208, 218);
   align-items: center;
   gap: 0.5rem;
   font-weight: 300;
-  color: #3f455c;
+  color: var(--text-strong);
 }
 
 .pin-card__header .bi {
@@ -966,7 +965,7 @@ border: 1px solid rgba(204, 208, 218);
   border-radius: 12px;
   box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
   overflow: hidden;
-  border: 1px solid rgb(194, 200, 211);
+  border: 1px solid var(--border-soft);
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -990,7 +989,7 @@ border: 1px solid rgba(204, 208, 218);
   margin: 0;
   padding: 0.5rem 0.75rem 0.65rem;
   font-size: 0.8rem;
-  color: #4b5563;
+  color: var(--text-primary);
 }
 
 .location-card {
@@ -999,10 +998,10 @@ border: 1px solid rgba(204, 208, 218);
   gap: 0.75rem;
   width: 100%;
   height: 100%;
-  background-color: rgba(239, 241, 245);
+  background-color: var(--surface-raised);
   border-radius: 12px;
   padding: 1rem;
-  color: #3f455c;
+  color: var(--text-strong);
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
 }
 
@@ -1027,7 +1026,7 @@ border: 1px solid rgba(204, 208, 218);
   width: 100%;
   border-radius: 12px;
   overflow: hidden;
-  background: #0f1724;
+  background: var(--text-strong);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
   aspect-ratio: 16 / 10;
 }
@@ -1056,7 +1055,7 @@ border: 1px solid rgba(204, 208, 218);
   justify-content: space-between;
   font-weight: 300;
   font-size: 15;
-  color: #4b5563;
+  color: var(--text-primary);
 }
 
 .location-card__time {
@@ -1072,8 +1071,8 @@ border: 1px solid rgba(204, 208, 218);
 
 .card5__button--commits {
   padding: 1.25rem 1.35rem;
-  background-color: rgba(239, 241, 245);
-  border: 1px solid #d5dce9;
+  background-color: var(--surface-raised);
+  border: 1px solid var(--border-soft);
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
@@ -1092,7 +1091,7 @@ border: 1px solid rgba(204, 208, 218);
   min-width: 0;
   margin: 0;
   overflow: hidden;
-  color: #4b5162;
+  color: var(--text-primary);
   letter-spacing: 0.01em;
   font-size: 0.95rem;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
@@ -1113,7 +1112,7 @@ border: 1px solid rgba(204, 208, 218);
   gap: 0.35rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  color: #4a5164;
+  color: var(--text-strong);
 }
 
 .commits-card__spark {
@@ -1166,7 +1165,7 @@ border: 1px solid rgba(204, 208, 218);
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  color: #6b7280;
+  color: var(--text-subtle);
   font-size: 0.9rem;
 }
 
@@ -1176,9 +1175,9 @@ border: 1px solid rgba(204, 208, 218);
   gap: 0.35rem;
   padding: 0.2rem 0.65rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 1);
+  background: var(--surface-card);
   font-size: 0.7rem;
-  color: #4b5563;
+  color: var(--text-primary);
 }
 
 .commits-card__body {
@@ -1188,7 +1187,7 @@ border: 1px solid rgba(204, 208, 218);
 
 .commits-card__status {
   margin: 0;
-  color: #6f7689;
+  color: var(--text-muted);
 }
 
 .commits-card__status--error {
@@ -1210,7 +1209,7 @@ border: 1px solid rgba(204, 208, 218);
   gap: 0.1rem;
   font-size: 0.92rem;
   width: 100%;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  border-bottom: 1px solid var(--border-faint);
   line-height: 1.3;
 }
 
@@ -1237,13 +1236,13 @@ border: 1px solid rgba(204, 208, 218);
 .commits-card__repo {
   font-weight: 600;
   white-space: nowrap;
-  color: #464d61;
+  color: var(--text-strong);
 }
 
 .commits-card__message {
-  color: #5b6171;
+  color: var(--text-primary);
   text-decoration: underline;
-  text-decoration-color: #b6c0d4;
+  text-decoration-color: var(--border-soft);
   display: block;
   flex: 1;
   min-width: 0;
@@ -1264,7 +1263,7 @@ border: 1px solid rgba(204, 208, 218);
   align-items: flex-start;
   gap: 0.45rem;
   font-size: 0.9rem;
-  color: #4e5667;
+  color: var(--text-strong);
   white-space: nowrap;
   font-weight: 700;
   padding-left: 0.25rem;
@@ -1280,25 +1279,28 @@ border: 1px solid rgba(204, 208, 218);
 }
 
 .commits-card__time {
-  color: #6b7280;
+  color: var(--text-subtle);
   font-size: 0.8rem;
   padding-left: 0.1rem;
 }
 
 .commits-card__footer {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 0.9rem;
-  width: 68%;
+  column-gap: 0.9rem;
+  width: 100%;
+  min-width: 0;
   margin-top: 0.4rem;
 }
 
 .commits-card__bar {
   position: relative;
-  flex: 1;
+  width: 100%;
+  min-width: 0;
   height: 7px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #d3d9e8 0%, #c3d7f8 100%);
+  background: linear-gradient(90deg, var(--panel-faint) 0%, var(--surface-accent) 100%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 1px 2px rgba(60, 72, 97, 0.14);
   overflow: hidden;
 }
@@ -1320,7 +1322,7 @@ border: 1px solid rgba(204, 208, 218);
 
 /* BLOG POST PART */
 .card5__button--blog {
-  background-color: rgba(239, 241, 245);
+  background-color: var(--surface-raised);
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
   display: flex;
   justify-content: center;

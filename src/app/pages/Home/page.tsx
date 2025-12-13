@@ -7,7 +7,9 @@ import {
   THEME_STORAGE_KEY,
   accentSwatches,
   DEFAULT_ACCENT_INDEX,
-  hexToRgb,
+  DEFAULT_THEME,
+  applyAccent,
+  applyTheme,
   isThemeName,
   themeOptions,
   type ThemeName,
@@ -432,7 +434,7 @@ function RecentCommitsCard({ username = DEFAULT_GITHUB_USER }: { username?: stri
     backgroundImage:
       gradientStops.length > 0
         ? `linear-gradient(90deg, ${gradientStops.join(", ")})`
-        : "linear-gradient(90deg, #d3d9e8 0%, #c3d7f8 100%)",
+        : "linear-gradient(90deg, var(--panel-faint) 0%, var(--surface-accent) 100%)",
   } as CSSProperties;
   const profileUrl = `https://github.com/${username}`;
 
@@ -500,7 +502,7 @@ function RecentCommitsCard({ username = DEFAULT_GITHUB_USER }: { username?: stri
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
   const [collapsed, setCollapsed] = useState(false);
-  const [activeTheme, setActiveTheme] = useState<ThemeName>("Latte");
+  const [activeTheme, setActiveTheme] = useState<ThemeName>(DEFAULT_THEME);
   const [accentIndex, setAccentIndex] = useState(DEFAULT_ACCENT_INDEX);
   const [bgEffectEnabled, setBgEffectEnabled] = useState(false);
   const [themePrefsLoaded, setThemePrefsLoaded] = useState(false);
@@ -534,15 +536,12 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    const primary = accentSwatches[accentIndex].color;
-    const { r, g, b } = hexToRgb(primary);
-    const root = document.documentElement;
-    root.style.setProperty("--accent-primary", primary);
-    root.style.setProperty("--accent-strong", primary);
-    root.style.setProperty("--accent-muted", primary);
-    root.style.setProperty("--accent-error", primary);
-    root.style.setProperty("--accent-primary-rgb", `${r}, ${g}, ${b}`);
+    applyAccent(accentIndex);
   }, [accentIndex]);
+
+  useEffect(() => {
+    applyTheme(activeTheme);
+  }, [activeTheme]);
 
   useEffect(() => {
     if (typeof window === "undefined" || !themePrefsLoaded) return;

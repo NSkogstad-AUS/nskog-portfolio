@@ -48,8 +48,8 @@
 } .about--buddy:hover,
 .about--buddy:focus-visible {
   background: var(--accent-primary);
-  color: rgba(229, 233, 239);
-  text-decoration-color: rgba(229, 233, 239);
+  color: var(--text-contrast);
+  text-decoration-color: var(--text-contrast);
   text-underline-offset: 4px;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .bi-star-fill {
-  color: rgba(7, 7, 7, 0.1);
+  color: rgba(var(--accent-primary-rgb, 244, 139, 102), 0.12);
   font-size: small;
 }
 
@@ -114,10 +114,10 @@
   max-width: 1200px;
   padding: 1.4rem 1.25rem;
   border-radius: 12px;
-  background: rgba(229, 233, 239);
+  background: var(--surface-raised);
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgb(86, 88, 107, 0.5);
+  border: 1px solid var(--border-strong);
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 

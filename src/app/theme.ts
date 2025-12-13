@@ -1,5 +1,6 @@
 export const themeOptions = ["Latte", "Frappe", "Mocha"] as const;
 export type ThemeName = (typeof themeOptions)[number];
+export const DEFAULT_THEME: ThemeName = "Latte";
 
 export const accentSwatches = [
   { label: "Cider", color: "#e19065" },
@@ -21,6 +22,25 @@ export const DEFAULT_ACCENT_INDEX = accentSwatches.length - 1;
 
 export const isThemeName = (value: string): value is ThemeName =>
   themeOptions.includes(value as ThemeName);
+
+export const applyTheme = (theme: ThemeName) => {
+  if (typeof document === "undefined") return;
+  const root = document.documentElement;
+  root.dataset.theme = theme;
+  root.classList.toggle("dark", theme !== "Latte");
+};
+
+export const applyAccent = (accentIndex: number) => {
+  if (typeof document === "undefined") return;
+  const primary = accentSwatches[accentIndex]?.color ?? accentSwatches[DEFAULT_ACCENT_INDEX].color;
+  const { r, g, b } = hexToRgb(primary);
+  const root = document.documentElement;
+  root.style.setProperty("--accent-primary", primary);
+  root.style.setProperty("--accent-strong", primary);
+  root.style.setProperty("--accent-muted", primary);
+  root.style.setProperty("--accent-error", primary);
+  root.style.setProperty("--accent-primary-rgb", `${r}, ${g}, ${b}`);
+};
 
 export function hexToRgb(hex: string) {
   const normalized = hex.replace("#", "");
