@@ -1,0 +1,220 @@
+.project-detail {
+  margin-top: 4rem;
+  padding: 2rem 1.6rem 3rem;
+  display: flex;
+  justify-content: center;
+  background: var(--page-bg);
+  color: #39404e;
+}
+
+.project-detail--simple {
+  align-items: flex-start;
+}
+
+.project-detail__shell {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.project-detail__header-card {
+  background: #cbd3dc;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 10px 26px rgba(0, 0, 0, 0.12);
+  view-transition-name: project-detail-card;
+}
+
+.project-detail__heading-block h1 {
+  margin: 0.2rem 0 0.4rem;
+  font-size: 2.3rem;
+  color: #c7765c;
+  letter-spacing: 0.01em;
+}
+
+.project-detail__breadcrumb {
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  color: #657088;
+  font-size: 0.95rem;
+}
+
+.project-detail__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0.35rem 0 0.6rem;
+  color: #657088;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+}
+
+.project-detail__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.project-detail__meta-link {
+  color: #39404e;
+  text-decoration: none;
+}
+
+.project-detail__meta-link:hover,
+.project-detail__meta-link:focus-visible {
+  text-decoration: underline;
+}
+
+.project-detail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.4rem;
+}
+
+.project-detail__tag {
+  padding: 0.32rem 0.6rem;
+  border-radius: 8px;
+  background: #e9eef5;
+  border: 1px solid #c5ccd8;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  color: #55607a;
+  font-size: 0.9rem;
+}
+
+.project-detail__divider {
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 0.8rem 0;
+}
+
+.project-detail__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.project-detail__section h2,
+.project-detail__section h3 {
+  margin: 0;
+  color: #c7765c;
+  font-size: 1.4rem;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.project-detail__section p {
+  margin: 0;
+  line-height: 1.7;
+  color: #39404e;
+}
+
+.project-detail__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.project-detail__list li {
+  position: relative;
+  padding-left: 1.2rem;
+  color: #39404e;
+}
+
+.project-detail__list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #c7765c;
+  font-size: 1.05rem;
+}
+
+.project-detail__actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.project-detail__actions--top {
+  position: sticky;
+  top: 72px;
+  z-index: 5;
+  align-self: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 0.2rem;
+}
+
+.project-detail__actions--bottom {
+  margin-top: 0.4rem;
+}
+
+.project-detail__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #f8fafc;
+  border: 1px solid #0f172a;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.project-detail__button--ghost {
+  background: transparent;
+  color: #3f455c;
+  border-color: #c5ccd8;
+}
+
+.project-detail__sticky-back {
+  align-self: flex-start;
+  position: sticky;
+  top: 72px;
+  z-index: 6;
+  transform: translate(0, 0);
+  transition: transform 260ms ease, box-shadow 260ms ease;
+  will-change: transform;
+}
+
+.project-detail__sticky-back.is-stuck {
+  transform: translate(calc(-100% - 16px), 8px);
+}
+
+.project-detail__sticky-sentinel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1px;
+  width: 1px;
+  pointer-events: none;
+}
+
+.project-detail .status-bar {
+  width: min(1300px, 100%);
+  max-width: 110%;
+  margin: 1.5rem auto 0;
+}
+
+
+@media (max-width: 760px) {
+  .project-detail {
+    padding: 1.5rem 1.1rem 2.5rem;
+  }
+
+  .project-detail__header-card {
+    padding: 0.5rem;
+  }
+
+  .project-detail__button {
+    width: 100%;
+    justify-content: center;
+  }
+}

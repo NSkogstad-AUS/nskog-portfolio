@@ -25,6 +25,7 @@ html, body {
   margin: 0;
   height: 100%;
   scroll-behavior: smooth;
+  view-transition-name: none;
 }
 
 /* SCROLL bar */
@@ -177,8 +178,8 @@ main {
 }
 
 .status-bar {
-  width: 100%;
-  max-width: 1200px;
+  width: min(1200px, calc(100% - 1.5rem));
+  max-width: 100%;
   margin: 1.5rem auto 1.5rem;
   padding: 0.85rem 1.2rem;
   border-radius: 12px;
@@ -297,31 +298,13 @@ main {
   }
 }
 
-/*@layer base {
+/* Disable global root fades so individual view transitions (like project cards) stay visible */
+@layer base {
     ::view-transition-old(root),
     ::view-transition-new(root) {
-        animation-duration: 300ms;
-        animation-timing-function: ease-in-out;
+        animation: none;
     }
-
-    ::view-transition-old(root) {
-        animation-name: fade-out;
-    }
-
-    ::view-transition-new(root) {
-        animation-name: fade-in;
-    }
-
-    @keyframes fade-out {
-        to { opacity: 0; }
-    }
-
-    @keyframes fade-in {
-        from { opacity: 0; }
-    }
-}*/
-
-
+}
 
 @layer base {
   :root {

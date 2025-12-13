@@ -63,17 +63,22 @@
   border-radius: 8px;
   background: var(--surface-accent);
   color: var(--text-contrast);
+  text-decoration: none;
 }
 
 .projects-page .card4__project_explain {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 0.4rem;
   width: 100%;
+  padding: 1rem 1.2rem 1.1rem;
   border-radius: 0 0 16px 16px;
   background: var(--surface-raised);
   color: var(--text-strong);
-  text-decoration: underline;
+  text-decoration: none;
+  border-top: 1px solid var(--border-soft);
+  transition: color 200ms ease, border-color 200ms ease, transform 150ms ease;
 }
 
 .projects-page .card4__project_explain h1 {
@@ -90,6 +95,15 @@
   font-weight: 200;
   font-size: 15px;
   transition: color 400ms ease;
+}
+
+.projects-page .card4__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  font-weight: 700;
+  color: var(--accent-primary);
 }
 
 .projects-page .card4__tags {

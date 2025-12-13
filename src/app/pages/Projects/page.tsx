@@ -1,215 +1,9 @@
 "use client"
 import "./project.css";
-import { useEffect, useState } from "react";
+import { Link } from "next-view-transitions";
+import { ProjectCardShowcase } from "./ProjectCardShowcase";
+import { projects } from "./project-data";
 import { StatusBar } from "@/app/components/StatusBar";
-
-type RepoCardContributor = {
-  login: string;
-  avatar: string;
-  profileUrl: string;
-};
-
-type RepoCardData = {
-  name: string;
-  fullName: string;
-  stars: number;
-  description: string | null;
-  contributors: RepoCardContributor[];
-};
-
-type ProjectEntry = {
-  owner: string;
-  repo: string;
-  title: string;
-  customDescription: string;
-  fallback: RepoCardData;
-  tags: string[];
-};
-
-function ProjectCardShowcase({
-  owner,
-  repo,
-  fallback,
-  customDescription,
-}: {
-  owner: string;
-  repo: string;
-  fallback: RepoCardData;
-  customDescription?: string;
-}) {
-  const [data, setData] = useState<RepoCardData>(fallback);
-
-  useEffect(() => {
-    let cancelled = false;
-    const load = async () => {
-      try {
-        const res = await fetch(`/api/repo-card?owner=${owner}&repo=${repo}`);
-        if (!res.ok) return;
-        const json = await res.json();
-        if (!cancelled) setData((prev) => ({ ...prev, ...json }));
-      } catch (err) {
-        console.warn("repo card fetch failed", err);
-      }
-    };
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, [owner, repo]);
-
-  const contributors: RepoCardContributor[] = data.contributors?.length
-    ? data.contributors
-    : [
-        {
-          login: owner,
-          avatar: `https://github.com/${owner}.png?size=96`,
-          profileUrl: `https://github.com/${owner}`,
-        },
-      ];
-
-  return (
-    <div className="project-card">
-      <div className="project-card__header">
-        <div className="project-card__top">
-          <div className="project-card__controls">
-            <span className="project-card__dot project-card__dot--red" />
-            <span className="project-card__dot project-card__dot--yellow" />
-            <span className="project-card__dot project-card__dot--green" />
-          </div>
-          <div className="project-card__stats">
-            <span>{data.stars != null ? data.stars.toLocaleString() : "—"}</span>
-            <i className="bi bi-star-fill" aria-hidden="true" />
-          </div>
-        </div>
-        <div className="project-card__title">
-          <span className="project-card__org">{owner}</span>
-          <span className="project-card__slash">/</span>
-          <span className="project-card__repo">{data.name ?? repo}</span>
-        </div>
-      </div>
-
-      <p className="project-card__desc">
-        {customDescription ?? data.description ?? "A neat little project fresh out of the oven."}
-      </p>
-
-      <div className="project-card__footer">
-        <div className="project-card__avatars">
-          {contributors.map((contributor, i) => (
-            <a
-              key={`${contributor.login}-${i}`}
-              className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
-              href={contributor.profileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`@${contributor.login}`}
-              title={`@${contributor.login}`}
-            >
-              {contributor.avatar ? (
-                <img src={contributor.avatar} alt={`@${contributor.login} avatar`} />
-              ) : null}
-            </a>
-          ))}
-        </div>
-        <span className="project-card__contributors">
-          {data.contributors?.length
-            ? `${data.contributors.length} Contributors`
-            : "Contributors"}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-const projects: ProjectEntry[] = [
-  {
-    owner: "NSkogstad-AUS",
-    repo: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-    title: "Deepfake Detector",
-    customDescription: "A machine learning deep-fake website developed in a team of 5 for a client",
-    fallback: {
-      name: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-      fullName: "NSkogstad-AUS/Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-      stars: 1,
-      description: "Weighs the soul of incoming HTTP requests to stop AI crawlers",
-      contributors: [],
-    },
-    tags: ["fastAP", "postgresSQL", "AWS integration", "pytorch", "docker", "ML"],
-  },
-  {
-    owner: "NSkogstad-AUS",
-    repo: "cpp-voxel-renderer",
-    title: "Voxel Renderer",
-    customDescription: "Small OpenGL playground that renders voxel chunks and a simple height-map terrain",
-    fallback: {
-      name: "cpp-voxel-renderer",
-      fullName: "NSkogstad-AUS/cpp-voxel-renderer",
-      stars: 1,
-      description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
-      contributors: [],
-    },
-    tags: ["c++", "openGL", "GLFW", "GLM", "GLSL", "voxels", "rendering", "engine"],
-  },
-  {
-    owner: "NSkogstad-AUS",
-    repo: "nskog-portfolio",
-    title: "Personal Portfolio",
-    customDescription: "A personal portfolio for personal/professional purposes, outlining experience, education, and a personal blog",
-    fallback: {
-      name: "nskog-portfolio",
-      fullName: "NSkogstad-AUS/nskog-portfolio",
-      stars: 1,
-      description: "A personal portfolio for personal/professional purposes, outlining experience, education, and a personal blog",
-      contributors: [],
-    },
-    tags: ["next.js", "react", "typescript", "javascript", "node.js", "tailwind"],
-  },
-  {
-    owner: "NSkogstad-AUS",
-    repo: "nskog-react-ps4website",
-    title: "Playstation 4 Dashboard Website",
-    customDescription: "A website that has the look and functionality of the Playstation 4 home screen. Made for fun.",
-    fallback: {
-      name: "nskog-portfolio",
-      fullName: "NSkogstad-AUS/nskog-react-ps4website",
-      stars: 1,
-      description: "A website that has the look and functionality of the Playstation 4 home screen. Made for fun.",
-      contributors: [],
-    },
-    tags: ["vite", "react", "typescript", "tailwind"],
-  },
-  {
-    owner: "NSkogstad-AUS",
-    repo: "urt_gui_app",
-    title: "Rust RTP Video GUI",
-    customDescription:
-      "Rust eframe/egui desktop app with label and buttons to view Mac camera, play RTP H.264 stream, and update label from UDP notifs.",
-    fallback: {
-      name: "nskog-portfolio",
-      fullName: "NSkogstad-AUS/urt_gui_app",
-      stars: 1,
-      description:
-        "Rust eframe/egui desktop app with label and buttons to view Mac camera, play RTP H.264 stream, and update label from UDP notifs.",
-      contributors: [],
-    },
-    tags: ["rust", "egui", "gstreamer", "rtp", "sockets", "communication"],
-  },
-  {
-    owner: "NSkogstad-AUS",
-    repo: "nskog-realtimeDocEditor",
-    title: "Collaborative Document Editor",
-    customDescription:
-      "Collaborative rich-text editor using Node.js, Socket.io, MongoDB, React and Quill, syncing document edits in real time for multiple users.",
-    fallback: {
-      name: "nskog-portfolio",
-      fullName: "NSkogstad-AUS/nskog-realtimeDocEditor",
-      stars: 1,
-      description:
-        "Collaborative rich-text editor using Node.js, Socket.io, MongoDB, React and Quill, syncing document edits in real time for multiple users..",
-      contributors: [],
-    },
-    tags: ["react", "socket.IO", "quill", "UUID", "node.js", "mongoDB"],
-  },
-];
 
 export default function ProjectsPage() {
   return (
@@ -222,15 +16,16 @@ export default function ProjectsPage() {
       <div className="card4__showcase">
         {projects.map((project) => (
           <div className="card4__project" key={project.repo}>
-            <div className="card4__project__showcase">
+            <Link className="card4__project__showcase" href={`/pages/projects/${project.slug}`}>
               <ProjectCardShowcase
                 owner={project.owner}
                 repo={project.repo}
                 customDescription={project.customDescription}
                 fallback={project.fallback}
+                transitionKey={project.slug}
               />
-            </div>
-            <div className="card4__project_explain">
+            </Link>
+            <Link className="card4__project_explain" href={`/pages/projects/${project.slug}`}>
               <h1>{project.title}</h1>
               <p>{project.customDescription}</p>
               <div className="card4__tags">
@@ -241,7 +36,10 @@ export default function ProjectsPage() {
                   </span>
                 ))}
               </div>
-            </div>
+              <span className="card4__cta">
+                Read the build notes <i className="bi bi-arrow-up-right" aria-hidden="true" />
+              </span>
+            </Link>
           </div>
         ))}
       </div>
