@@ -440,51 +440,50 @@ function RecentCommitsCard({ username = DEFAULT_GITHUB_USER }: { username?: stri
 
   return (
     <div className="commits-card">
-      <div className="commits-card__head">
+      <header className="commits-card__head">
         <div className="commits-card__title">
           <span className="commits-card__info-tag" aria-label="Additions vs deletions">
             <i className="bi bi-plus-slash-minus" aria-hidden="true" />
           </span>
           <span>Recent Commits</span>
         </div>
-      </div>
+      </header>
 
-      <div className="commits-card__body">
-        {loading ? (
-          <p className="commits-card__status">Loading commits…</p>
-        ) : error ? (
-          <p className="commits-card__status commits-card__status--error">{error}</p>
-        ) : commits.length === 0 ? (
-          <p className="commits-card__status">No recent pushes yet.</p>
-        ) : (
-          <ul className="commits-card__list">
-            {commits.map((commit) => (
-              <li className="commits-card__item" key={commit.sha}>
-                <div className="commits-card__line">
-                  <div className="commits-card__info">
-                    <span className="commits-card__repo">{commit.repo}:</span>
-                    <a
-                      className="commits-card__message"
-                      href={commit.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title={commit.message}
-                    >
-                      {commit.message}
-                    </a>
-                  </div>
-                  <div className="commits-card__metrics">
-                    <span className="commits-card__add">+{commit.additions}</span>
-                    <span className="commits-card__del">-{commit.deletions}</span>
-                  </div>
+      {loading ? (
+        <p className="commits-card__status">Loading commits…</p>
+      ) : error ? (
+        <p className="commits-card__status commits-card__status--error">{error}</p>
+      ) : commits.length === 0 ? (
+        <p className="commits-card__status">No recent pushes yet.</p>
+      ) : (
+        <ul className="commit-list">
+          {commits.map((commit) => (
+            <li className="commit-list__item" key={commit.sha}>
+              <div className="commit-list__row">
+                <div className="commit-list__text">
+                  <span className="commit-list__repo">{commit.repo}</span>
+                  <span className="commit-list__divider">:</span>
+                  <a
+                    className="commit-list__message"
+                    href={commit.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={commit.message}
+                  >
+                    {commit.message}
+                  </a>
                 </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+                <div className="commit-list__metrics" aria-label="Additions and deletions">
+                  <span className="commit-list__add">+{commit.additions}</span>
+                  <span className="commit-list__del">-{commit.deletions}</span>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
 
-      <div className="commits-card__footer">
+      <footer className="commits-card__footer">
         <a
           className="commits-card__link"
           href={profileUrl}
@@ -494,7 +493,7 @@ function RecentCommitsCard({ username = DEFAULT_GITHUB_USER }: { username?: stri
           View on GitHub <i className="bi bi-box-arrow-up-right" aria-hidden="true" />
         </a>
         <div className="commits-card__bar" style={barStyle} aria-hidden="true" />
-      </div>
+      </footer>
     </div>
   );
 }
@@ -914,6 +913,24 @@ export default function HomePage() {
             alt="Snoopy meditating"
             className="card5__snoopy"
           />
+        </div>
+      </div>
+
+      <div className="status-bar">
+        <div className="status-bar__group status-bar__group--left">
+          <span className="status-bar__copy">© {new Date().getFullYear()} Nicolai Skogstad</span>
+        </div>
+
+        <div className="status-bar__group status-bar__group--links" aria-label="External links">
+          <a href="mailto:nicolai@skogstad.com" aria-label="Email">
+            <i className="bi bi-envelope-fill" aria-hidden="true" />
+          </a>
+          <a href="https://www.linkedin.com/in/nicolai-skogstad-8333a221b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i className="bi bi-linkedin" aria-hidden="true" />
+          </a>
+          <a href="https://github.com/NSkogstad-AUS" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <i className="bi bi-github" aria-hidden="true" />
+          </a>
         </div>
       </div>
     </section>
