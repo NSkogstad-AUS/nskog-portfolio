@@ -688,65 +688,63 @@ export default function HomePage() {
         </div>
       </div>
 
-      {!collapsed && (
-        <div className="card3__panel">
-            {activeList.map((item) => {
-              const key =
-                item.kind === "edu"
-                  ? `${item.kind}-${item.period}-${item.program ?? item.school}`
-                  : `${item.kind}-${item.period}-${item.company}`;
+      <div className={`card3__panel${collapsed ? " is-collapsed" : " is-open"}`} aria-hidden={collapsed}>
+        {activeList.map((item) => {
+          const key =
+            item.kind === "edu"
+              ? `${item.kind}-${item.period}-${item.program ?? item.school}`
+              : `${item.kind}-${item.period}-${item.company}`;
 
-              const hasAcronym = item.kind === "experience" && item.acronym && item.fullName;
-              const displayName =
-                item.kind === "experience"
-                  ? item.acronym ?? item.company
-                  : item.school;
+          const hasAcronym = item.kind === "experience" && item.acronym && item.fullName;
+          const displayName =
+            item.kind === "experience"
+              ? item.acronym ?? item.company
+              : item.school;
 
-              return (
-                <article className="card3__entry" key={key}>
-                  
-                  <div className="card3__timeline">
-                    <div className="card3__dot">
-                      <img src={item.logo ?? "/logos/default.png"} alt="" />
-                    </div>
-                  </div>
-                  <div className="card3__body">
-                    <div className="card3__period">{item.period}</div>
-                    <div className="card3__meta">
-                      {item.kind === "experience" ? (
-                        <>
-                          <div className={`card3__name${hasAcronym ? " has-acronym" : ""}`}>
-                            <span className="card3__company">{displayName}</span>
-                            {hasAcronym && (
-                              <>
-                                <span aria-hidden className="card3__dots">···</span>
-                                <span className="card3__full">{item.fullName}</span>
-                              </>
-                            )}
-                          </div>
-                          <div className="card3__role">{item.role}</div>
-                        </>
-                      ) : (
-                        <>
-                          <div className="card3__company">{item.school}</div>
-                          <div className="card3__role">{item.program}</div>
-                        </>
-                      )}
-                    </div>
-                    <ul className="card3__bullets">
-                      {item.bullets
-                      .map((b) => b.trim())
-                      .filter(Boolean)
-                      .map((b, i) => (
-                        <li key={`${key}-b-${i}`}>{b}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              );
-            })}
-        </div>
-      )}
+          return (
+            <article className="card3__entry" key={key}>
+              
+              <div className="card3__timeline">
+                <div className="card3__dot">
+                  <img src={item.logo ?? "/logos/default.png"} alt="" />
+                </div>
+              </div>
+              <div className="card3__body">
+                <div className="card3__period">{item.period}</div>
+                <div className="card3__meta">
+                  {item.kind === "experience" ? (
+                    <>
+                      <div className={`card3__name${hasAcronym ? " has-acronym" : ""}`}>
+                        <span className="card3__company">{displayName}</span>
+                        {hasAcronym && (
+                          <>
+                            <span aria-hidden className="card3__dots">···</span>
+                            <span className="card3__full">{item.fullName}</span>
+                          </>
+                        )}
+                      </div>
+                      <div className="card3__role">{item.role}</div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="card3__company">{item.school}</div>
+                      <div className="card3__role">{item.program}</div>
+                    </>
+                  )}
+                </div>
+                <ul className="card3__bullets">
+                  {item.bullets
+                  .map((b) => b.trim())
+                  .filter(Boolean)
+                  .map((b, i) => (
+                    <li key={`${key}-b-${i}`}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          );
+        })}
+      </div>
 
       <div className="card4">
         <i className="bi bi-star"/>
