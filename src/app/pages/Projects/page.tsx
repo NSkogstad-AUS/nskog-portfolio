@@ -1,6 +1,7 @@
 "use client"
 import "./project.css";
 import { useEffect, useState } from "react";
+import { StatusBar } from "@/app/components/StatusBar";
 
 type RepoCardContributor = {
   login: string;
@@ -244,6 +245,8 @@ export default function ProjectsPage() {
           </div>
         ))}
       </div>
+
+      <StatusBar />
     </section>
   );
 }

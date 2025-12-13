@@ -14,6 +14,7 @@ import {
   themeOptions,
   type ThemeName,
 } from "@/app/theme";
+import { StatusBar } from "@/app/components/StatusBar";
 
 type BaseEntry = {
   period: string;
@@ -916,23 +917,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="status-bar">
-        <div className="status-bar__group status-bar__group--left">
-          <span className="status-bar__copy">© {new Date().getFullYear()} Nicolai Skogstad</span>
-        </div>
-
-        <div className="status-bar__group status-bar__group--links" aria-label="External links">
-          <a href="mailto:nicolai@skogstad.com" aria-label="Email">
-            <i className="bi bi-envelope-fill" aria-hidden="true" />
-          </a>
-          <a href="https://www.linkedin.com/in/nicolai-skogstad-8333a221b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <i className="bi bi-linkedin" aria-hidden="true" />
-          </a>
-          <a href="https://github.com/NSkogstad-AUS" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <i className="bi bi-github" aria-hidden="true" />
-          </a>
-        </div>
-      </div>
+      <StatusBar time={melbourneTime} />
     </section>
   );
 }

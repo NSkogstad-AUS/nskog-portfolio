@@ -1,12 +1,16 @@
 "use client"
 import Image from "next/image";
 import "./about.css";
+import { StatusBar } from "@/app/components/StatusBar";
 
 export default function AboutPage() {
   return (
     <section className="about--page">
       <div className="card about-card">
-        <h1 className="about-title">About Me</h1>
+        <div className="about-title">
+          <i className="bi bi-info-circle" aria-hidden="true" />
+          <h1>About Me</h1>
+        </div>
         <div className="about-row">
           <div className="profilePhoto">
             <Image
@@ -99,6 +103,8 @@ export default function AboutPage() {
           </p>
         </div>
       </div>
+
+      <StatusBar />
     </section>
   );
 }

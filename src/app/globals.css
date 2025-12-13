@@ -176,6 +176,127 @@ main {
   flex-direction: column;
 }
 
+.status-bar {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto 3rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: 12px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-soft);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  color: var(--text-strong);
+}
+
+.status-bar__group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  font-size: 0.95rem;
+}
+
+.status-bar__group--left {
+  gap: 0.5rem;
+}
+
+.status-bar__group--meta {
+  justify-content: flex-start;
+  gap: 0.9rem;
+  color: var(--text-subtle);
+}
+
+.status-bar__group--links {
+  justify-content: flex-end;
+  gap: 0.55rem;
+  justify-self: flex-end;
+}
+
+.status-bar__divider {
+  color: var(--text-muted);
+}
+
+.status-bar__copy {
+  white-space: nowrap;
+}
+
+.status-bar__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--text-primary);
+}
+
+.status-bar__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #3cc16d 0%, #2f9e58 100%);
+  box-shadow: 0 0 0 2px rgba(63, 193, 109, 0.2);
+}
+
+.status-bar__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-strong);
+}
+
+.status-bar__time .bi {
+  color: var(--accent-primary);
+}
+
+.status-bar__views,
+.status-bar__commit {
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+.status-bar__commit {
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+}
+
+.status-bar__group--links a {
+  color: var(--text-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-card);
+  text-decoration: none;
+  transition: transform 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.status-bar__group--links a:hover,
+.status-bar__group--links a:focus-visible {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 900px) {
+  .status-bar {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+
+  .status-bar__group--meta {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .status-bar__group--links {
+    justify-content: flex-start;
+  }
+}
+
 /*@layer base {
     ::view-transition-old(root),
     ::view-transition-new(root) {
