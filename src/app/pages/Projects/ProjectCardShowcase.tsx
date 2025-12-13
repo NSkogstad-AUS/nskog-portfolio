@@ -41,13 +41,8 @@ export function ProjectCardShowcase({
     };
   }, [owner, repo]);
 
-  const viewTransitionName = transitionKey ? "project-card" : undefined;
-
-  const handlePointerDown = () => {
-    if (cardRef.current && viewTransitionName) {
-      cardRef.current.style.viewTransitionName = viewTransitionName;
-    }
-  };
+  const viewTransitionName = "project-card";
+  const shouldApply = alwaysTransitionName || Boolean(transitionKey);
 
   const contributors: RepoCardContributor[] = data.contributors?.length
     ? data.contributors
@@ -63,12 +58,12 @@ export function ProjectCardShowcase({
     <div
       ref={cardRef}
       className="project-card"
-      style={
-        alwaysTransitionName && viewTransitionName
-          ? { viewTransitionName }
-          : undefined
-      }
-      onPointerDown={handlePointerDown}
+      style={shouldApply ? { viewTransitionName } : undefined}
+      onPointerDown={() => {
+        if (cardRef.current && shouldApply) {
+          cardRef.current.style.viewTransitionName = viewTransitionName;
+        }
+      }}
     >
       <div className="project-card__header">
         <div className="project-card__top">
