@@ -161,11 +161,24 @@ function Lightbox({
   animateIn: boolean;
   onClose: () => void;
 }) {
+  const [naturalAspect, setNaturalAspect] = useState<number | null>(null);
+
+  useEffect(() => {
+    const img = new window.Image();
+    img.onload = () => {
+      if (img.naturalWidth && img.naturalHeight) {
+        setNaturalAspect(img.naturalWidth / img.naturalHeight);
+      }
+    };
+    img.src = src;
+  }, [src]);
+
   if (typeof window === "undefined") return null;
 
   const viewportW = window.innerWidth;
   const viewportH = window.innerHeight;
-  const aspect = originRect.width / originRect.height || 3 / 4;
+  const fallbackAspect = (originRect.width / originRect.height) || 0.75;
+  const aspect = naturalAspect ?? fallbackAspect;
   const maxW = Math.min(viewportW * 0.9, 900);
   const maxH = Math.min(viewportH * 0.9, 1100);
   let targetW = maxW;
