@@ -15,7 +15,11 @@ export default function ProjectsPage() {
 
       <div className="card4__showcase">
         {projects.map((project) => (
-          <div className="card4__project" key={project.repo}>
+          <div
+            className="card4__project"
+            key={project.repo}
+            style={{ viewTransitionName: `project-shell-${project.slug}` }}
+          >
             <Link className="card4__project__showcase" href={`/pages/projects/${project.slug}`}>
               <ProjectCardShowcase
                 owner={project.owner}
@@ -23,6 +27,7 @@ export default function ProjectsPage() {
                 customDescription={project.customDescription}
                 fallback={project.fallback}
                 transitionKey={project.slug}
+                disableContributorLinks
               />
             </Link>
             <Link className="card4__project_explain" href={`/pages/projects/${project.slug}`}>

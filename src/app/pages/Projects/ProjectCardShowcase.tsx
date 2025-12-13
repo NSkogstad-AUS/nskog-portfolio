@@ -10,6 +10,7 @@ type ProjectCardShowcaseProps = {
   customDescription?: string;
   transitionKey?: string;
   alwaysTransitionName?: boolean;
+  disableContributorLinks?: boolean;
 };
 
 export function ProjectCardShowcase({
@@ -19,6 +20,7 @@ export function ProjectCardShowcase({
   customDescription,
   alwaysTransitionName = false,
   transitionKey,
+  disableContributorLinks = false,
 }: ProjectCardShowcaseProps) {
   const [data, setData] = useState<RepoCardData>(fallback);
   const cardRef = useRef<HTMLDivElement | null>(null);
@@ -41,7 +43,7 @@ export function ProjectCardShowcase({
     };
   }, [owner, repo]);
 
-  const viewTransitionName = "project-card";
+  const viewTransitionName = transitionKey ? `project-card-${transitionKey}` : "project-card";
   const shouldApply = alwaysTransitionName || Boolean(transitionKey);
 
   const contributors: RepoCardContributor[] = data.contributors?.length
@@ -91,19 +93,32 @@ export function ProjectCardShowcase({
       <div className="project-card__footer">
         <div className="project-card__avatars">
           {contributors.map((contributor, i) => (
-            <a
-              key={`${contributor.login}-${i}`}
-              className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
-              href={contributor.profileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`@${contributor.login}`}
-              title={`@${contributor.login}`}
-            >
-              {contributor.avatar ? (
-                <img src={contributor.avatar} alt={`@${contributor.login} avatar`} />
-              ) : null}
-            </a>
+            disableContributorLinks ? (
+              <span
+                key={`${contributor.login}-${i}`}
+                className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
+                aria-label={`@${contributor.login}`}
+                title={`@${contributor.login}`}
+              >
+                {contributor.avatar ? (
+                  <img src={contributor.avatar} alt={`@${contributor.login} avatar`} />
+                ) : null}
+              </span>
+            ) : (
+              <a
+                key={`${contributor.login}-${i}`}
+                className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
+                href={contributor.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`@${contributor.login}`}
+                title={`@${contributor.login}`}
+              >
+                {contributor.avatar ? (
+                  <img src={contributor.avatar} alt={`@${contributor.login} avatar`} />
+                ) : null}
+              </a>
+            )
           ))}
         </div>
         <span className="project-card__contributors">
