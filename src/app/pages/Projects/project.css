@@ -48,7 +48,11 @@
   border-radius: 8px;
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
   overflow: hidden;
-  transition: border-color 400ms ease;
+  transform: translateY(0);
+  transition:
+    border-color 300ms ease,
+    box-shadow 260ms ease,
+    transform 260ms ease;
 }
 
 /* view transition wiring */
@@ -214,6 +218,8 @@
 
 .projects-page .card4__project:hover {
   border-color: rgba(var(--accent-primary-rgb, 244, 139, 102), 0.9);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
 }
 
 /* repo card content */
