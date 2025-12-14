@@ -18,6 +18,7 @@ export default function ProjectsPage() {
           <div
             className={`card4__project card4__project--${project.slug}`}
             key={project.repo}
+            id={project.slug}
           >
             <Link className="card4__project__showcase" href={`/pages/projects/${project.slug}`}>
               <ProjectCardShowcase

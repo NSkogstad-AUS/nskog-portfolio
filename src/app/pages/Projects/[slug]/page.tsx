@@ -43,7 +43,9 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         </div>
 
         <div className="project-detail__heading-block">
-          <div className="project-detail__breadcrumb">~/projects/{project.slug}/</div>
+          <Link href="/pages/projects" className="project-detail__breadcrumb project-detail__breadcrumb--home">
+            ~/projects/{project.slug}/
+          </Link>
           <h1>{project.title}</h1>
           <div className="project-detail__meta-row">
             <span className="project-detail__meta-item">

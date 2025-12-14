@@ -346,6 +346,12 @@ main {
     }
 }
 
+.vt-disable *,
+.vt-disable *::before,
+.vt-disable *::after {
+  view-transition-name: none !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

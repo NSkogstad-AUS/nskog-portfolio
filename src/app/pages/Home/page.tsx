@@ -1,6 +1,7 @@
 "use client";
 import "./home.css";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { Link } from "next-view-transitions";
 import BounceCards from "@/Imported Components/BounceCards";
 import type { RecentCommit as RecentCommitData } from "@/lib/github";
 import {
@@ -15,6 +16,8 @@ import {
   type ThemeName,
 } from "@/app/theme";
 import { StatusBar } from "@/app/components/StatusBar";
+import { ProjectCardShowcase } from "../projects/ProjectCardShowcase";
+import type { RepoCardData } from "../projects/project-data";
 
 type BaseEntry = {
   period: string;
@@ -162,21 +165,8 @@ const tabs = [
   { key: "edu", label: "Education", list: educationEntries },
 ] as const;
 
-type RepoCardContributor = {
-  login: string;
-  avatar: string;
-  profileUrl: string;
-};
-
-type RepoCardData = {
-  name: string;
-  fullName: string;
-  stars: number;
-  description: string | null;
-  contributors: RepoCardContributor[];
-};
-
 type FeaturedProject = {
+  slug: string;
   owner: string;
   repo: string;
   title: string;
@@ -185,102 +175,9 @@ type FeaturedProject = {
   tags: string[];
 };
 
-function ProjectCardShowcase({
-  owner,
-  repo,
-  fallback,
-  customDescription,
-}: {
-  owner: string;
-  repo: string;
-  fallback: RepoCardData;
-  customDescription?: string;
-}) {
-  const [data, setData] = useState<RepoCardData>(fallback);
-
-  useEffect(() => {
-    let cancelled = false;
-    const load = async () => {
-      try {
-        const res = await fetch(`/api/repo-card?owner=${owner}&repo=${repo}`);
-        if (!res.ok) return;
-        const json = await res.json();
-        if (!cancelled) setData((prev) => ({ ...prev, ...json }));
-      } catch (err) {
-        console.warn("repo card fetch failed", err);
-      }
-    };
-    load();
-    return () => {
-      cancelled = true;
-    };
-  }, [owner, repo]);
-
-  const contributors: RepoCardContributor[] = data.contributors?.length
-    ? data.contributors
-    : [
-        {
-          login: owner,
-          avatar: `https://github.com/${owner}.png?size=96`,
-          profileUrl: `https://github.com/${owner}`,
-        },
-      ];
-
-  return (
-    <div className="project-card">
-      <div className="project-card__header">
-        <div className="project-card__top">
-          <div className="project-card__controls">
-            <span className="project-card__dot project-card__dot--red" />
-            <span className="project-card__dot project-card__dot--yellow" />
-            <span className="project-card__dot project-card__dot--green" />
-          </div>
-          <div className="project-card__stats">
-            <span>{data.stars != null ? data.stars.toLocaleString() : "—"}</span>
-            <i className="bi bi-star-fill" aria-hidden="true" />
-          </div>
-        </div>
-        <div className="project-card__title">
-          <span className="project-card__org">{owner}</span>
-          <span className="project-card__slash">/</span>
-          <span className="project-card__repo">{data.name ?? repo}</span>
-        </div>
-      </div>
-
-      <p className="project-card__desc">
-        {customDescription ?? data.description ?? "A neat little project fresh out of the oven."}
-      </p>
-
-      <div className="project-card__footer">
-        <div className="project-card__avatars">
-          {contributors.map((contributor, i) => (
-            <a
-              key={`${contributor.login}-${i}`}
-              className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
-              href={contributor.profileUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`@${contributor.login}`}
-              title={`@${contributor.login}`}
-            >
-              {contributor.avatar ? (
-                <img src={contributor.avatar} alt={`@${contributor.login} avatar`} />
-              ) : null}
-            </a>
-          ))}
-        </div>
-        <span className="project-card__contributors">
-          {data.contributors?.length
-            ? `${data.contributors.length} Contributors`
-            : "Contributors"}
-        </span>
-      </div>
-    </div>
-  );
-}
-
 const featuredProjects: FeaturedProject[] = [
   {
+    slug: "blackline-forensics",
     owner: "NSkogstad-AUS",
     repo: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
     title: "Blackline Forensics",
@@ -295,6 +192,7 @@ const featuredProjects: FeaturedProject[] = [
     tags: ["ml", "cv", "web", "team-project"],
   },
   {
+    slug: "voxel-renderer",
     owner: "NSkogstad-AUS",
     repo: "cpp-voxel-renderer",
     title: "Voxel Renderer",
@@ -759,13 +657,19 @@ export default function HomePage() {
 
       <div className="card4__showcase">
         {featuredProjects.map((project) => (
-          <div className="card4__project" key={project.repo}>
+          <Link
+            className={`card4__project card4__project--${project.slug}`}
+            key={project.repo}
+            href={`/pages/projects#${project.slug}`}
+          >
             <div className="card4__project__showcase">
               <ProjectCardShowcase
                 owner={project.owner}
                 repo={project.repo}
                 customDescription={project.customDescription}
                 fallback={project.fallback}
+                transitionKey={project.slug}
+                disableContributorLinks
               />
             </div>
             <div className="card4__project_explain">
@@ -780,7 +684,7 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

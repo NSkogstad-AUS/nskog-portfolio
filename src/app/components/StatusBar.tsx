@@ -13,11 +13,19 @@ export function StatusBar({ time }: StatusBarProps) {
   useEffect(() => {
     let cancelled = false;
     const bumpViews = async () => {
+      const SESSION_KEY = "nskog-portfolio-view-counted";
       try {
-        const res = await fetch("/api/profile-views", { method: "POST", cache: "no-store" });
+        const hasSessionHit =
+          typeof window !== "undefined" && window.sessionStorage.getItem(SESSION_KEY);
+
+        const method = hasSessionHit ? "GET" : "POST";
+        const res = await fetch("/api/profile-views", { method, cache: "no-store" });
         if (!res.ok) throw new Error(`Request failed: ${res.status}`);
         const json = (await res.json()) as { total?: number };
         if (!cancelled) setViewCount(typeof json.total === "number" ? json.total : null);
+        if (!hasSessionHit && typeof window !== "undefined") {
+          window.sessionStorage.setItem(SESSION_KEY, "1");
+        }
       } catch (err) {
         console.warn("Could not update profile view count", err);
         if (!cancelled) setViewCount(null);

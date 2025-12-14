@@ -43,6 +43,24 @@
   font-size: 0.95rem;
 }
 
+.project-detail__breadcrumb--home {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.project-detail__breadcrumb--home:hover,
+.project-detail__breadcrumb--home:focus-visible {
+  color: #c7765c;
+  background: rgba(199, 118, 92, 0.12);
+  transform: translateY(-1px);
+  outline: none;
+}
+
 .project-detail__meta-row {
   display: flex;
   flex-wrap: wrap;

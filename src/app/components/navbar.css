@@ -44,6 +44,14 @@
 .navbar__crumb--root {
   color: var(--accent-primary);
   text-decoration-line: underline;
+  cursor: pointer;
+  transition: color 120ms ease, transform 120ms ease;
+}
+
+.navbar__crumb--root:hover,
+.navbar__crumb--root:focus-visible {
+  color: var(--accent-primary);
+  transform: translateY(-1px);
 }
 
 .navbar__divider {

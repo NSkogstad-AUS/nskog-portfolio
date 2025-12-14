@@ -140,7 +140,6 @@
   background: var(--surface-raised);
   color: var(--text-strong);
   text-decoration: none;
-  border-top: 1px solid var(--border-soft);
   transition: color 200ms ease, border-color 200ms ease, transform 150ms ease;
 }
 
