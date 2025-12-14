@@ -55,6 +55,18 @@ export function StatusBar({ time }: StatusBarProps) {
   }, [time]);
 
   const displayTime = time || localTime;
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    const email = "nicolai@skogstad.com";
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (err) {
+      console.warn("Could not copy email", err);
+    }
+  };
 
   return (
     <div className="status-bar">
@@ -66,13 +78,37 @@ export function StatusBar({ time }: StatusBarProps) {
         <span className="status-bar__views" aria-label="Profile views">
           {viewCount ?? "—"} views
         </span>
-        <a href="mailto:nicolai@skogstad.com" aria-label="Email">
+        <button
+          type="button"
+          className="status-bar__copy-btn"
+          onClick={handleCopyEmail}
+          aria-label="Copy email"
+        >
+          <span className="status-bar__tooltip">{copied ? "Copied!" : "Copy email"}</span>
+          <i className="bi bi-clipboard" aria-hidden="true" />
+        </button>
+        <a href="mailto:nicolai@skogstad.com" aria-label="Email" className="status-bar__icon-link">
+          <span className="status-bar__tooltip">Email</span>
           <i className="bi bi-envelope-fill" aria-hidden="true" />
         </a>
-        <a href="https://www.linkedin.com/in/nicolai-skogstad-8333a221b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <a
+          href="https://www.linkedin.com/in/nicolai-skogstad-8333a221b/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="status-bar__icon-link"
+        >
+          <span className="status-bar__tooltip">LinkedIn</span>
           <i className="bi bi-linkedin" aria-hidden="true" />
         </a>
-        <a href="https://github.com/NSkogstad-AUS" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <a
+          href="https://github.com/NSkogstad-AUS"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          className="status-bar__icon-link"
+        >
+          <span className="status-bar__tooltip">GitHub</span>
           <i className="bi bi-github" aria-hidden="true" />
         </a>
       </div>

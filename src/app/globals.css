@@ -301,7 +301,8 @@ main {
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
 }
 
-.status-bar__group--links a {
+.status-bar__group--links a,
+.status-bar__icon-link {
   color: var(--text-strong);
   display: inline-flex;
   align-items: center;
@@ -315,11 +316,59 @@ main {
   transition: transform 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
+.status-bar__copy-btn {
+  position: relative;
+  color: var(--text-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-card);
+  cursor: pointer;
+  transition: transform 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
 .status-bar__group--links a:hover,
-.status-bar__group--links a:focus-visible {
+.status-bar__group--links a:focus-visible,
+.status-bar__icon-link:hover,
+.status-bar__icon-link:focus-visible {
   color: var(--accent-primary);
   border-color: var(--accent-primary);
   transform: translateY(-1px);
+}
+
+.status-bar__copy-btn:hover,
+.status-bar__copy-btn:focus-visible {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.status-bar__tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface-contrast, #0f172a);
+  color: var(--text-contrast, #f8fafc);
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.status-bar__copy-btn:hover .status-bar__tooltip,
+.status-bar__copy-btn:focus-visible .status-bar__tooltip,
+.status-bar__icon-link:hover .status-bar__tooltip,
+.status-bar__icon-link:focus-visible .status-bar__tooltip {
+  opacity: 1;
+  transform: translate(-50%, -2px);
 }
 
 @media (max-width: 900px) {
