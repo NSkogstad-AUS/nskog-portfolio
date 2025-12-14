@@ -715,6 +715,19 @@
   transition: color 200ms ease;
 }
 
+.card4__project_explain p {
+  margin-top: 0.4rem;
+  color: var(--text-strong);
+  font-weight: 200;
+  font-size: 15px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .card4__tags {
   display: flex;
   align-items: center;

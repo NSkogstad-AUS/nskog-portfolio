@@ -79,11 +79,13 @@
 .project-detail__meta-link {
   color: #39404e;
   text-decoration: none;
+  transition: color 200ms ease;
 }
 
 .project-detail__meta-link:hover,
 .project-detail__meta-link:focus-visible {
   text-decoration: underline;
+  color: #c7765c;
 }
 
 .project-detail__tags {
@@ -128,6 +130,7 @@
   margin: 0;
   line-height: 1.7;
   color: #39404e;
+  text-decoration: none;
 }
 
 .project-detail__list {

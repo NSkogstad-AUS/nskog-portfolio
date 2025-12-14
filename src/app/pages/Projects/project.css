@@ -157,6 +157,11 @@
   font-weight: 200;
   font-size: 15px;
   transition: color 400ms ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .projects-page .card4__cta {

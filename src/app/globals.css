@@ -279,7 +279,7 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 2px;
+  height: 1px;
   background: var(--accent-primary);
   transform: scaleX(0);
   transform-origin: center;

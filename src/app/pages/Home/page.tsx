@@ -18,6 +18,7 @@ import {
 import { StatusBar } from "@/app/components/StatusBar";
 import { ProjectCardShowcase } from "../projects/ProjectCardShowcase";
 import type { RepoCardData } from "../projects/project-data";
+import { findProject } from "../projects/project-data";
 
 type BaseEntry = {
   period: string;
@@ -674,7 +675,7 @@ export default function HomePage() {
             </div>
             <div className="card4__project_explain">
               <h1>{project.title}</h1>
-              <p>{project.customDescription}</p>
+              <p>{(findProject(project.slug)?.context ?? project.customDescription) || ""}</p>
               <div className="card4__tags">
                 <i className="bi bi-tag" aria-hidden="true" />
                 {project.tags.map((tag) => (
@@ -726,20 +727,6 @@ export default function HomePage() {
               ))}
             </div>
 
-            <label className="theme-card__toggle">
-              <input
-                type="checkbox"
-                checked={bgEffectEnabled}
-                onChange={(e) => setBgEffectEnabled(e.target.checked)}
-              />
-              <span className="theme-card__checkbox" aria-hidden="true" />
-              <span className="theme-card__toggle-label">
-                Background effect:{" "}
-                <span className={`theme-card__state${bgEffectEnabled ? " is-on" : " is-off"}`}>
-                  {bgEffectEnabled ? "on" : "off"}
-                </span>
-              </span>
-            </label>
           </div>
         </div>
 

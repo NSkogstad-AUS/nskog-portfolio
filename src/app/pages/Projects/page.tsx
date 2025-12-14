@@ -32,7 +32,7 @@ export default function ProjectsPage() {
             </Link>
             <Link className="card4__project_explain" href={`/pages/projects/${project.slug}`}>
               <h1>{project.title}</h1>
-              <p>{project.customDescription}</p>
+              <p>{project.context}</p>
               <div className="card4__tags">
                 <i className="bi bi-tag" aria-hidden="true" />
                 {project.tags.map((tag) => (
@@ -42,7 +42,7 @@ export default function ProjectsPage() {
                 ))}
               </div>
               <span className="card4__cta">
-                Read the build notes <i className="bi bi-arrow-up-right" aria-hidden="true" />
+                Read the notes <i className="bi bi-arrow-up-right" aria-hidden="true" />
               </span>
             </Link>
           </div>
