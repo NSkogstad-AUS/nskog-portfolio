@@ -264,6 +264,39 @@ main {
   color: var(--text-primary);
 }
 
+.status-bar__views {
+  margin-right: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding-bottom: 0.05rem;
+  transition: color 200ms ease;
+}
+
+.status-bar__views::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.status-bar__views:hover {
+  color: var(--accent-primary);
+}
+
+.status-bar__views:hover::after,
+.status-bar__views:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
 .status-bar__commit {
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
 }
@@ -279,7 +312,7 @@ main {
   border: 1px solid var(--border-soft);
   background: var(--surface-card);
   text-decoration: none;
-  transition: transform 120ms ease, border-color 120ms ease, color 120ms ease;
+  transition: transform 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
 .status-bar__group--links a:hover,

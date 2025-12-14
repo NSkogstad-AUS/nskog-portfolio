@@ -51,6 +51,65 @@
   transition: border-color 400ms ease;
 }
 
+/* view transition wiring */
+.card4__project--blackline-forensics,
+.project-detail__header-card--blackline-forensics {
+  view-transition-name: project-shell-blackline-forensics;
+}
+
+.card4__project--voxel-renderer,
+.project-detail__header-card--voxel-renderer {
+  view-transition-name: project-shell-voxel-renderer;
+}
+
+.card4__project--nskog-portfolio,
+.project-detail__header-card--nskog-portfolio {
+  view-transition-name: project-shell-nskog-portfolio;
+}
+
+.card4__project--ps4-dashboard,
+.project-detail__header-card--ps4-dashboard {
+  view-transition-name: project-shell-ps4-dashboard;
+}
+
+.card4__project--rust-rtp-gui,
+.project-detail__header-card--rust-rtp-gui {
+  view-transition-name: project-shell-rust-rtp-gui;
+}
+
+.card4__project--collaborative-doc-editor,
+.project-detail__header-card--collaborative-doc-editor {
+  view-transition-name: project-shell-collaborative-doc-editor;
+}
+
+.project-card--transition-default {
+  view-transition-name: project-card;
+}
+
+.project-card--transition-blackline-forensics {
+  view-transition-name: project-card-blackline-forensics;
+}
+
+.project-card--transition-voxel-renderer {
+  view-transition-name: project-card-voxel-renderer;
+}
+
+.project-card--transition-nskog-portfolio {
+  view-transition-name: project-card-nskog-portfolio;
+}
+
+.project-card--transition-ps4-dashboard {
+  view-transition-name: project-card-ps4-dashboard;
+}
+
+.project-card--transition-rust-rtp-gui {
+  view-transition-name: project-card-rust-rtp-gui;
+}
+
+.project-card--transition-collaborative-doc-editor {
+  view-transition-name: project-card-collaborative-doc-editor;
+}
+
 .projects-page .card4__project__showcase {
   display: flex;
   align-items: center;

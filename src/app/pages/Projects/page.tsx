@@ -16,9 +16,8 @@ export default function ProjectsPage() {
       <div className="card4__showcase">
         {projects.map((project) => (
           <div
-            className="card4__project"
+            className={`card4__project card4__project--${project.slug}`}
             key={project.repo}
-            style={{ viewTransitionName: `project-shell-${project.slug}` }}
           >
             <Link className="card4__project__showcase" href={`/pages/projects/${project.slug}`}>
               <ProjectCardShowcase

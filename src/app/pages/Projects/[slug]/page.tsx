@@ -30,8 +30,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         <StickyBackButton href="/pages/projects" className="project-detail__actions--top" />
 
         <div
-          className="project-detail__header-card"
-          style={{ viewTransitionName: `project-shell-${project.slug}` }}
+          className={`project-detail__header-card project-detail__header-card--${project.slug}`}
         >
           <ProjectCardShowcase
             owner={project.owner}

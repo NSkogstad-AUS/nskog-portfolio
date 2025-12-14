@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { RepoCardContributor, RepoCardData } from "./project-data";
 
 type ProjectCardShowcaseProps = {
@@ -23,7 +23,6 @@ export function ProjectCardShowcase({
   disableContributorLinks = false,
 }: ProjectCardShowcaseProps) {
   const [data, setData] = useState<RepoCardData>(fallback);
-  const cardRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -43,8 +42,11 @@ export function ProjectCardShowcase({
     };
   }, [owner, repo]);
 
-  const viewTransitionName = transitionKey ? `project-card-${transitionKey}` : "project-card";
   const shouldApply = alwaysTransitionName || Boolean(transitionKey);
+  const transitionModifier = transitionKey ?? "default";
+  const cardClassName = `project-card${
+    shouldApply ? ` project-card--transition-${transitionModifier}` : ""
+  }`;
 
   const contributors: RepoCardContributor[] = data.contributors?.length
     ? data.contributors
@@ -57,16 +59,7 @@ export function ProjectCardShowcase({
       ];
 
   return (
-    <div
-      ref={cardRef}
-      className="project-card"
-      style={shouldApply ? { viewTransitionName } : undefined}
-      onPointerDown={() => {
-        if (cardRef.current && shouldApply) {
-          cardRef.current.style.viewTransitionName = viewTransitionName;
-        }
-      }}
-    >
+    <div className={cardClassName}>
       <div className="project-card__header">
         <div className="project-card__top">
           <div className="project-card__controls">
