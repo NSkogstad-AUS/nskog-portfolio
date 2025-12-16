@@ -4,15 +4,11 @@ import { notFound } from "next/navigation";
 import { Link } from "next-view-transitions";
 import { ProjectCardShowcase } from "../ProjectCardShowcase";
 import { StickyBackButton } from "../StickyBackButton";
-import { findProject } from "../project-data";
+import { findProject, projects } from "../project-data";
 import { StatusBar } from "@/app/components/StatusBar";
 
-type ProjectDetailPageProps = {
-  params: Promise<{ slug: string }>;
-};
-
-export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-  const { slug } = await params;
+export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const project = findProject(slug);
 
   if (!project) {
@@ -103,3 +99,9 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     </section>
   );
 }
+
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }));
+}
+
+export const dynamicParams = false;

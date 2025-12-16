@@ -268,5 +268,7 @@ export const projects: ProjectEntry[] = [
   },
 ];
 
-export const findProject = (slug: string) =>
-  projects.find((project) => project.slug.toLowerCase() === slug.toLowerCase());
+export const findProject = (slug?: string) => {
+  if (!slug) return undefined;
+  return projects.find((project) => project.slug.toLowerCase() === slug.toLowerCase());
+};

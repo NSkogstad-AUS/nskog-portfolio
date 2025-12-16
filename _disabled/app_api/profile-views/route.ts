@@ -25,13 +25,15 @@ async function fetchRedis<T>(path: string, init?: RequestInit): Promise<T> {
     throw new Error("Redis environment variables are not configured.");
   }
 
+  const headers = new Headers(init?.headers as HeadersInit);
+  headers.set("Content-Type", "application/json");
+  if (redisToken) {
+    headers.set("Authorization", `Bearer ${redisToken}`);
+  }
+
   const res = await fetch(url, {
     ...init,
-    headers: {
-      ...authHeaders,
-      "Content-Type": "application/json",
-      ...(init?.headers ?? {}),
-    },
+    headers,
     cache: "no-store",
   });
 
