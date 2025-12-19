@@ -1109,7 +1109,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 300;
+  font-weight: 500;
   color: var(--text-strong);
 }
 
@@ -1176,7 +1176,20 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-weight: 300;
+  font-weight: 500;
+}
+
+.theme-card__header,
+.book-card__header,
+.location-card__header,
+.pin-card__header {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.book-card__header p {
+  margin: 0;
 }
 
 .location-card__header .bi {
@@ -1506,18 +1519,34 @@
     min-height: 13rem;
   }
 
+  .card5__button--blog {
+    display: none;
+  }
+
   .theme-card {
     padding: 0.75rem;
     gap: 0.6rem;
   }
 
-  .theme-card__header {
+  .theme-card__header,
+  .book-card__header,
+  .location-card__header,
+  .pin-card__header {
     font-size: 0.9rem;
   }
 
+  .theme-card__modes {
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+  }
+
   .theme-card__mode {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.35rem;
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.2rem;
   }
 
   .theme-card__swatches {
@@ -1525,11 +1554,31 @@
   }
 
   .book-card__explanation {
-    font-size: 0.85rem;
-    line-height: 1.3;
+    display: none;
   }
 
   .book-card__click {
     margin-top: 0.6rem;
+  }
+
+  .location-card {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .location-card__header {
+    font-size: 0.85rem;
+    line-height: 1.2;
+  }
+
+  .location-card__map {
+    aspect-ratio: 4 / 3;
+  }
+
+  .location-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    font-size: 0.85rem;
   }
 }

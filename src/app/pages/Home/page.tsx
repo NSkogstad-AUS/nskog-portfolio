@@ -733,7 +733,7 @@ export default function HomePage() {
         <div className="card5__button1 card5__button--consultation">
           <div className="book-card__header">
             <i className="bi bi-calendar-event" aria-hidden="true" />
-            <p>Let's Connect</p>
+            <p>Connect</p>
           </div>
 
           <div className="book-card__explanation">
@@ -751,7 +751,7 @@ export default function HomePage() {
           <div className="location-card">
             <div className="location-card__header">
               <i className="bi bi-geo-alt" aria-hidden="true" />
-              <span>Currently Based In</span>
+              <span>Location</span>
             </div>
 
             <div className="location-card__map">
@@ -778,7 +778,7 @@ export default function HomePage() {
           <div className="pin-card">
             <div className="pin-card__header">
               <i className="bi bi-images" aria-hidden="true" />
-              <span>My Pinterest</span>
+              <span>Pinterest</span>
             </div>
             <a href="https://pin.it/1F8pSbsu2" rel="noopener" target="_blank">
               <div className="pin-card__grid" aria-label="Pinterest style gallery" >
