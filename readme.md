@@ -11,4 +11,4 @@ For Commit Messages, we'll follow:
 
 Refer to the devlog.md file for a further development understanding on my part
 
--Further updates found below
+- This is the second build version
