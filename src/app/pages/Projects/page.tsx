@@ -20,7 +20,7 @@ export default function ProjectsPage() {
             key={project.repo}
             id={project.slug}
           >
-            <Link className="card4__project__showcase" href={`/pages/projects/${project.slug}`}>
+            <Link className="card4__project__showcase" href={`/pages/projects/${project.slug}/`}>
               <ProjectCardShowcase
                 owner={project.owner}
                 repo={project.repo}
@@ -30,7 +30,7 @@ export default function ProjectsPage() {
                 disableContributorLinks
               />
             </Link>
-            <Link className="card4__project_explain" href={`/pages/projects/${project.slug}`}>
+            <Link className="card4__project_explain" href={`/pages/projects/${project.slug}/`}>
               <h1>{project.title}</h1>
               <p>{project.context}</p>
               <div className="card4__tags">

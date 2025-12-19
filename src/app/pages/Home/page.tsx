@@ -552,7 +552,7 @@ export default function HomePage() {
 
         <p>|</p>
 
-        <a className="card2__learn" href="/pages/about">
+        <a className="card2__learn" href="/pages/about/">
           <span>More about me</span>
           <i className="bi bi-arrow-right" aria-hidden="true"/>
         </a>
@@ -650,7 +650,7 @@ export default function HomePage() {
 
         <p>Featured Projects</p>
 
-        <a className="card4__viewall" href="/pages/projects">
+        <a className="card4__viewall" href="/pages/projects/">
           <span>View all</span>
           <i className="bi bi-arrow-right" aria-hidden="true"/>
         </a>
@@ -661,7 +661,7 @@ export default function HomePage() {
           <Link
             className={`card4__project card4__project--${project.slug}`}
             key={project.repo}
-            href={`/pages/projects#${project.slug}`}
+            href={`/pages/projects/#${project.slug}`}
           >
             <div className="card4__project__showcase">
               <ProjectCardShowcase

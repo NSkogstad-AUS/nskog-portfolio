@@ -166,7 +166,7 @@ export const projects: ProjectEntry[] = [
     approach:
       "Modeled the tile rail, quick actions, and details drawer. Added keyboard navigation to mimic controller input, layered gradients for the hero background, and kept the codebase lean with Vite + TypeScript.",
     fallback: {
-      name: "nskog-portfolio",
+      name: "nskog-react-ps4website",
       fullName: "NSkogstad-AUS/nskog-react-ps4website",
       stars: 1,
       description: "A website that has the look and functionality of the Playstation 4 home screen. Made for fun.",
@@ -203,7 +203,7 @@ export const projects: ProjectEntry[] = [
     approach:
       "Used eframe/egui for a native-feeling panel, wired gstreamer pipeline controls, and added small UDP listeners to surface stream events. Everything ships as one Rust binary so setup is painless.",
     fallback: {
-      name: "nskog-portfolio",
+      name: "urt_gui_app",
       fullName: "NSkogstad-AUS/urt_gui_app",
       stars: 1,
       description:
@@ -241,7 +241,7 @@ export const projects: ProjectEntry[] = [
     approach:
       "Node + Socket.io broker changes, MongoDB persists docs, and the React/Quill front-end broadcasts and applies updates in real time. Each doc lives in its own room so traffic stays scoped.",
     fallback: {
-      name: "nskog-portfolio",
+      name: "nskog-realtimeDocEditor",
       fullName: "NSkogstad-AUS/nskog-realtimeDocEditor",
       stars: 1,
       description:

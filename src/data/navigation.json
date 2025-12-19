@@ -2,7 +2,7 @@
   "brand": "My Portfolio Navigation",
   "links": [
     { "label": "Home", "href": "/" },
-    { "label": "Projects", "href": "/pages/projects" },
-    { "label": "About", "href": "/pages/about" }
+    { "label": "Projects", "href": "/pages/projects/" },
+    { "label": "About", "href": "/pages/about/" }
   ]
 }

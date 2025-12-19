@@ -7,9 +7,14 @@ import { StickyBackButton } from "../StickyBackButton";
 import { findProject, projects } from "../project-data";
 import { StatusBar } from "@/app/components/StatusBar";
 
-export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const project = findProject(slug);
+export default async function ProjectDetailPage({
+  params,
+}: {
+  params: { slug: string } | Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const normalizedSlug = slug.replace(/\/+$/, "");
+  const project = findProject(normalizedSlug);
 
   if (!project) {
     return notFound();
@@ -23,7 +28,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
   return (
     <section className="project-detail project-detail--simple">
       <div className="project-detail__shell">
-        <StickyBackButton href="/pages/projects" className="project-detail__actions--top" />
+        <StickyBackButton href="/pages/projects/" className="project-detail__actions--top" />
 
         <div
           className={`project-detail__header-card project-detail__header-card--${project.slug}`}
@@ -104,4 +109,5 @@ export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 
+export const dynamic = "force-static";
 export const dynamicParams = false;

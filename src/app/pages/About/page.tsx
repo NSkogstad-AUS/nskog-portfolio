@@ -65,7 +65,7 @@ export default function AboutPage() {
               based in - you guessed it - Melbourne, Australia.
               <br/>
               <br/>
-              Some{" "}<a className="card__link" href="projects">notable projects</a>{" "}
+              Some{" "}<a className="card__link" href="/pages/projects/">notable projects</a>{" "}
               of mine are involved with the University of Melbourne, like a gui made for the{" "}
               <a className="card__link" href="https://www.facebook.com/unimelbrover/" target="_blank" rel="noopener noreferrer">Unimelb Rover Team</a> to facilitate rover to team communication,
               Trained a small CNN to determine fill-level estimation for the Humanoid team in the{" "}
