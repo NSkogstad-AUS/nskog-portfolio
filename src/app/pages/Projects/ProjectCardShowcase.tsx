@@ -24,6 +24,9 @@ export function ProjectCardShowcase({
 }: ProjectCardShowcaseProps) {
   const [data, setData] = useState<RepoCardData>(fallback);
 
+  const formatRepoLabel = (value: string) =>
+    value.replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim();
+
   useEffect(() => {
     let cancelled = false;
     const load = async () => {
@@ -56,7 +59,10 @@ export function ProjectCardShowcase({
           avatar: `https://github.com/${owner}.png?size=96`,
           profileUrl: `https://github.com/${owner}`,
         },
-      ];
+    ];
+
+  const repoName = data.name ?? repo;
+  const repoLabel = formatRepoLabel(repoName);
 
   return (
     <div className={cardClassName}>
@@ -75,7 +81,9 @@ export function ProjectCardShowcase({
         <div className="project-card__title">
           <span className="project-card__org">{owner}</span>
           <span className="project-card__slash">/</span>
-          <span className="project-card__repo">{data.name ?? repo}</span>
+          <span className="project-card__repo" title={repoName}>
+            {repoLabel}
+          </span>
         </div>
       </div>
 

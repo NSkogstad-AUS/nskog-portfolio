@@ -63,7 +63,7 @@ export function Navbar() {
                 ) : (
                   <span className={`navbar__crumb${isActive ? " is-active" : ""}`}>{part}</span>
                 )}
-                {idx < crumbs.length && <span className="navbar__divider">/</span>}
+                {idx < crumbs.length - 1 && <span className="navbar__divider">/</span>}
               </React.Fragment>
             );
           })}
