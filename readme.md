@@ -20,10 +20,6 @@ This website is my personal portfolio, outlining the projects I've completed, ex
 
 Node.js 18+ is required (see `package.json`).
 
-### Environment Variables
-- `GITHUB_TOKEN` (optional) - increases GitHub API rate limits for repo cards and recent commits.
-- `NEXT_PUBLIC_MAPTILER_KEY` (optional) - set your own MapTiler key for the home page map.
-
 ### Project Structure
 - `src/app` - App Router layout, routes, and global styles.
 - `src/app/pages` - Page sections (home, about, projects).
@@ -41,5 +37,4 @@ Use the following prefixes:
 - `chore` - tasks that do not change application logic
 - `fun` - purely for fun
 
-### Build Version
-- 2
+### Build Version: 2
