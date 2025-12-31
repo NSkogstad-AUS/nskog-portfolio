@@ -1,5 +1,5 @@
 @import "./components/navbar.css";
-@import "./pages/Home/home.css";
+@import "./pages/home/home.css";
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap");
 /* stylelint-disable at-rule-no-unknown */
 @tailwind base;
