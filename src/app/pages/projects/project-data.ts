@@ -113,7 +113,7 @@ export const projects: ProjectEntry[] = [
     ],
     tags: ["c++", "openGL", "GLFW", "GLM", "GLSL", "voxels", "rendering", "engine"],
     timeline: "2024",
-    role: "Graphics tinkerer",
+    role: "Developer  ",
     stack: ["C++17", "OpenGL", "GLFW", "GLM", "GLSL"],
     highlights: [
       "Implemented greedy meshing per chunk to collapse thousands of voxel faces into tight vertex buffers.",
@@ -196,20 +196,17 @@ export const projects: ProjectEntry[] = [
       {
         src: "/assets/sh-nv1-home.png",
         alt: "Noval AI homepage hero section",
-        caption: "Homepage hero and value proposition layout.",
       },
       {
         src: "/assets/sh-nv2-explore.png",
         alt: "Noval AI feature exploration section",
-        caption: "Feature exploration and product messaging blocks.",
       },
       {
         src: "/assets/sh-nv3-contact.png",
         alt: "Noval AI contact section",
-        caption: "Contact and lead capture section.",
       },
     ],
-    tags: ["react", "node.js", "typescript", "frontend", "ai", "landing-page"],
+    tags: ["react", "node.js", "typescript", "frontend", "freelance", "AI"],
     timeline: "2024",
     role: "Front-end Engineer",
     stack: ["React", "Node.js", "TypeScript"],
