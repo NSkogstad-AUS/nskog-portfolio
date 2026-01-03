@@ -24,6 +24,7 @@ export type ProjectEntry = {
   context: string;
   approach: string;
   fallback: RepoCardData;
+  images?: ProjectImage[];
   tags: string[];
   timeline: string;
   role: string;
@@ -31,6 +32,12 @@ export type ProjectEntry = {
   highlights: string[];
   learnings: string[];
   links: ProjectLink[];
+};
+
+export type ProjectImage = {
+  src: string;
+  alt: string;
+  caption?: string;
 };
 
 export const projects: ProjectEntry[] = [
@@ -52,6 +59,12 @@ export const projects: ProjectEntry[] = [
       description: "Weighs the soul of incoming HTTP requests to stop AI crawlers",
       contributors: [],
     },
+    images: [
+      {
+        src: "/assets/sh-blackline.png",
+        alt: "Blackline Forensics interface preview",
+      },
+    ],
     tags: ["fastAPI", "postgresSQL", "AWS integration", "pytorch", "docker", "ML"],
     timeline: "2024",
     role: "Full-stack & ML Engineer",
@@ -92,6 +105,12 @@ export const projects: ProjectEntry[] = [
       description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
       contributors: [],
     },
+    images: [
+      {
+        src: "/assets/sh-voxelRenderer.png",
+        alt: "Voxel renderer screenshot",
+      },
+    ],
     tags: ["c++", "openGL", "GLFW", "GLM", "GLSL", "voxels", "rendering", "engine"],
     timeline: "2024",
     role: "Graphics tinkerer",
@@ -151,6 +170,65 @@ export const projects: ProjectEntry[] = [
     links: [
       { label: "Live Site", href: "https://nskog-portfolio.vercel.app/", icon: "box-arrow-up-right" },
       { label: "GitHub Repo", href: "https://github.com/NSkogstad-AUS/nskog-portfolio", icon: "github" },
+    ],
+  },
+  {
+    slug: "noval-ai-website",
+    owner: "NSkogstad-AUS",
+    repo: "nskog-saas-novalai",
+    title: "Noval AI Website",
+    summary: "AI-themed marketing site for Noval AI built in React/Node with a private GitHub repo.",
+    customDescription:
+      "Modern, AI-themed website for Noval AI with product messaging, feature highlights, and contact flow.",
+    context:
+      "Built to give Noval AI a sleek, credible front door for businesses and individuals exploring AI tooling. The focus was on clear messaging, confident visuals, and quick scanning of capabilities.",
+    approach:
+      "Mapped out the hero, feature bands, and CTA flow, then built a front-end-only React site with reusable sections and a responsive layout. Subtle motion and glow accents keep the page feeling futuristic without burying the copy.",
+    fallback: {
+      name: "nskog-saas-novalai",
+      fullName: "NSkogstad-AUS/nskog-saas-novalai",
+      stars: 1,
+      description:
+        "Modern, AI-themed website for Noval AI with product messaging, feature highlights, and contact flow.",
+      contributors: [],
+    },
+    images: [
+      {
+        src: "/assets/sh-nv1-home.png",
+        alt: "Noval AI homepage hero section",
+        caption: "Homepage hero and value proposition layout.",
+      },
+      {
+        src: "/assets/sh-nv2-explore.png",
+        alt: "Noval AI feature exploration section",
+        caption: "Feature exploration and product messaging blocks.",
+      },
+      {
+        src: "/assets/sh-nv3-contact.png",
+        alt: "Noval AI contact section",
+        caption: "Contact and lead capture section.",
+      },
+    ],
+    tags: ["react", "node.js", "typescript", "frontend", "ai", "landing-page"],
+    timeline: "2024",
+    role: "Front-end Engineer",
+    stack: ["React", "Node.js", "TypeScript"],
+    highlights: [
+      "Designed a hero + feature narrative that makes the AI offering easy to scan for new visitors.",
+      "Built modular sections so new offerings and case studies can be dropped in quickly.",
+      "Focused on polish with gradients, glow accents, and restrained motion for a high-tech feel.",
+    ],
+    learnings: [
+      "AI products benefit from clear, concrete outcomes more than generic buzzwords.",
+      "Keeping visuals bold but minimal helps enterprise buyers focus on the message.",
+      "Reusable section patterns speed up iteration when marketing copy shifts.",
+    ],
+    links: [
+      {
+        label: "Private GitHub Repo",
+        href: "https://github.com/NSkogstad-AUS/nskog-saas-novalai",
+        icon: "github",
+      },
     ],
   },
   {

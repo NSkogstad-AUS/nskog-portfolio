@@ -117,6 +117,56 @@
   gap: 0.6rem;
 }
 
+.project-detail__gallery {
+  gap: 0.9rem;
+}
+
+.project-detail__gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+
+.project-detail__gallery-figure {
+  margin: 0;
+  padding: 0.4rem;
+  border-radius: 14px;
+  background: var(--surface-raised, #cbd3dc);
+  border: 1px solid var(--border-soft, rgba(0, 0, 0, 0.08));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.project-detail__gallery-button {
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 10px;
+  display: block;
+}
+
+.project-detail__gallery-button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent-primary, #c7765c) 60%, transparent);
+  outline-offset: 3px;
+}
+
+.project-detail__gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  object-fit: cover;
+}
+
+.project-detail__gallery-caption {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-subtle, #657088);
+  font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+}
+
 .project-detail__section h2,
 .project-detail__section h3 {
   margin: 0;
@@ -202,6 +252,75 @@
   transform: translate(0, 0);
   transition: transform 260ms ease, box-shadow 260ms ease;
   will-change: transform;
+}
+
+.project-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: block;
+  z-index: 999;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.project-lightbox__card {
+  position: fixed;
+  background: transparent;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    top 240ms ease,
+    left 240ms ease,
+    width 240ms ease,
+    height 240ms ease,
+    opacity 200ms ease;
+}
+
+.project-lightbox__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.project-lightbox__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.project-lightbox__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+  z-index: 2;
+}
+
+.project-lightbox__close:hover,
+.project-lightbox__close:focus-visible {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.project-lightbox.is-visible {
+  opacity: 1;
 }
 
 .project-detail__sticky-back.is-stuck {

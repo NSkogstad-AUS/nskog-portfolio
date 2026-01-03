@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Link } from "next-view-transitions";
 import { ProjectCardShowcase } from "../ProjectCardShowcase";
 import { StickyBackButton } from "../StickyBackButton";
+import { ProjectImageGallery } from "../ProjectImageGallery";
 import { findProject, projects } from "../project-data";
 import { StatusBar } from "@/app/components/StatusBar";
 
@@ -77,6 +78,13 @@ export default async function ProjectDetailPage({
           <p>{project.context}</p>
           <p>{project.approach}</p>
         </article>
+
+        {project.images?.length ? (
+          <article className="project-detail__section project-detail__gallery">
+            <h3>Screens</h3>
+            <ProjectImageGallery images={project.images} slug={project.slug} />
+          </article>
+        ) : null}
 
         <article className="project-detail__section">
           <h3>Key Features</h3>
