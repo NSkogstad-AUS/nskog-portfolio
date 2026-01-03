@@ -31,9 +31,18 @@ export function ProjectCardShowcase({
     let cancelled = false;
     const load = async () => {
       try {
-        const res = await fetch(`/api/repo-card?owner=${owner}&repo=${repo}`);
+        const res = await fetch(
+          `/api/repo-card?owner=${encodeURIComponent(owner)}&repo=${encodeURIComponent(repo)}`
+        );
         if (!res.ok) return;
         const json = await res.json();
+        const expectedFullName = `${owner}/${repo}`.toLowerCase();
+        if (
+          typeof json?.fullName === "string" &&
+          json.fullName.toLowerCase() !== expectedFullName
+        ) {
+          return;
+        }
         if (!cancelled) setData((prev) => ({ ...prev, ...json }));
       } catch (err) {
         console.warn("repo card fetch failed", err);

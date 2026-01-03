@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getRepoCardData } from "@/lib/github";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const owner = searchParams.get("owner");
@@ -15,7 +17,7 @@ export async function GET(req: Request) {
     return NextResponse.json(data, {
       status: 200,
       headers: {
-        "cache-control": "public, max-age=300, stale-while-revalidate=600",
+        "cache-control": "private, max-age=300, stale-while-revalidate=600",
       },
     });
   } catch (error) {

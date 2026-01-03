@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 
-const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
-const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+const redisUrl = process.env.UPSTASH_REDIS_REST_URL ?? process.env.UPSTASH_REDIS_URL;
+const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.UPSTASH_REDIS_TOKEN;
 const VIEW_KEY = "profile:view-count";
 
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -13,6 +14,8 @@ const authHeaders =
         Authorization: `Bearer ${redisToken}`,
       }
     : {};
+
+const noStoreHeaders = { "cache-control": "no-store" };
 
 function buildUrl(path: string) {
   if (!redisUrl) return null;
@@ -50,10 +53,10 @@ export async function POST() {
     const data = await fetchRedis<{ result: number }>(`incr/${encodeURIComponent(VIEW_KEY)}`, {
       method: "POST",
     });
-    return NextResponse.json({ total: data.result }, { status: 200 });
+    return NextResponse.json({ total: data.result }, { status: 200, headers: noStoreHeaders });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: message }, { status: 500, headers: noStoreHeaders });
   }
 }
 
@@ -68,9 +71,12 @@ export async function GET() {
         : typeof data.result === "string"
           ? Number.parseInt(data.result, 10)
           : data.result;
-    return NextResponse.json({ total: Number.isFinite(total) ? total : 0 }, { status: 200 });
+    return NextResponse.json(
+      { total: Number.isFinite(total) ? total : 0 },
+      { status: 200, headers: noStoreHeaders }
+    );
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: message }, { status: 500, headers: noStoreHeaders });
   }
 }
