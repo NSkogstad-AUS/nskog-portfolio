@@ -10,6 +10,10 @@ export type RepoCardData = {
   stars: number;
   description: string | null;
   contributors: RepoCardContributor[];
+  footerMetricValue?: number;
+  footerMetricLabel?: string;
+  footerMetricIcon?: string;
+  hideFooterAvatars?: boolean;
 };
 
 export type ProjectLink = { label: string; href: string; icon?: string };
@@ -41,6 +45,48 @@ export type ProjectImage = {
 };
 
 export const projects: ProjectEntry[] = [
+  {
+    slug: "aden-hive",
+    owner: "aden-hive",
+    repo: "hive",
+    title: "Hive",
+    summary: "Outcome-driven agent framework for building, running, and evolving autonomous AI worker systems.",
+    customDescription:
+      "Outcome-driven agent framework from Aden for building adaptive multi-agent systems with human-in-the-loop controls.",
+    context:
+      "Hive is an open-source framework from Aden for teams that need AI agents to run real business processes, not just toy demos. The product centers on describing an outcome in natural language, then letting a queen agent generate and coordinate a swarm of worker agents around that goal.",
+    approach:
+      "The framework combines goal-driven graph generation, parallel execution, human-in-the-loop nodes, browser tooling, and real-time observability so agents can be deployed with stronger guardrails. It is designed to capture failures, evolve the graph, and redeploy, which makes the system feel much closer to an adaptive production runtime than a static chain of prompts.",
+    fallback: {
+      name: "hive",
+      fullName: "aden-hive/hive",
+      stars: 9600,
+      description:
+        "Outcome-driven agent framework from Aden for building adaptive multi-agent systems with human-in-the-loop controls.",
+      contributors: [],
+      footerMetricValue: 183,
+      footerMetricLabel: "Contributors",
+      footerMetricIcon: "people",
+      hideFooterAvatars: true,
+    },
+    tags: ["AI", "YC Startup", "Agentic AI", "Open Source"],
+    timeline: "2026",
+    role: "Open Source Contributor",
+    stack: ["Python", "TypeScript", "Multi-Agent Systems", "MCP", "LiteLLM"],
+    highlights: [
+      "Goal-driven generation: lets users describe outcomes in natural language and turns them into agent graphs plus connection code.",
+      "Adaptive runtime: captures failures, recalibrates against objectives, and evolves the agent graph over time.",
+      "Operational guardrails: includes human-in-the-loop intervention, browser use, credential management, and live observability for production-style workflows.",
+    ],
+    learnings: [
+      "Agent platforms become more useful when they optimize for outcomes and control loops instead of only prompt orchestration.",
+      "Human-in-the-loop tooling is a product feature, not just a safety add-on, when agents touch real workflows.",
+      "A strong open-source distribution model can make a complex AI runtime easier to evaluate, trust, and adopt.",
+    ],
+    links: [
+      { label: "GitHub Repo", href: "https://github.com/aden-hive/hive", icon: "github" },
+    ],
+  },
   {
     slug: "blackline-forensics",
     owner: "NSkogstad-AUS",

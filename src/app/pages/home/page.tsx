@@ -189,6 +189,27 @@ type FeaturedProject = {
 
 const featuredProjects: FeaturedProject[] = [
   {
+    slug: "aden-hive",
+    owner: "aden-hive",
+    repo: "hive",
+    title: "Hive",
+    customDescription:
+      "Outcome-driven agent framework from Aden for building adaptive multi-agent systems with human-in-the-loop controls.",
+    fallback: {
+      name: "hive",
+      fullName: "aden-hive/hive",
+      stars: 9600,
+      description:
+        "Outcome-driven agent framework from Aden for building adaptive multi-agent systems with human-in-the-loop controls.",
+      contributors: [],
+      footerMetricValue: 183,
+      footerMetricLabel: "Contributors",
+      footerMetricIcon: "people",
+      hideFooterAvatars: true,
+    },
+    tags: ["AI", "YC Startup", "Agentic AI", "Open Source"],
+  },
+  {
     slug: "blackline-forensics",
     owner: "NSkogstad-AUS",
     repo: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
@@ -202,21 +223,6 @@ const featuredProjects: FeaturedProject[] = [
       contributors: [],
     },
     tags: ["ml", "cv", "web", "team-project"],
-  },
-  {
-    slug: "voxel-renderer",
-    owner: "NSkogstad-AUS",
-    repo: "cpp-voxel-renderer",
-    title: "Voxel Renderer",
-    customDescription: "Small OpenGL playground that renders voxel chunks and a simple height-map terrain.",
-    fallback: {
-      name: "cpp-voxel-renderer",
-      fullName: "NSkogstad-AUS/cpp-voxel-renderer",
-      stars: 1,
-      description: "GPU-accelerated voxel renderer with playful lighting experiments and shader tricks",
-      contributors: [],
-    },
-    tags: ["opengl", "cpp", "graphics", "voxels"],
   },
 ];
 

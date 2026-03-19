@@ -551,6 +551,10 @@
   view-transition-name: project-shell-blackline-forensics;
 }
 
+.card4__project--aden-hive {
+  view-transition-name: project-shell-aden-hive;
+}
+
 .card4__project--voxel-renderer {
   view-transition-name: project-shell-voxel-renderer;
 }
@@ -577,6 +581,10 @@
 
 .project-card--transition-blackline-forensics {
   view-transition-name: project-card-blackline-forensics;
+}
+
+.project-card--transition-aden-hive {
+  view-transition-name: project-card-aden-hive;
 }
 
 .project-card--transition-voxel-renderer {

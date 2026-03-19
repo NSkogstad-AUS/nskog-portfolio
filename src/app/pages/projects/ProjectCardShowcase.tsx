@@ -72,6 +72,10 @@ export function ProjectCardShowcase({
 
   const repoName = data.name ?? repo;
   const repoLabel = formatRepoLabel(repoName);
+  const footerMetricValue = data.footerMetricValue;
+  const footerMetricLabel = data.footerMetricLabel;
+  const showFooterMetric = footerMetricValue != null && Boolean(footerMetricLabel);
+  const showAvatars = !data.hideFooterAvatars && !showFooterMetric;
 
   return (
     <div className={cardClassName}>
@@ -101,40 +105,48 @@ export function ProjectCardShowcase({
       </p>
 
       <div className="project-card__footer">
-        <div className="project-card__avatars">
-          {contributors.map((contributor, i) => (
-            disableContributorLinks ? (
-              <span
-                key={`${contributor.login}-${i}`}
-                className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
-                aria-label={`@${contributor.login}`}
-                title={`@${contributor.login}`}
-              >
-                {contributor.avatar ? (
-                  <img src={contributor.avatar} alt={`@${contributor.login} avatar`} />
-                ) : null}
-              </span>
-            ) : (
-              <a
-                key={`${contributor.login}-${i}`}
-                className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
-                href={contributor.profileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`@${contributor.login}`}
-                title={`@${contributor.login}`}
-              >
-                {contributor.avatar ? (
-                  <img src={contributor.avatar} alt={`@${contributor.login} avatar`} />
-                ) : null}
-              </a>
-            )
-          ))}
-        </div>
+        {showAvatars ? (
+          <div className="project-card__avatars">
+            {contributors.map((contributor, i) => (
+              disableContributorLinks ? (
+                <span
+                  key={`${contributor.login}-${i}`}
+                  className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
+                  aria-label={`@${contributor.login}`}
+                  title={`@${contributor.login}`}
+                >
+                  {contributor.avatar ? (
+                    <img src={contributor.avatar} alt={`@${contributor.login} avatar`} />
+                  ) : null}
+                </span>
+              ) : (
+                <a
+                  key={`${contributor.login}-${i}`}
+                  className={`project-card__avatar project-card__avatar--${((i % 4) + 1) as 1 | 2 | 3 | 4}`}
+                  href={contributor.profileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`@${contributor.login}`}
+                  title={`@${contributor.login}`}
+                >
+                  {contributor.avatar ? (
+                    <img src={contributor.avatar} alt={`@${contributor.login} avatar`} />
+                  ) : null}
+                </a>
+              )
+            ))}
+          </div>
+        ) : null}
         <span className="project-card__contributors">
-          {data.contributors?.length
-            ? `${data.contributors.length} Contributors`
-            : "Contributors"}
+          {showFooterMetric ? (
+            <>
+              {footerMetricValue.toLocaleString()} {footerMetricLabel}
+            </>
+          ) : data.contributors?.length ? (
+            `${data.contributors.length} Contributors`
+          ) : (
+            "Contributors"
+          )}
         </span>
       </div>
     </div>
