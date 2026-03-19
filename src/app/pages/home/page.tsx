@@ -66,6 +66,17 @@ const pinImages = [
 const expEntries: ExpEntry[] = [
   {
     kind: "experience",
+    company: "Aden",
+    role: "Open Source Developer",
+    period: "Feb 2026 – Present",
+    bullets: [
+      "Approached directly by CEO to build and ship product features and development.",
+      "Featured in multiple releases as a key contributor.",
+    ],
+    logo: "/assets/lg-aden.jpg",
+  },
+  {
+    kind: "experience",
     company: "CISSA",
     role: "Industry Officer",
     period: "Mar 2025 – Present",
@@ -142,20 +153,20 @@ const educationEntries: EduEntry[] = [
   {
     kind: "edu",
     school: "University of Melbourne",
-    program: "Master of Software Engineering",
-    period: "2025-Present",
+    program: "Master of Software Engineering (Artificial Intelligence)",
+    period: "2025 – Present",
     bullets: [
-      "Coursework in distributed systems, software architecture, and AI",
+      "Focused on artificial intelligence, with study spanning how modern AI systems are built, evaluated, and applied within real software engineering workflows.",
     ],
     logo: "/assets/lg-unimelb.png",
   },
   {
     kind: "edu",
     school: "University of Melbourne",
-    program: "Bachelor of Computing & Software Systems",
+    program: "Bachelor of Science (Computing & Software Systems)",
     period: "2023 – 2025",
     bullets: [
-      "Focused on full-stack development and mobile applications",
+      "Built a strong foundation in core software engineering topics including data structures and algorithms, software modelling and design, full-stack development, mobile applications, and the broader principles used to design reliable, maintainable systems.",
     ],
     logo: "/assets/lg-unimelb.png",
   },
