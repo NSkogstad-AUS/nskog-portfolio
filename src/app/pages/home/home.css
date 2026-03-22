@@ -252,7 +252,6 @@
   line-height: 1;
   cursor: pointer;
   transition: all 150ms ease;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
 .card3__toggle:hover {
@@ -275,7 +274,6 @@
 .card3__tab {
   padding: 0.45rem 0.9rem;
   border-radius: 8.2px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid var(--border-strong);
   
   flex: 1;
@@ -306,7 +304,6 @@
 .card3__panel {
   background: var(--surface-raised);
   border-radius: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
   border: 1px solid var(--border-strong);
   width: 97.2%;
   position: relative;
@@ -673,7 +670,6 @@
   border-color: rgba(var(--accent-primary-rgb, 244, 139, 102), 0.9);
   background: rgba(var(--accent-primary-rgb, 244, 139, 102), 0.08);
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
 }
 
 .project-card__header {
@@ -934,7 +930,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 18px 32px rgba(15, 23, 42, 0.08);
 }
 
 .theme-card {
@@ -980,7 +975,6 @@
   font-weight: 300;
   font-size: 0.85rem;
   letter-spacing: 0.01em;
-  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
   transition: all 160ms ease;
   appearance: none;
 }
@@ -994,7 +988,6 @@
 .theme-card__mode.is-active {
   color: var(--accent);
   border-color: var(--accent);
-  box-shadow: 0 12px 24px rgba(var(--accent-primary-rgb, 244, 139, 102), 0.18);
 }
 
 .theme-card__swatches {
@@ -1010,7 +1003,6 @@
   aspect-ratio: 1 / 1;
   border-radius: 9px;
   border: 2px solid transparent;
-  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
   cursor: pointer;
   transition: transform 140ms ease, box-shadow 180ms ease;
   appearance: none;
@@ -1019,7 +1011,6 @@
 
 .theme-card__swatch:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
 }
 
 .theme-card__swatch:focus-visible {
@@ -1102,7 +1093,6 @@
   justify-content: flex-start;
   gap: 0.75rem;
   padding: 1rem;
-  box-shadow: 0 18px 32px rgba(15, 23, 42, 0.08);
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
 }
 
@@ -1188,7 +1178,6 @@
   break-inside: avoid;
   margin: 0 0 0.75rem;
   border-radius: 12px;
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
   overflow: hidden;
   border: 1px solid var(--border-soft);
   width: 100%;
@@ -1201,8 +1190,7 @@
 .pin-card__item:hover,
 .pin-card__item:focus-visible {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 226, 122, 88), 0.25),
-    0 8px 18px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 226, 122, 88), 0.25);
 }
 
 .pin-card__item img {
@@ -1358,7 +1346,6 @@
   height: 18px;
   border-radius: 8px;
   background: rgba(var(--accent-primary-rgb, 244, 139, 102), 0.15);
-  box-shadow: 0 8px 18px rgba(var(--accent-primary-rgb, 244, 139, 102), 0.2);
   color: var(--accent-primary);
   display: inline-flex;
   align-items: center;
