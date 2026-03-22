@@ -305,6 +305,7 @@
   background: var(--surface-raised);
   border-radius: 12px;
   border: 1px solid var(--border-strong);
+  box-shadow: var(--card-shadow-soft);
   width: 97.2%;
   position: relative;
   margin-left: 0rem;
@@ -907,6 +908,7 @@
   width: 100%;
   min-height: 16rem;
   border-radius: 12px;
+  box-shadow: var(--card-shadow-soft);
 }
 
 .card5__button2 {
@@ -916,6 +918,7 @@
   min-height: 16rem;
   grid-column: span 2;
   border-radius: 12px;
+  box-shadow: var(--card-shadow-soft);
 }
 
 .card5__snoopy {
@@ -1307,6 +1310,7 @@
   min-width: 0;
   margin: 0;
   border-radius: 14px;
+  box-shadow: var(--card-shadow-soft);
 }
 
 .commits-card {
