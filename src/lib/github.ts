@@ -32,6 +32,15 @@ export type RecentCommit = {
   language?: string | null;
 };
 
+export type SiteCommit = {
+  repo: string;
+  sha: string;
+  shortSha: string;
+  message: string;
+  url: string;
+  timestamp: string;
+};
+
 type CommitStub = RecentCommit & { apiUrl: string };
 
 function buildHeaders(acceptOverride?: string): Record<string, string> {
@@ -280,4 +289,49 @@ export async function getRecentCommits(username: string, limit = 5): Promise<Rec
 
   const trimmed = commits.slice(0, limit);
   return fetchStatsFor(trimmed, eventHeaders);
+}
+
+export async function getSiteCommit(): Promise<SiteCommit | null> {
+  const sha =
+    process.env.COMMIT_REF ||
+    process.env.VERCEL_GIT_COMMIT_SHA ||
+    process.env.GITHUB_SHA ||
+    process.env.NEXT_PUBLIC_SITE_COMMIT_REF ||
+    null;
+
+  if (!sha) return null;
+
+  const repo =
+    process.env.GITHUB_REPOSITORY ||
+    process.env.SITE_REPOSITORY ||
+    process.env.NEXT_PUBLIC_SITE_REPOSITORY ||
+    "NSkogstad-AUS/nskog-portfolio";
+
+  const headers = buildHeaders();
+  const res = await fetch(`${GH_API}/repos/${repo}/commits/${sha}`, {
+    headers,
+    next: { revalidate: 300 },
+  });
+
+  if (!res.ok) {
+    throw new Error(`Site commit fetch failed (${res.status})`);
+  }
+
+  const commitJson = await res.json();
+  const fullSha = typeof commitJson?.sha === "string" ? commitJson.sha : sha;
+
+  return {
+    repo,
+    sha: fullSha,
+    shortSha: fullSha.slice(0, 7),
+    message: typeof commitJson?.commit?.message === "string" ? commitJson.commit.message : "Commit",
+    url:
+      typeof commitJson?.html_url === "string"
+        ? commitJson.html_url
+        : `https://github.com/${repo}/commit/${fullSha}`,
+    timestamp:
+      typeof commitJson?.commit?.author?.date === "string"
+        ? commitJson.commit.author.date
+        : new Date().toISOString(),
+  };
 }

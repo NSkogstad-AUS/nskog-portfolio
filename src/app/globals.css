@@ -221,12 +221,8 @@ main {
 
 .status-bar__group--links {
   justify-content: flex-end;
-  gap: 0.55rem;
+  gap: 2rem;
   justify-self: flex-end;
-}
-
-.status-bar__divider {
-  color: var(--text-muted);
 }
 
 .status-bar__copy {
@@ -266,44 +262,57 @@ main {
 }
 
 .status-bar__views {
-  margin-right: 0.75rem;
   display: inline-flex;
   align-items: center;
-  position: relative;
-  padding-bottom: 0.05rem;
+  flex: 0 0 auto;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: 1px;
   transition: color 200ms ease;
-}
-
-.status-bar__views::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: var(--accent-primary);
-  transform: scaleX(0);
-  transform-origin: center;
-  opacity: 0;
-  transition: transform 200ms ease, opacity 200ms ease;
 }
 
 .status-bar__views:hover {
   color: var(--accent-primary);
 }
 
-.status-bar__views:hover::after,
-.status-bar__views:focus-visible::after {
-  transform: scaleX(1);
-  opacity: 1;
-}
-
 .status-bar__commit {
   font-family: "IBM Plex Mono", system-ui, -apple-system, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex: 0 0 auto;
 }
 
-.status-bar__group--links a,
+.status-bar__commit-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: 1px;
+  transition: color 200ms ease;
+}
+
+.status-bar__commit-link:hover,
+.status-bar__commit-link:focus-visible {
+  color: var(--accent-primary);
+}
+
+.status-bar__commit .bi {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.status-bar__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-left: -1rem;
+}
+
 .status-bar__icon-link {
+  position: relative;
   color: var(--text-strong);
   display: inline-flex;
   align-items: center;
@@ -332,8 +341,6 @@ main {
   transition: transform 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
-.status-bar__group--links a:hover,
-.status-bar__group--links a:focus-visible,
 .status-bar__icon-link:hover,
 .status-bar__icon-link:focus-visible {
   color: var(--accent-primary);

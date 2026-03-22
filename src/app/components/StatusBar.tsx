@@ -6,9 +6,16 @@ type StatusBarProps = {
   time?: string;
 };
 
+type SiteCommitData = {
+  shortSha: string;
+  message: string;
+  url: string;
+};
+
 export function StatusBar({ time }: StatusBarProps) {
   const [localTime, setLocalTime] = useState("");
   const [viewCount, setViewCount] = useState<number | null>(null);
+  const [siteCommit, setSiteCommit] = useState<SiteCommitData | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -57,6 +64,29 @@ export function StatusBar({ time }: StatusBarProps) {
   const displayTime = time || localTime;
   const [copied, setCopied] = useState(false);
 
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadSiteCommit = async () => {
+      try {
+        const res = await fetch("/api/site-commit", { cache: "no-store" });
+        if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+        const json = (await res.json()) as { commit?: SiteCommitData | null };
+        if (!cancelled) {
+          setSiteCommit(json.commit && typeof json.commit.shortSha === "string" ? json.commit : null);
+        }
+      } catch (err) {
+        console.warn("Could not load site commit", err);
+        if (!cancelled) setSiteCommit(null);
+      }
+    };
+
+    loadSiteCommit();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const handleCopyEmail = async () => {
     const email = "nicolai@skogstad.com";
     try {
@@ -75,42 +105,62 @@ export function StatusBar({ time }: StatusBarProps) {
       </div>
 
       <div className="status-bar__group status-bar__group--links" aria-label="External links">
+        {siteCommit ? (
+          <a
+            href={siteCommit.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="status-bar__commit status-bar__commit-link"
+            aria-label={`Active site commit ${siteCommit.shortSha}`}
+            title={siteCommit.message}
+          >
+            <i className="bi bi-bezier2" aria-hidden="true" />
+            <span>{siteCommit.shortSha}</span>
+          </a>
+        ) : (
+          <span className="status-bar__commit" aria-label="Active site commit unavailable">
+            <i className="bi bi-bezier2" aria-hidden="true" />
+            <span>—</span>
+          </span>
+        )}
         <span className="status-bar__views" aria-label="Profile views">
           {viewCount ?? "—"} views
         </span>
-        <button
-          type="button"
-          className="status-bar__copy-btn"
-          onClick={handleCopyEmail}
-          aria-label="Copy email"
-        >
-          <span className="status-bar__tooltip">{copied ? "Copied!" : "Copy email"}</span>
-          <i className="bi bi-clipboard" aria-hidden="true" />
-        </button>
-        <a href="mailto:nicolai@skogstad.com" aria-label="Email" className="status-bar__icon-link">
-          <span className="status-bar__tooltip">Email</span>
-          <i className="bi bi-envelope-fill" aria-hidden="true" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/nicolai-skogstad-8333a221b/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          className="status-bar__icon-link"
-        >
-          <span className="status-bar__tooltip">LinkedIn</span>
-          <i className="bi bi-linkedin" aria-hidden="true" />
-        </a>
-        <a
-          href="https://github.com/NSkogstad-AUS"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-          className="status-bar__icon-link"
-        >
-          <span className="status-bar__tooltip">GitHub</span>
-          <i className="bi bi-github" aria-hidden="true" />
-        </a>
+        <div className="status-bar__actions" aria-label="Footer actions">
+          <button
+            type="button"
+            className="status-bar__copy-btn"
+            onClick={handleCopyEmail}
+            aria-label="Copy email"
+          >
+            <span className="status-bar__tooltip">{copied ? "Copied!" : "Copy email"}</span>
+            <i className="bi bi-clipboard" aria-hidden="true" />
+          </button>
+          <a href="mailto:nicolai@skogstad.com" aria-label="Email" className="status-bar__icon-link">
+            <span className="status-bar__tooltip">Email</span>
+            <i className="bi bi-envelope-fill" aria-hidden="true" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/nicolai-skogstad-8333a221b/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="status-bar__icon-link"
+          >
+            <span className="status-bar__tooltip">LinkedIn</span>
+            <i className="bi bi-linkedin" aria-hidden="true" />
+          </a>
+          <a
+            href="https://github.com/NSkogstad-AUS"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="status-bar__icon-link"
+          >
+            <span className="status-bar__tooltip">GitHub</span>
+            <i className="bi bi-github" aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </div>
   );
