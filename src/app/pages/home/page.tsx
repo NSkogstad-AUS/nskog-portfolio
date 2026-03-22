@@ -417,7 +417,7 @@ function RecentCommitsCard({ username = DEFAULT_GITHUB_USER }: { username?: stri
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<"experience" | "edu">("experience");
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [activeTheme, setActiveTheme] = useState<ThemeName>(DEFAULT_THEME);
   const [accentIndex, setAccentIndex] = useState(DEFAULT_ACCENT_INDEX);
   const [bgEffectEnabled, setBgEffectEnabled] = useState(false);
