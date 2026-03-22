@@ -6,7 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { ThemeInitializer } from "./components/ThemeInitialiser";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Nicolai's Corner",
   description: "Personal site",
 };
 

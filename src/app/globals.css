@@ -62,7 +62,7 @@ body::-webkit-scrollbar {
 
 :root {
   color-scheme: light;
-  --page-bg: #e5e9ef;
+  --page-bg: rgba(239, 241, 245, 1);
   --surface-raised: #eff1f5;
   --surface-card: #f9fafb;
   --surface-accent: #a9b4c0;
@@ -124,7 +124,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: var(--page-bg, rgba(229, 233, 239));
+  background: var(--page-bg, rgba(239, 241, 245, 1));
   position: relative;
   display: flex;
   flex-direction: column;
