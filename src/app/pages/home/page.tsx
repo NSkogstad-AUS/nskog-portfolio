@@ -213,7 +213,7 @@ const featuredProjects: FeaturedProject[] = [
     slug: "lyra-airtable-clone",
     owner: "NSkogstad-AUS",
     repo: "nskog-lyra-airtable_clone",
-    title: "Lyra Airtable Clone",
+    title: "Airtable Clone",
     customDescription:
       "Full-stack Airtable clone with Google authentication, saved grid views, and virtualized large-table performance.",
     fallback: {
