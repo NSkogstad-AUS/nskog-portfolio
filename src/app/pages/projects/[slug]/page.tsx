@@ -11,7 +11,7 @@ import { StatusBar } from "@/app/components/StatusBar";
 export default async function ProjectDetailPage({
   params,
 }: {
-  params: { slug: string } | Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const normalizedSlug = slug.replace(/\/+$/, "");

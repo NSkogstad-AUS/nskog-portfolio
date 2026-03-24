@@ -210,19 +210,21 @@ const featuredProjects: FeaturedProject[] = [
     tags: ["AI", "YC Startup", "Agentic AI", "Open Source"],
   },
   {
-    slug: "blackline-forensics",
+    slug: "lyra-airtable-clone",
     owner: "NSkogstad-AUS",
-    repo: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-    title: "Blackline Forensics",
-    customDescription: "A machine learning deep-fake website developed in a team of 5 for a client",
+    repo: "nskog-lyra-airtable_clone",
+    title: "Lyra Airtable Clone",
+    customDescription:
+      "Full-stack Airtable clone with Google authentication, saved grid views, and virtualized large-table performance.",
     fallback: {
-      name: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-      fullName: "NSkogstad-AUS/Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
-      stars: 1,
-      description: "Weighs the soul of incoming HTTP requests to stop AI crawlers",
+      name: "nskog-lyra-airtable_clone",
+      fullName: "NSkogstad-AUS/nskog-lyra-airtable_clone",
+      stars: 0,
+      description:
+        "Full-stack Airtable clone with Google authentication, saved grid views, and virtualized large-table performance.",
       contributors: [],
     },
-    tags: ["ml", "cv", "web", "team-project"],
+    tags: ["tables", "saas", "next.js", "postgres"],
   },
 ];
 

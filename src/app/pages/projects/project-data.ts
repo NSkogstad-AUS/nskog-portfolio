@@ -88,6 +88,78 @@ export const projects: ProjectEntry[] = [
     ],
   },
   {
+    slug: "lyra-airtable-clone",
+    owner: "NSkogstad-AUS",
+    repo: "nskog-lyra-airtable_clone",
+    title: "Lyra Airtable Clone",
+    summary:
+      "Airtable-style data platform with Google auth, saved grid views, and virtualized performance up to 1,000,000 records.",
+    customDescription:
+      "Full-stack Airtable clone with Google authentication, movable tables, saved grid views, and fast large-record performance.",
+    context:
+      "Built as a product-style Airtable clone focused on making the tables page feel complete rather than shipping a shallow UI copy. The main challenge was getting spreadsheet-like interactions, per-user data isolation, and large-table performance to work together cleanly.",
+    approach:
+      "I used a T3 stack with Next.js, tRPC, Drizzle, PostgreSQL, NextAuth, TanStack Table, TanStack Virtual, and dnd-kit to recreate the main Airtable workflow. Search, filtering, sorting, and view state are pushed into the backend so large datasets stay responsive, while Google login, per-user bases, multiple grids, inline edits, and draggable tables keep the product feeling close to a real multi-user tool.",
+    fallback: {
+      name: "nskog-lyra-airtable_clone",
+      fullName: "NSkogstad-AUS/nskog-lyra-airtable_clone",
+      stars: 0,
+      description:
+        "Full-stack Airtable clone with Google authentication, saved grid views, and virtualized large-table performance.",
+      contributors: [],
+    },
+    images: [
+      {
+        src: "/assets/sh-air1-x.png",
+        alt: "Lyra Airtable clone login screen",
+        caption: "Google-authenticated entry flow for the Airtable clone.",
+      },
+      {
+        src: "/assets/sh-air2-x.png",
+        alt: "Lyra Airtable clone grid views interface",
+        caption: "Multiple grid views with sortable, hideable fields and saved table configuration.",
+      },
+      {
+        src: "/assets/sh-air3-x.png",
+        alt: "Lyra Airtable clone tables workspace",
+        caption: "Tables workspace with search, filtering, sorting, and large-record performance.",
+      },
+    ],
+    tags: ["next.js", "tRPC", "postgresSQL", "drizzle", "tanstack", "next-auth", "virtualization"],
+    timeline: "2026",
+    role: "Full-stack Engineer",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "tRPC",
+      "Drizzle ORM",
+      "PostgreSQL",
+      "NextAuth",
+      "TanStack Table",
+      "TanStack Virtual",
+      "dnd-kit",
+      "Tailwind CSS",
+    ],
+    highlights: [
+      "Large-scale tables: supports fast interaction across up to 1,000,000 records with virtualized scrolling and backend-driven queries.",
+      "Saved grid workflows: lets users create multiple grids, rename them, hide/show fields, sort columns, filter records, and search through table data.",
+      "Real product plumbing: includes Google authentication, user-specific data, inline editing, movable tables, and working backend services behind the tables page.",
+    ],
+    learnings: [
+      "Database-level search, filtering, and sorting matter once record counts get large; doing this client-side falls over quickly.",
+      "Spreadsheet-like products feel simple only when keyboard movement, inline edits, and drag interactions stay predictable together.",
+      "Per-user data boundaries and saved view configuration are core product features, not just backend details, in tools like Airtable.",
+    ],
+    links: [
+      { label: "Live Site", href: "https://nskog-lyra-airtable-clone.vercel.app", icon: "box-arrow-up-right" },
+      {
+        label: "GitHub Repo",
+        href: "https://github.com/NSkogstad-AUS/nskog-lyra-airtable_clone",
+        icon: "github",
+      },
+    ],
+  },
+  {
     slug: "blackline-forensics",
     owner: "NSkogstad-AUS",
     repo: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
