@@ -91,7 +91,7 @@ export const projects: ProjectEntry[] = [
     slug: "lyra-airtable-clone",
     owner: "NSkogstad-AUS",
     repo: "nskog-lyra-airtable_clone",
-    title: "Lyra Airtable Clone",
+    title: "Airtable Clone",
     summary:
       "Airtable-style data platform with Google auth, saved grid views, and virtualized performance up to 1,000,000 records.",
     customDescription:
@@ -111,21 +111,21 @@ export const projects: ProjectEntry[] = [
     images: [
       {
         src: "/assets/sh-air1-x.png",
-        alt: "Lyra Airtable clone login screen",
+        alt: "Airtable clone login screen",
         caption: "Google-authenticated entry flow for the Airtable clone.",
       },
       {
         src: "/assets/sh-air2-x.png",
-        alt: "Lyra Airtable clone grid views interface",
+        alt: "Airtable clone grid views interface",
         caption: "Multiple grid views with sortable, hideable fields and saved table configuration.",
       },
       {
         src: "/assets/sh-air3-x.png",
-        alt: "Lyra Airtable clone tables workspace",
+        alt: "Airtable clone tables workspace",
         caption: "Tables workspace with search, filtering, sorting, and large-record performance.",
       },
     ],
-    tags: ["next.js", "tRPC", "postgresSQL", "drizzle", "tanstack", "next-auth", "virtualization"],
+    tags: ["next.js", "tRPC", "postgresSQL", "drizzle", "tanstack", "next-auth"],
     timeline: "2026",
     role: "Full-stack Engineer",
     stack: [
