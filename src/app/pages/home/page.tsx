@@ -493,11 +493,35 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    let cleanup: (() => void) | undefined;
+    let disposed = false;
+    let map: import("maplibre-gl").Map | undefined;
+
+    const removeMap = () => {
+      if (!map) return;
+      const currentMap = map;
+      map = undefined;
+      try {
+        currentMap.remove();
+      } catch (error) {
+        if (
+          !(
+            typeof error === "object" &&
+            error !== null &&
+            "name" in error &&
+            error.name === "AbortError"
+          )
+        ) {
+          throw error;
+        }
+      }
+    };
+
     const loadMap = async () => {
       if (!mapContainerRef.current) return;
       const maplibregl = await import("maplibre-gl");
-      const map = new maplibregl.Map({
+      if (disposed || !mapContainerRef.current) return;
+
+      map = new maplibregl.Map({
         container: mapContainerRef.current,
         style: `https://api.maptiler.com/maps/streets-v4-dark/style.json?key=${maptilerKey}`,
         center: [MAP_LON, MAP_LAT],
@@ -510,13 +534,12 @@ export default function HomePage() {
       map.touchZoomRotate.disableRotation();
       map.doubleClickZoom.disable();
       map.keyboard.disable();
-
-      // minimal attribution in footer; we avoid built-in controls
-      cleanup = () => map.remove();
     };
-    loadMap();
+    void loadMap();
     return () => {
-      if (cleanup) cleanup();
+      disposed = true;
+      // minimal attribution in footer; we avoid built-in controls
+      removeMap();
     };
   }, [maptilerKey]);
   

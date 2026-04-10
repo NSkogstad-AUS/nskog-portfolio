@@ -160,6 +160,100 @@ export const projects: ProjectEntry[] = [
     ],
   },
   {
+    slug: "ai-security-gateway",
+    owner: "NSkogstad-AUS",
+    repo: "nskog-ai-security-gateway",
+    title: "AI Security Gateway",
+    summary:
+      "Security gateway for AI agents that validates tool calls, enforces policy, logs events, and exposes an operations console.",
+    customDescription:
+      "TypeScript AI security gateway with Fastify interception APIs, OPA policy support, append-only event logging, and a Next.js console.",
+    context:
+      "Built to make AI-agent tool usage auditable instead of opaque. The gateway sits in front of tool calls, validates arguments, applies policy decisions, and keeps a traceable event history for approvals, denials, and executions.",
+    approach:
+      "I structured it as a pnpm monorepo with a Fastify gateway, Next.js console, shared schemas, connector registry, policy engines, Postgres event log, and Splunk exporter. The operations console surfaces queues, timelines, policy traces, connector inventory, and live event trends so security decisions can be reviewed after the fact.",
+    fallback: {
+      name: "nskog-ai-security-gateway",
+      fullName: "NSkogstad-AUS/nskog-ai-security-gateway",
+      stars: 0,
+      description:
+        "Security gateway for AI agents with tool-call validation, OPA policy enforcement, event logging, and an operations console.",
+      contributors: [],
+    },
+    tags: ["AI security", "fastify", "next.js", "OPA", "postgresSQL", "splunk"],
+    timeline: "2026",
+    role: "Full-stack Engineer",
+    stack: [
+      "TypeScript",
+      "Fastify",
+      "Next.js",
+      "PostgreSQL",
+      "Open Policy Agent",
+      "Splunk HEC",
+      "pnpm",
+    ],
+    highlights: [
+      "Intercepts AI-agent tool calls, validates arguments with shared schemas, and returns structured allow, deny, or approval-required decisions.",
+      "Records each decision phase in an append-only event log so approvals, policy evaluations, denials, and executions can be traced by correlation ID.",
+      "Includes a console for queue review, policy trace inspection, connector inventory, KPI cards, timelines, and live event streaming.",
+    ],
+    learnings: [
+      "AI guardrails are easier to trust when every policy decision has a durable trace and a human-readable reason path.",
+      "Connector schemas and risk tiers make security controls more maintainable than hard-coding rules per tool call.",
+      "A lightweight operations console can turn an enforcement layer into something teams can actually inspect and operate.",
+    ],
+    links: [
+      {
+        label: "GitHub Repo",
+        href: "https://github.com/NSkogstad-AUS/nskog-ai-security-gateway",
+        icon: "github",
+      },
+    ],
+  },
+  {
+    slug: "nskog-weave",
+    owner: "NSkogstad-AUS",
+    repo: "nskog-weave",
+    title: "Weave",
+    summary:
+      "AI-powered canvas workspace for simplifying, sorting, ordering, and explaining messy information.",
+    customDescription:
+      "Interactive AI canvas that helps turn scattered data into clearer, sorted, ordered, and explained outputs.",
+    context:
+      "Built around the idea that data cleanup and sensemaking should happen in a usable workspace, not only through a prompt box. The project uses AI to help simplify, sort, order, and explain information while keeping the work visible on a canvas.",
+    approach:
+      "I focused the product around an interactive canvas so users can arrange information spatially, ask AI to clarify or restructure it, and keep the transformed outputs close to the source material. The goal is a workflow that feels more like shaping data than sending one-off chat requests.",
+    fallback: {
+      name: "nskog-weave",
+      fullName: "NSkogstad-AUS/nskog-weave",
+      stars: 0,
+      description:
+        "AI canvas workspace for simplifying, sorting, ordering, and explaining messy information.",
+      contributors: [],
+    },
+    tags: ["AI", "canvas", "data tooling", "workflow", "productivity"],
+    timeline: "2026",
+    role: "Full-stack Engineer",
+    stack: ["AI", "Interactive Canvas", "Data Workflows", "TypeScript"],
+    highlights: [
+      "Uses AI to simplify, sort, order, and explain information from a more visual workspace.",
+      "Centers the workflow on a usable canvas so source data and transformed outputs can stay visible together.",
+      "Explores a more structured alternative to prompt-only data sensemaking for messy information.",
+    ],
+    learnings: [
+      "Canvas-based interfaces work best when AI output remains anchored to visible source material.",
+      "Data simplification tools need clear ordering and explanation affordances, not just generated summaries.",
+      "A visual workflow can make AI transformations easier to review than a linear chat transcript.",
+    ],
+    links: [
+      {
+        label: "GitHub Repo",
+        href: "https://github.com/NSkogstad-AUS/nskog-weave",
+        icon: "github",
+      },
+    ],
+  },
+  {
     slug: "blackline-forensics",
     owner: "NSkogstad-AUS",
     repo: "Blackline-AI-Forensic-Tool-for-Detecting-Deepfake-and-Synthetic-Media",
@@ -392,7 +486,7 @@ export const projects: ProjectEntry[] = [
     customDescription:
       "Rust eframe/egui desktop app with label and buttons to view Mac camera, play RTP H.264 stream, and update label from UDP notifs.",
     context:
-      "Built for the Unimelb Rover Team to quickly view RTP H.264 camera feeds and monitor stream health. I wanted a single binary that ops teammates could run without wrestling with CLI flags.",
+      "Quickly view RTP H.264 camera feeds and monitor stream health with a single binary that ops teammates could run without wrestling with CLI flags.",
     approach:
       "Used eframe/egui for a native-feeling panel, wired gstreamer pipeline controls, and added small UDP listeners to surface stream events. Everything ships as one Rust binary so setup is painless.",
     fallback: {
