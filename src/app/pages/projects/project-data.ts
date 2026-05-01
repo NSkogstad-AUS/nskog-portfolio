@@ -441,43 +441,6 @@ export const projects: ProjectEntry[] = [
     ],
   },
   {
-    slug: "ps4-dashboard",
-    owner: "NSkogstad-AUS",
-    repo: "nskog-react-ps4website",
-    title: "Playstation 4 Dashboard Website",
-    summary: "A React recreation of the PS4 home screen with animated tiles and controller-like navigation.",
-    customDescription:
-      "A website that has the look and functionality of the Playstation 4 home screen. Made for fun.",
-    context:
-      "Built as a nostalgia project to practice motion design. I wanted the page to feel like flipping through console tiles with depth, glow, and smooth focus states.",
-    approach:
-      "Modeled the tile rail, quick actions, and details drawer. Added keyboard navigation to mimic controller input, layered gradients for the hero background, and kept the codebase lean with Vite + TypeScript.",
-    fallback: {
-      name: "nskog-react-ps4website",
-      fullName: "NSkogstad-AUS/nskog-react-ps4website",
-      stars: 1,
-      description: "A website that has the look and functionality of the Playstation 4 home screen. Made for fun.",
-      contributors: [],
-    },
-    tags: ["vite", "react", "typescript", "tailwind"],
-    timeline: "2023",
-    role: "Front-end Engineer",
-    stack: ["React", "TypeScript", "Vite", "Tailwind"],
-    highlights: [
-      "Recreated the PS4 tile rail with focus rings, parallax, and quick-info cards.",
-      "Keyboard navigation mimics a controller D-pad, keeping interactions snappy.",
-      "Lean asset pipeline with Vite keeps reload times low while tweaking animations.",
-    ],
-    learnings: [
-      "Console UIs rely on strong focus states; reinforcing them with color + scale helps accessibility too.",
-      "Framing motion early (durations, easing) avoids a patchwork feel later.",
-      "Even playful clones benefit from predictable state machines to avoid weird focus traps.",
-    ],
-    links: [
-      { label: "GitHub Repo", href: "https://github.com/NSkogstad-AUS/nskog-react-ps4website", icon: "github" },
-    ],
-  },
-  {
     slug: "rust-rtp-gui",
     owner: "NSkogstad-AUS",
     repo: "urt_gui_app",
@@ -514,45 +477,7 @@ export const projects: ProjectEntry[] = [
     links: [
       { label: "GitHub Repo", href: "https://github.com/NSkogstad-AUS/urt_gui_app", icon: "github" },
     ],
-  },
-  {
-    slug: "collaborative-doc-editor",
-    owner: "NSkogstad-AUS",
-    repo: "nskog-realtimeDocEditor",
-    title: "Collaborative Document Editor",
-    summary: "Real-time rich-text editor powered by websockets, shareable links, and Quill.",
-    customDescription:
-      "Collaborative rich-text editor using Node.js, Socket.io, MongoDB, React and Quill, syncing document edits in real time for multiple users.",
-    context:
-      "A playground to understand collaborative editing and websocket plumbing. The goal: give multiple people a doc link and keep edits in sync without collisions.",
-    approach:
-      "Node + Socket.io broker changes, MongoDB persists docs, and the React/Quill front-end broadcasts and applies updates in real time. Each doc lives in its own room so traffic stays scoped.",
-    fallback: {
-      name: "nskog-realtimeDocEditor",
-      fullName: "NSkogstad-AUS/nskog-realtimeDocEditor",
-      stars: 1,
-      description:
-        "Collaborative rich-text editor using Node.js, Socket.io, MongoDB, React and Quill, syncing document edits in real time for multiple users..",
-      contributors: [],
-    },
-    tags: ["react", "socket.IO", "quill", "UUID", "node.js", "mongoDB"],
-    timeline: "2024",
-    role: "Full-stack Developer",
-    stack: ["React", "Node.js", "Socket.io", "MongoDB", "Quill"],
-    highlights: [
-      "Implemented per-document rooms so updates only broadcast to collaborators on the same doc.",
-      "Auto-saves to MongoDB on idle, keeping edits safe without spamming writes.",
-      "Added connection + presence indicators so users know when friends join or drop.",
-    ],
-    learnings: [
-      "Operational transform concepts help reason about conflicts even in a lightweight clone.",
-      "Websocket backpressure matters—rate limiting bursts kept the server stable.",
-      "Clear presence signals reduce anxiety; people trust the tool more when they can see who is editing.",
-    ],
-    links: [
-      { label: "GitHub Repo", href: "https://github.com/NSkogstad-AUS/nskog-realtimeDocEditor", icon: "github" },
-    ],
-  },
+  }
 ];
 
 export const findProject = (slug?: string) => {
