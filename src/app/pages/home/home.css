@@ -33,7 +33,7 @@
   padding: 2rem 2rem;
   margin: 0;
   width: 37vw;
-  height: 25vh;
+  height: auto;
 }
 
 .card__link {
@@ -160,7 +160,7 @@
   justify-content: left;
   color: var(--text-primary);
   align-self: flex-start;
-  margin-top: -2rem;
+  margin-top: 0;
   margin-left: 3%;
 }
 
