@@ -48,11 +48,11 @@ export default function AboutPage() {
           <button
             className="profilePhoto"
             type="button"
-            onClick={(e) => openLightbox("/assets/pf-4.JPG", e.currentTarget.getBoundingClientRect())}
+            onClick={(e) => openLightbox("/assets/pf-5.jpg", e.currentTarget.getBoundingClientRect())}
             aria-label="View portrait"
           >
             <Image
-              src="/assets/pf-4.JPG"
+              src="/assets/pf-5.jpg"
               alt="Portrait"
               width={320}
               height={320}
